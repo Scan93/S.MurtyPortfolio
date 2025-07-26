@@ -28,6 +28,13 @@
         .content-section.active {
             display: block; /* Shown when active */
         }
+        /* Style for the embedded PDF iframe */
+        .pdf-embed {
+            width: 100%;
+            height: 600px; /* Adjust height as needed */
+            border: 1px solid #e2e8f0; /* Light border */
+            border-radius: 0.75rem; /* Rounded corners */
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -52,7 +59,7 @@
         <section id="home" class="content-section active bg-white p-6 rounded-xl shadow-md mb-8">
             <h2 class="text-3xl font-semibold text-gray-800 mb-4">Welcome to My Portfolio!</h2>
             <p class="text-lg leading-relaxed text-gray-700">
-                Hello! I'm Scandal, an aspiring Data Analyst / Business Analyst currently pursuing an Associate's degree in Computer Science with a specialization in data analysis. I am passionate about leveraging data to drive informed decisions and solve complex problems. This portfolio showcases my academic journey, professional aspirations, and personal projects.
+                Hello! I'm Scandal Murty, an aspiring Data Analyst / Business Analyst currently pursuing an Associate's degree in Computer Science with a specialization in data analysis. I am passionate about leveraging data to drive informed decisions and solve complex problems. This portfolio showcases my academic journey, professional aspirations, and personal projects.
             </p>
             <p class="text-lg leading-relaxed text-gray-700 mt-4">
                 My goal is to combine my analytical skills with my technical foundation to extract meaningful insights from data, contributing to business growth and efficiency. I am eager to learn and apply new technologies and methodologies in the field of data science.
@@ -64,8 +71,8 @@
                 — Scandal Murty
             </p>
             <div class="mt-6 flex flex-wrap gap-4">
-                <a href="https://www.linkedin.com/in/scandal-murty-403543225" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">Connect on LinkedIn</a>
-                <a href="https://github.com/Scan93" class="inline-block bg-gray-700 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">View GitHub Profile</a>
+                <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">Connect on LinkedIn</a>
+                <a href="https://github.com/Scan93" target="_blank" class="inline-block bg-gray-700 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">View GitHub Profile</a>
             </div>
         </section>
 
@@ -73,64 +80,20 @@
         <section id="resume" class="content-section bg-white p-6 rounded-xl shadow-md mb-8">
             <h2 class="text-3xl font-semibold text-gray-800 mb-4">My Resume</h2>
             <div class="text-gray-700 prose max-w-none">
-                <p>This section will contain your detailed resume. You can embed it as a PDF, provide a link to a Google Docs/PDF version, or format it directly using HTML.</p>
-                <p class="mt-4"><strong>Example Placeholder Content:</strong></p>
-                <h3 class="text-2xl font-medium mt-6 mb-2">Education</h3>
-                <ul class="list-disc list-inside ml-4">
-                    <li><strong>Associate's Degree in Computer Science (Specialization: Data Analysis)</strong> - [Your College Name], [City, State]</li>
-                    <li>Expected Graduation: [Year]</li>
-                </ul>
-
-                <h3 class="text-2xl font-medium mt-6 mb-2">Skills</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div>
-                        <h4 class="text-xl font-medium mb-1">Data Analysis & Tools:</h4>
-                        <ul class="list-disc list-inside ml-4">
-                            <li>Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
-                            <li>SQL (Database querying)</li>
-                            <li>Excel (Advanced functions, PivotTables)</li>
-                            <li>Data Visualization (Tableau, Power BI - Basic)</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-medium mb-1">Programming Languages:</h4>
-                        <ul class="list-disc list-inside ml-4">
-                            <li>Python</li>
-                            <li>Java (Basic)</li>
-                            <li>C++ (Basic)</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-medium mb-1">Other Skills:</h4>
-                        <ul class="list-disc list-inside ml-4">
-                            <li>Statistical Analysis</li>
-                            <li>Problem Solving</li>
-                            <li>Communication</li>
-                            <li>Microsoft Office Suite</li>
-                        </ul>
-                    </div>
+                <p>This section displays your resume. You can view it directly here or download the PDF version.</p>
+                <!-- Embedded PDF Viewer -->
+                <div class="mt-6 mb-6">
+                    <iframe src="your_resume.pdf#toolbar=0&navpanes=0&scrollbar=0" class="pdf-embed" title="Your Resume">
+                        <p>It looks like your browser doesn't support PDFs. You can <a href="your_resume.pdf" class="text-blue-500 hover:underline font-bold">download the PDF here</a>.</p>
+                    </iframe>
                 </div>
-
-                <h3 class="text-2xl font-medium mt-6 mb-2">Experience</h3>
-                <div class="mb-4">
-                    <h4 class="text-xl font-medium">Student Researcher (Volunteer/Project-based)</h4>
-                    <p class="text-gray-600"><em>[Your College Name] - [Dates]</em></p>
-                    <ul class="list-disc list-inside ml-4">
-                        <li>Assisted in collecting and cleaning [type] data for a [research topic] project.</li>
-                        <li>Performed basic statistical analysis using [tool/language] to identify [key findings].</li>
-                        <li>Prepared preliminary reports summarizing findings for faculty advisor.</li>
-                    </ul>
-                </div>
-                <!-- Add more experience as needed -->
-
-                <h3 class="text-2xl font-medium mt-6 mb-2">Certifications / Courses</h3>
-                <ul class="list-disc list-inside ml-4">
-                    <li>[Certification Name] - [Issuing Body]</li>
-                    <li>[Online Course Name] - [Platform]</li>
-                </ul>
 
                 <p class="mt-6 text-center">
-                    <a href="your_resume.pdf" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">Download Full Resume (PDF)</a>
+                    <a href="your_resume.pdf" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200" download>Download Full Resume (PDF)</a>
+                </p>
+
+                <p class="mt-4 text-sm text-gray-500">
+                    <strong>Note:</strong> To display your resume, make sure you upload your PDF file named `your_resume.pdf` to the same directory as your `index.html` file in your GitHub repository.
                 </p>
             </div>
         </section>
@@ -142,7 +105,7 @@
                 <!-- Project 1 -->
                 <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Project Title 1: Sales Performance Dashboard</h3>
-                    <p class="text-gray-700 mb-3">
+                    <p class="text-lg leading-relaxed text-gray-700 mb-3">
                         Developed an interactive dashboard to visualize sales trends and identify top-performing products using Python (Pandas, Matplotlib) and Tableau.
                     </p>
                     <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -155,7 +118,7 @@
                 <!-- Project 2 -->
                 <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Project Title 2: Customer Churn Prediction</h3>
-                    <p class="text-gray-700 mb-3">
+                    <p class="text-lg leading-relaxed text-gray-700 mb-3">
                         Analyzed customer data to predict potential churn using statistical methods and basic machine learning concepts.
                     </p>
                     <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -168,7 +131,7 @@
                 <!-- Project 3 -->
                 <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Project Title 3: Market Basket Analysis</h3>
-                    <p class="text-gray-700 mb-3">
+                    <p class="text-lg leading-relaxed text-gray-700 mb-3">
                         Explored transactional data to discover associations between purchased items, aiming to improve product placement and promotional strategies.
                     </p>
                     <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -190,7 +153,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
                         <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Custom Desk Organizer</h4>
-                        <p class="text-gray-700 mb-3">
+                        <p class="text-lg leading-relaxed text-gray-700 mb-3">
                             Designed and 3D printed a modular desk organizer tailored to my specific needs, including compartments for pens, tools, and small electronics.
                         </p>
                         <p class="text-gray-600 text-sm">
@@ -201,7 +164,7 @@
                     </div>
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
                         <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Miniature Figurines</h4>
-                        <p class="text-gray-700 mb-3">
+                        <p class="text-lg leading-relaxed text-gray-700 mb-3">
                             Experimented with printing miniature figurines, focusing on optimizing print settings for fine details and smooth finishes.
                         </p>
                         <p class="text-gray-600 text-sm">
@@ -218,7 +181,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
                         <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Simple Geometric Abstractions</h4>
-                        <p class="text-gray-700 mb-3">
+                        <p class="text-lg leading-relaxed text-gray-700 mb-3">
                             Learned the basics of Blender by creating various geometric shapes and combining them into abstract art pieces.
                         </p>
                         <p class="text-gray-600 text-sm">
@@ -229,7 +192,7 @@
                     </div>
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
                         <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Recreating Household Objects</h4>
-                        <p class="text-gray-700 mb-3">
+                        <p class="text-lg leading-relaxed text-gray-700 mb-3">
                             Practiced precise modeling by attempting to recreate common household objects (e.g., a coffee mug, a simple chair) in Blender.
                         </p>
                         <p class="text-gray-600 text-sm">
@@ -246,7 +209,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
                         <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Simple LED Blinker Circuit</h4>
-                        <p class="text-gray-700 mb-3">
+                        <p class="text-lg leading-relaxed text-gray-700 mb-3">
                             Assembled a basic LED blinking circuit using a 555 timer IC, resistors, and capacitors on a breadboard.
                         </p>
                         <p class="text-gray-600 text-sm">
@@ -257,7 +220,7 @@
                     </div>
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
                         <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Arduino "Hello World" (Blink)</h4>
-                        <p class="text-gray-700 mb-3">
+                        <p class="text-lg leading-relaxed text-gray-700 mb-3">
                             Wrote and uploaded the classic "Blink" sketch to an Arduino Uno, controlling an onboard LED.
                         </p>
                         <p class="text-gray-600 text-sm">
@@ -274,11 +237,11 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white text-center p-4 mt-8 shadow-inner">
         <div class="container mx-auto">
-            <p>&copy; 2024 Your Name. All rights reserved.</p>
+            <p>&copy; 2024 Scandal Murty. All rights reserved.</p>
             <p class="text-sm mt-2">
                 Connect with me:
-                <a href="#" class="text-blue-400 hover:underline mx-2">LinkedIn</a> |
-                <a href="#" class="text-blue-400 hover:underline mx-2">GitHub</a> |
+                <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="text-blue-400 hover:underline mx-2">LinkedIn</a> |
+                <a href="https://github.com/Scan93" target="_blank" class="text-blue-400 hover:underline mx-2">GitHub</a> |
                 <a href="mailto:your.email@example.com" class="text-blue-400 hover:underline mx-2">Email</a>
             </p>
         </div>
