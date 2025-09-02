@@ -1,6 +1,44 @@
-        <section id="hobbies" class="content-section bg-white p-6 rounded-xl shadow-md mb-8">
-            <h2 class="text-3xl font-semibold text-gray-800 mb-4">My Hobbies & Personal Projects (Page is a WIP)</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scandal Murty - Hobbies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+            color: #334155; /* Darker text color */
+        }
+        .container {
+            max-width: 1200px;
+        }
+        /* Custom styles for active navigation link */
+        .nav-link.active {
+            @apply bg-blue-600 text-white;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-gray-800 text-white shadow-lg p-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-3xl font-bold mb-4 md:mb-0">Scandal Murty</h1>
+            <nav>
+                <ul class="flex flex-wrap justify-center space-x-2 md:space-x-4">
+                    <li><a href="index.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Home</a></li>
+                    <li><a href="resume.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Resume</a></li>
+                    <li><a href="projects.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Projects</a></li>
+                    <li><a href="hobbies.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700 active">Hobbies</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
+    <main class="flex-grow container mx-auto p-6 md:p-8">
+        <section id="hobbies" class="bg-white p-6 rounded-xl shadow-md mb-8">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-4">My Hobbies & Personal Projects</h2>
             <div class="mb-8">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-3">3D Printing</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -14,81 +52,4 @@
                         </p>
                         <img src="https://placehold.co/400x250/e0e7ff/4f46e5?text=3D+Print+Image" alt="3D Printed Desk Organizer" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
                     </div>
-                    <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: WIP</h4>
-                        <p class="text-lg leading-relaxed text-gray-700 mb-3">
-                            Experimented with....WIP
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <em>Skills: Slicer software optimization, troubleshooting common print issues.</em>
-                        </p>
-                        <img src="https://placehold.co/400x250/e0e7ff/4f46e5?text=Miniature+Print" alt="3D Printed Miniature" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-8">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-3">3D Modeling</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Simple Geometric Abstractions</h4>
-                        <p class="text-lg leading-relaxed text-gray-700 mb-3">
-                            Learned the basics of Blender by creating various geometric shapes and combining them into abstract art pieces.
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <em>Skills: Trimble Sketch Up - Blender (basic modeling, rendering), architechture, understanding mesh topology.</em>
-                        </p>
-                        <img src="https://placehold.co/400x250/dbeafe/1d4ed8?text=3D+Model+Image" alt="3D Modeled Geometric Abstraction" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
-                    </div>
-                    <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Recreating Household Objects</h4>
-                        <p class="text-lg leading-relaxed text-gray-700 mb-3">
-                            Practiced precise modeling by attempting to recreate common household objects (e.g., organizational objects) in Sketch Up.
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <em>Skills: Precision modeling, applying basic materials and textures.</em>
-                        </p>
-                        <img src="https://placehold.co/400x250/dbeafe/1d4ed8?text=Household+Object" alt="3D Modeled Household Object" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
-                    </div>
-                </div>
-            </div>
-
-                <section id="hobbies" class="content-section bg-white p-6 rounded-xl shadow-md mb-8">
-    <h2 class="text-3xl font-semibold text-gray-800 mb-4">My Hobbies & Personal Projects</h2>
-    <div class="flex flex-col items-center justify-center p-8 text-center">
-        <p class="text-xl leading-relaxed text-gray-700 mb-6">
-            Explore my personal projects and hobbies, including 3D printing and electrical engineering, on a dedicated page.
-        </p>
-        <a href="hobbies.html" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
-            View My Hobbies
-        </a>
-    </div>
-</section>
-
-            <div>
-                <h3 class="text-2xl font-semibold text-gray-800 mb-3">Electrical Engineering (Beginner)</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: WIP</h4>
-                        <p class="text-lg leading-relaxed text-gray-700 mb-3">
-                            WIP
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <em>Skills: understanding schematics, WIP</em>
-                        </p>
-                        <img src="https://placehold.co/400x250/fee2e2/dc2626?text=LED+Circuit" alt="LED Blinker Circuit" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
-                    </div>
-                    <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Arduino "Hello World" (Blink)</h4>
-                        <p class="text-lg leading-relaxed text-gray-700 mb-3">
-                            Wrote and uploaded the classic "Blink" sketch to an Arduino Uno, controlling an onboard LED.
-                        </p>
-                        <p class="text-gray-600 text-sm">
-                            <em>Skills: Arduino IDE, basic C++ for microcontrollers, digital output.</em>
-                        </p>
-                        <img src="https://placehold.co/400x250/fee2e2/dc2626?text=Arduino+Blink" alt="Arduino Blink Project" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+                    <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-
