@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scandal Murty - Bio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+            color: #334155; /* Darker text color */
+        }
+        .container {
+            max-width: 1200px;
+        }
+        /* Custom styles for active navigation link */
+        .nav-link.active {
+            @apply bg-blue-600 text-white;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-gray-800 text-white shadow-lg p-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-3xl font-bold mb-4 md:mb-0">Scandal Murty</h1>
+            <nav>
+                <ul class="flex flex-wrap justify-center space-x-2 md:space-x-4">
+                    <li><a href="index.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Home</a></li>
+                    <li><a href="bio.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700 active">Bio</a></li>
+                    <li><a href="resume.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Resume</a></li>
+                    <li><a href="projects.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Projects</a></li>
+                    <li><a href="hobbies.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Hobbies</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto p-6 md:p-8">
+        <section id="bio" class="bg-white p-6 rounded-xl shadow-md mb-8">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-4">About Scandal Murty</h2>
+            <p class="text-lg leading-relaxed text-gray-700">
+                Hello! I'm Scandal Murty, an aspiring Data Analyst / Business Analyst currently pursuing an Associate's degree in Data Analytics. I am passionate about leveraging data to drive informed decisions and solve complex problems. This portfolio showcases my academic journey, professional aspirations, and personal projects.
+            </p>
+            <p class="text-lg leading-relaxed text-gray-700 mt-4">
+                My goal is to combine my analytical skills with my technical foundation to extract meaningful insights from data, contributing to business growth and efficiency. I am eager to learn and apply new technologies and methodologies in the field of data science.
+            </p>
+            <p class="text-lg leading-relaxed text-gray-700 mt-4">
+                Feel free to explore my resume, projects, and hobbies. I'm excited about the possibilities that data analysis offers and look forward to connecting with professionals in the field!
+            </p>
+            <p class="text-lg leading-relaxed text-gray-700 mt-4 font-medium">
+                — Scandal Murty
+            </p>
+            <div class="mt-6 flex flex-wrap gap-4">
+                <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">Connect on LinkedIn</a>
+                <a href="https://github.com/Scan93" target="_blank" class="inline-block bg-gray-700 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">View GitHub Profile</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8 shadow-inner">
+        <div class="container mx-auto">
+            <p>&copy; Updated September 2025.</p>
+            <p class="text-sm mt-2">
+                Connect with me:
+                <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="text-blue-400 hover:underline mx-2">LinkedIn</a> |
+                <a href="https://github.com/Scan93" target="_blank" class="text-blue-400 hover:underline mx-2">GitHub</a> |
+                <a href="mailto:scandalmurty@gmail.com" class="text-blue-400 hover:underline mx-2">Email</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
