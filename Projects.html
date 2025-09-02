@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scandal Murty - Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+            color: #334155; /* Darker text color */
+        }
+        .container {
+            max-width: 1200px;
+        }
+        /* Custom styles for active navigation link */
+        .nav-link.active {
+            @apply bg-blue-600 text-white;
+        }
+        /* Style for the embedded PDF iframe */
+        .pdf-embed {
+            width: 100%;
+            height: 600px; /* Adjust height as needed */
+            border: 1px solid #e2e8f0; /* Light border */
+            border-radius: 0.75rem; /* Rounded corners */
+        }
+        /* Style for Tableau Embed (Optional: make it responsive) */
+        .tableau-responsive-container {
+            position: relative;
+            width: 100%;
+            /* Adjust padding-bottom for aspect ratio. 75% for 4:3, 56.25% for 16:9 */
+            padding-bottom: 75%; /* Example: Adjust this based on your Tableau dashboard's aspect ratio if needed */
+            height: 0;
+            overflow: hidden;
+        }
+        .tableau-responsive-container iframe {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-gray-800 text-white shadow-lg p-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-3xl font-bold mb-4 md:mb-0">Scandal Murty</h1>
+            <nav>
+                <ul class="flex flex-wrap justify-center space-x-2 md:space-x-4">
+                    <li><a href="index.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Home</a></li>
+                    <li><a href="resume.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Resume</a></li>
+                    <li><a href="projects.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700 active">Projects</a></li>
+                    <li><a href="hobbies.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Hobbies</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto p-6 md:p-8">
+        <section id="projects" class="bg-white p-6 rounded-xl shadow-md mb-8">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-4">Data Analysis & Business Analysis Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="md:col-span-2 lg:col-span-3 bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">E-commerce Sales Performance Analysis (Amazon Sales)</h3>
+                    <p class="text-lg leading-relaxed text-gray-700 mb-3">
+                        Developed an interactive dashboard to visualize sales trends, identify top-performing products, and analyze customer behavior using SQL for data preparation and Tableau for visualization. This project provides actionable insights into sales performance for an e-commerce business.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li><strong>Tools:</strong> SQL (SQLite), Excel, Tableau Public</li>
+                        <li><strong>Outcome:</strong> Identified monthly sales trends.</li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-medium text-gray-800 mt-4 mb-2">Interactive Dashboard:</h4>
+                    <div class="flex justify-center">
+                        <div class='tableauPlaceholder' id='viz1753855016132' style='position: relative; width: 100%;'>
+                            <noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Am&#47;AmazonSalesAnalysis_17538547769410&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript>
+                            <object class='tableauViz' style='display:none;'>
+                                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                                <param name='embed_code_version' value='3' />
+                                <param name='site_root' value='' />
+                                <param name='name' value='AmazonSalesAnalysis_17538547769410&#47;Dashboard1' />
+                                <param name='tabs' value='no' />
+                                <param name='toolbar' value='yes' />
+                                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Am&#47;AmazonSalesAnalysis_17538547769410&#47;Dashboard1&#47;1.png' />
+                                <param name='animate_transition' value='yes' />
+                                <param name='display_static_image' value='yes' />
+                                <param name='display_spinner' value='yes' />
+                                <param name='display_overlay' value='yes' />
+                                <param name='display_count' value='yes' />
+                                <param name='language' value='en-US' />
+                            </object>
+                        </div>
+                        <script type='text/javascript'>
+                            var divElement = document.getElementById('viz1753855016132');
+                            var vizElement = divElement.getElementsByTagName('object')[0];
+                            if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}
+                            var scriptElement = document.createElement('script');
+                            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                        </script>
+                        </div>
+
+                    <p class="mt-4 text-center text-sm text-gray-600">
+                        <em>(If the interactive dashboard doesn't load or for a full-screen view, you can access it directly on Tableau Public: 
+                        <a href="https://public.tableau.com/views/AmazonSalesAnalysis_17538547769410/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="text-blue-500 hover:underline font-bold">Amazon Sales Analysis Dashboard</a>)</em>
+                    </p>
+                    
+                    <div class="mt-6 text-center">
+                        <a href="YOUR_GITHUB_REPO_URL_FOR_THIS_PROJECT" target="_blank" class="inline-block bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200 text-sm">View Project on GitHub (Code & Data)</a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Project 2:(WIP)</h3>
+                    <p class="text-lg leading-relaxed text-gray-700 mb-3">
+                        Analyzed customer data.....WIP
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li><strong>Tools:</strong> Python, Scikit-learn (basic), SQL</li>
+                        <li><strong>Outcome:</strong> Identified key factors contributing to customer churn, suggesting targeted retention strategies.</li>
+                    </ul>
+                    <a href="#" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200 text-sm">View Project (GitHub)</a>
+                </div>
+
+                <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Project 3:(WIP)</h3>
+                    <p class="text-lg leading-relaxed text-gray-700 mb-3">
+                        Explored transactional data to discover associations between purchased items, aiming to improve product placement and promotional strategies....WIP
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li><strong>Tools:</strong> Python, Apriori Algorithm (conceptual)</li>
+                        <li><strong>Outcome:</strong> Provided insights into popular product combinations for cross-selling.</li>
+                    </ul>
+                    <a href="#" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200 text-sm">View Project (GitHub)</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8 shadow-inner">
+        <div class="container mx-auto">
+            <p>&copy; Updated September 2025.</p>
+            <p class="text-sm mt-2">
+                Connect with me:
+                <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="text-blue-400 hover:underline mx-2">LinkedIn</a> |
+                <a href="https://github.com/Scan93" target="_blank" class="text-blue-400 hover:underline mx-2">GitHub</a> |
+                <a href="mailto:scandalmurty@gmail.com" class="text-blue-400 hover:underline mx-2">Email</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
