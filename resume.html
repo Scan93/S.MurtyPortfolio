@@ -15,9 +15,10 @@
         .container {
             max-width: 1200px;
         }
-        /* Custom styles for active navigation link */
+        /* Fixed style for active navigation link (since @apply doesn't work with CDN) */
         .nav-link.active {
-            @apply bg-blue-600 text-white;
+            background-color: #2563EB; /* Equivalent to bg-blue-600 */
+            color: #ffffff; /* Equivalent to text-white */
         }
         /* Style for the embedded PDF iframe */
         .pdf-embed {
@@ -46,16 +47,26 @@
 
     <main class="flex-grow container mx-auto p-6 md:p-8">
         <section id="resume" class="bg-white p-6 rounded-xl shadow-md mb-8">
-            <h2 class="text-3xl font-semibold text-gray-800 mb-4">Scandal's Resume</h2>
+            <div class="flex justify-between items-center mb-4 border-b pb-4">
+                <h2 class="text-3xl font-semibold text-gray-800">Professional Resume</h2>
+                <a href="ScandalMurtyResume.pdf" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-200" download>Download PDF</a>
+            </div>
+            
             <div class="text-gray-700 prose max-w-none">
-                <p>You can view my resume directly here or download the PDF version.</p>
+                <p class="text-xl">Below is a direct view of my resume for quick review. You can download the PDF version for printing or offline viewing at any time.</p>
+                
                 <div class="mt-6 mb-6">
-                    <iframe src="ScandalMurtyResume.pdf" class="pdf-embed" title="Scandal's Resume">
-                        <p>It looks like your browser doesn't support PDFs. <a href="ScandalMurtyResume.pdf" class="text-blue-500 hover:underline font-bold">download the PDF here</a>.</p>
+                    <iframe src="ScandalMurtyResume.pdf" class="pdf-embed" title="Scandal Murty's Professional Resume">
+                        <p>It looks like your browser doesn't support embedded PDFs. Please <a href="ScandalMurtyResume.pdf" class="text-blue-500 hover:underline font-bold" download>download the PDF here</a>.</p>
                     </iframe>
                 </div>
-                <p class="mt-6 text-center">
-                    <a href="ScandalMurtyResume.pdf" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200" download>Download Full Resume (PDF)</a>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-gray-200">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Key Skills Snapshot (ATS Focus)</h3>
+                <p class="text-lg">
+                    **Target Roles:** Data Analyst, Business Analyst, Junior Data Scientist. <br>
+                    **Technical Skills:** SQL, Python (Pandas, NumPy), Excel (Advanced), Data Visualization (Tableau/Power BI), Statistical Analysis, Data Mining, Microsoft Suite, GitHub, HTML/CSS.
                 </p>
             </div>
         </section>
@@ -63,7 +74,7 @@
 
     <footer class="bg-gray-800 text-white text-center p-4 mt-8 shadow-inner">
         <div class="container mx-auto">
-            <p>&copy; Webpages created with the help of Google Gemini. Updated September 2025.</p>
+            <p>&copy; Scandal Murty Portfolio. Updated September 2025.</p>
             <p class="text-sm mt-2">
                 Connect with me:
                 <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="text-blue-400 hover:underline mx-2">LinkedIn</a> |
