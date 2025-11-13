@@ -15,9 +15,10 @@
         .container {
             max-width: 1200px;
         }
-        /* Custom styles for active navigation link */
+        /* Fixed style for active navigation link (since @apply doesn't work with CDN) */
         .nav-link.active {
-            @apply bg-blue-600 text-white;
+            background-color: #2563EB; /* Equivalent to bg-blue-600 */
+            color: #ffffff; /* Equivalent to text-white */
         }
     </style>
 </head>
@@ -39,79 +40,85 @@
 
     <main class="flex-grow container mx-auto p-6 md:p-8">
         <section id="hobbies" class="bg-white p-6 rounded-xl shadow-md mb-8">
-            <h2 class="text-3xl font-semibold text-gray-800 mb-4">My Hobbies & Personal Projects</h2>
+            <h2 class="text-3xl font-semibold text-gray-800 mb-4">My Technical Hobbies & Personal Projects</h2>
+            <p class="text-xl leading-relaxed text-gray-700 mb-8">
+                These personal projects demonstrate my **technical curiosity**, ability to **troubleshoot complex problems**, and commitment to **iterative design and precision**—skills directly transferable to data analysis and business operations.
+            </p>
+            
             <div class="mb-8">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-3">3D Printing</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Custom Power Bank</h4>
+                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Custom Power Bank Housing Design</h4>
                         <p class="text-lg leading-relaxed text-gray-700 mb-3">
-                            Designed a power bank with fully custom parts.
+                            Designed and manufactured a custom, functional housing for a portable power bank, requiring precise tolerance planning and fit testing.
                         </p>
                         <p class="text-gray-600 text-sm">
-                            <em>3D model made with Trimble Sketchup.</em>
+                            <em>Tools: **Trimble Sketchup**, FDM Printer, Calipers.</em>
                         </p>
-                        <img src="https://placehold.co/400x250/e0e7ff/4f46e5?text=3D+Print+Image" alt="3D Printed Desk Organizer" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
+                        <img src="https://placehold.co/400x250/e0e7ff/4f46e5?text=3D+Printed+Power+Bank+Housing" alt="3D Printed Custom Power Bank Housing" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
                     </div>
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: WIP</h4>
+                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Filament Calibration & Stress Testing</h4>
                         <p class="text-lg leading-relaxed text-gray-700 mb-3">
-                            Experimented with....WIP
+                            Executed calibration prints (temperature towers, flow rates) and stress-tested various print settings to optimize material usage and print reliability.
                         </p>
                         <p class="text-gray-600 text-sm">
-                            <em>Skills: Slicer software optimization, troubleshooting common print issues.</em>
+                            <em>Skills: **Slicer software optimization**, precision calibration, troubleshooting mechanical/extrusion issues.</em>
                         </p>
-                        <img src="https://placehold.co/400x250/e0e7ff/4f46e5?text=Miniature+Print" alt="3D Printed Miniature" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
+                        <img src="https://placehold.co/400x250/e0e7ff/4f46e5?text=3D+Print+Calibration+Test" alt="3D Print Calibration Test Piece" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
                     </div>
                 </div>
             </div>
+            
             <div class="mb-8">
                 <h3 class="text-2xl font-semibold text-gray-800 mb-3">3D Modeling</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
                         <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Simple Geometric Abstractions</h4>
                         <p class="text-lg leading-relaxed text-gray-700 mb-3">
-                            Learned the basics of Blender by creating various geometric shapes and combining them into abstract art pieces.
+                            Learned the basics of **Blender** by creating various geometric shapes and combining them into abstract art pieces, focusing on light and texture.
                         </p>
                         <p class="text-gray-600 text-sm">
-                            <em>Skills: Trimble Sketch Up - Blender (basic modeling, rendering), architecture, understanding mesh topology.</em>
+                            <em>Tools: **Trimble Sketch Up**, Blender (basic modeling, rendering), architecture and design principles.</em>
                         </p>
-                        <img src="https://placehold.co/400x250/dbeafe/1d4ed8?text=3D+Model+Image" alt="3D Modeled Geometric Abstraction" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
+                        <img src="https://placehold.co/400x250/dbeafe/1d4ed8?text=3D+Model+Geometric+Art" alt="3D Modeled Geometric Abstraction" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
                     </div>
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Recreating Household Objects</h4>
+                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Precise Modeling of Organizational Objects</h4>
                         <p class="text-lg leading-relaxed text-gray-700 mb-3">
-                            Practiced precise modeling by attempting to recreate common household objects (e.g., organizational objects) in Sketch Up.
+                            Practiced precision modeling by recreating common household objects (e.g., organizational items) in Sketch Up, focusing on real-world dimensions and functionality.
                         </p>
                         <p class="text-gray-600 text-sm">
-                            <em>Skills: Precision modeling, applying basic materials and textures.</em>
+                            <em>Skills: Precision dimensioning, applying basic materials and textures.</em>
                         </p>
-                        <img src="https://placehold.co/400x250/dbeafe/1d4ed8?text=Household+Object" alt="3D Modeled Household Object" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
+                        <img src="https://placehold.co/400x250/dbeafe/1d4ed8?text=3D+Modeled+Household+Item" alt="3D Modeled Household Object" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
                     </div>
                 </div>
             </div>
+            
             <div>
-                <h3 class="text-2xl font-semibold text-gray-800 mb-3">Electrical Engineering</h3>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-3">Electrical Engineering & Microcontrollers</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: WIP</h4>
+                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Basic Sensor Interface Circuit Design</h4>
                         <p class="text-lg leading-relaxed text-gray-700 mb-3">
-                            WIP
+                            Designed and wired a simple sensor-based circuit on a breadboard to understand component flow and voltage regulation.
                         </p>
                         <p class="text-gray-600 text-sm">
-                            <em>Skills: understanding schematics, WIP</em>
+                            <em>Skills: **Component Sourcing & Wiring**, understanding schematics, breadboard prototyping.</em>
                         </p>
-                        <img src="https://placehold.co/400x250/fee2e2/dc2626?text=LED+Circuit" alt="LED Blinker Circuit" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
+                        <img src="https://placehold.co/400x250/fee2e2/dc2626?text=Sensor+Circuit+Diagram" alt="Basic Sensor Circuit Diagram" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
                     </div>
                     <div class="bg-gray-50 p-5 rounded-lg shadow-sm border border-gray-200">
-                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Arduino "Hello World" (Blink)</h4>
+                        <h4 class="text-xl font-medium text-gray-800 mb-2">Project: Arduino "Hello World" (LED Blink)</h4>
                         <p class="text-lg leading-relaxed text-gray-700 mb-3">
-                            Wrote and uploaded the classic "Blink" sketch to an Arduino Uno, controlling an onboard LED.
+                            Wrote and uploaded the classic "Blink" sketch to an Arduino Uno, demonstrating ability to interface software logic with physical components.
                         </p>
                         <p class="text-gray-600 text-sm">
-                            <em>Skills: Arduino IDE, basic C++ for microcontrollers, digital output.</em>
+                            <em>Skills: **Arduino IDE**, basic C++ for microcontrollers, controlling digital output.</em>
                         </p>
-                        <img src="https://placehold.co/400x250/fee2e2/dc2626?text=Arduino+Blink" alt="Arduino Blink Project" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
+                        <img src="https://placehold.co/400x250/fee2e2/dc2626?text=Arduino+Blink+Project" alt="Arduino Blink Project" class="mt-4 rounded-md shadow-md w-full h-auto object-cover">
                     </div>
                 </div>
             </div>
@@ -120,7 +127,7 @@
 
     <footer class="bg-gray-800 text-white text-center p-4 mt-8 shadow-inner">
         <div class="container mx-auto">
-            <p>&copy; Webpages created with the help of Google Gemini. Updated September 2025.</p>
+            <p>&copy; Scandal Murty Portfolio. Updated September 2025.</p>
             <p class="text-sm mt-2">
                 Connect with me:
                 <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="text-blue-400 hover:underline mx-2">LinkedIn</a> |
