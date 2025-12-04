@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scandal Murty - Python Example</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+            color: #334155; /* Darker text color */
+        }
+        .container {
+            max-width: 1200px;
+        }
+        /* Custom styles for active navigation link */
+        .nav-link.active {
+            @apply bg-blue-600 text-white;
+        }
+        /* Style for code block container */
+        .code-container {
+            background-color: #1e293b; /* Dark slate background */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            overflow-x: auto; /* Allows scrolling for long lines */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        /* Style for the code text */
+        .code-text {
+            color: #cbd5e1; /* Light gray text for contrast */
+            font-family: monospace;
+            line-height: 1.5;
+            white-space: pre; /* Preserves formatting and whitespace */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-gray-800 text-white shadow-lg p-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-3xl font-bold mb-4 md:mb-0">Scandal Murty</h1>
+            <nav>
+                <ul class="flex flex-wrap justify-center space-x-2 md:space-x-4">
+                    <li><a href="index.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Home</a></li>
+                    <li><a href="bio.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Bio</a></li>
+                    <li><a href="resume.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Resume</a></li>
+                    <li><a href="projects.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Projects</a></li>
+                    <li><a href="python-example.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700 active">Code Example</a></li>
+                    <li><a href="hobbies.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Hobbies</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto p-6 md:p-8">
+        <section id="python-example" class="bg-white p-6 rounded-xl shadow-md mb-8">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">Python Coding Example: Data Analysis Snippet</h2>
+
+            <p class="text-lg leading-relaxed text-gray-700 mb-4">
+                This example demonstrates my proficiency in **Python** for **data manipulation and preliminary analysis** using the `pandas` library. The script loads a sample CSV, cleans the data, and calculates basic descriptive statistics.
+            </p>
+
+            <div class="code-container">
+                <pre class="code-text">
+# 1. Import Libraries
+import pandas as pd
+import numpy as np
+from datetime import datetime
+
+# 2. Define a function to process and clean data
+def analyze_sales_data(file_path):
+    """Loads, cleans, and analyzes a simple sales dataset."""
+    print("--- Starting Data Analysis ---")
+
+    # Load the dataset
+    try:
+        df = pd.read_csv(file_path)
+    except FileNotFoundError:
+        print(f"Error: File not found at {file_path}")
+        return
+
+    # Basic Cleaning: Drop rows with any missing values
+    df_cleaned = df.dropna()
+    print(f"Original Rows: {len(df)}. Cleaned Rows: {len(df_cleaned)}")
+
+    # Data Transformation: Ensure 'Date' is a datetime object
+    df_cleaned['Date'] = pd.to_datetime(df_cleaned['Date'], errors='coerce')
+
+    # Feature Engineering: Calculate Profit
+    if 'Revenue' in df_cleaned.columns and 'Cost' in df_cleaned.columns:
+        df_cleaned['Profit'] = df_cleaned['Revenue'] - df_cleaned['Cost']
+    else:
+        print("Warning: 'Revenue' or 'Cost' columns missing. Cannot calculate profit.")
+        return
+
+    # Aggregate Analysis: Calculate key metrics
+    total_profit = df_cleaned['Profit'].sum()
+    avg_revenue = df_cleaned['Revenue'].mean()
+    
+    print("\n--- Key Metrics ---")
+    print(f"Total Profit: ${total_profit:,.2f}")
+    print(f"Average Revenue per Transaction: ${avg_revenue:,.2f}")
+    
+    # Show the first 5 rows of the processed data
+    print("\n--- Head of Processed Data ---")
+    print(df_cleaned.head().to_string())
+
+# 3. Execution (Assuming a file named 'sample_sales.csv' exists)
+# NOTE: For this example, replace 'sample_sales.csv' with your actual project file or mock a DataFrame
+# analyze_sales_data('sample_sales.csv')
+
+# Alternative: Mock a DataFrame for display purposes
+mock_data = {
+    'Date': ['2025-01-01', '2025-01-02', '2025-01-03', '2025-01-04'],
+    'Product': ['A', 'B', 'A', 'C'],
+    'Revenue': [150.00, 250.50, 150.00, 400.75],
+    'Cost': [50.00, 100.25, 55.00, 120.50]
+}
+mock_df = pd.DataFrame(mock_data)
+# Add a section here to show how you would generate a sample CSV for testing or include a sample dataset description.
+
+print("# Mock DataFrame created for in-line demonstration:")
+print(mock_df.to_string())
+# If this were a real environment, the execution would look like: 
+# analyze_sales_data('sample_sales.csv')
+                </pre>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Why This Example?</h3>
+            <ul class="list-disc ml-6 text-gray-700 space-y-2">
+                <li>**Data Manipulation:** Shows familiarity with `pandas` for loading, cleaning (`.dropna()`), and transformation (`pd.to_datetime`).</li>
+                <li>**Feature Engineering:** Demonstrates the ability to create new, insightful metrics (`Profit`).</li>
+                <li>**Readability:** The code is structured with comments and a clear function (`analyze_sales_data`), which highlights **clean coding practices** and **modularity**.</li>
+                <li>**Problem-Solving:** This function is a building block for any larger data analysis project.</li>
+            </ul>
+
+            <p class="text-lg leading-relaxed text-gray-700 mt-6">
+                For a complete, runnable example, you can view the full project and data files on my <a href="https://github.com/Scan93" target="_blank" class="text-blue-500 hover:text-blue-700 font-medium">GitHub Profile</a>.
+            </p>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8 shadow-inner">
+        <div class="container mx-auto">
+            <p>&copy; Scandal Murty Portfolio. Updated November 2025.</p>
+            <p class="text-sm mt-2">
+                Connect with me:
+                <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="text-blue-400 hover:underline mx-2">LinkedIn</a> |
+                <a href="https://github.com/Scan93" target="_blank" class="text-blue-400 hover:underline mx-2">GitHub</a> |
+                <a href="mailto:scandalmurty@gmail.com" class="text-blue-400 hover:underline mx-2">Email</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
