@@ -3,116 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scandal Murty - Portfolio</title>
+    <title>Scandal Murty - Data Analyst Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Light gray background */
-            color: #334155; /* Darker text color */
+            background-color: #f1f5f9; /* Light Gray Background */
         }
-        .container {
-            max-width: 1200px;
+        .section-header {
+            border-bottom: 2px solid #cbd5e1; /* Gray-300 divider */
         }
-        /* Custom styles for active navigation link */
-        .nav-link.active {
-            @apply bg-blue-600 text-white;
+        .project-card {
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        /* Style for the embedded PDF iframe */
-        .pdf-embed {
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        /* Style for Tableau Embed (Ensuring Responsiveness) */
+        .tableau-container {
+            position: relative;
+            padding-bottom: 70%; /* Adjust height for the dashboard aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        .tableau-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 600px; /* Adjust height as needed */
-            border: 1px solid #e2e8f0; /* Light border */
-            border-radius: 0.75rem; /* Rounded corners */
+            height: 100%;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
-    <header class="bg-gray-800 text-white shadow-lg p-4">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-3xl font-bold mb-4 md:mb-0">Scandal Murty</h1>
-            <nav>
-                <ul class="flex flex-wrap justify-center space-x-2 md:space-x-4">
-                    <li><a href="index.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700 active">Home</a></li>
-                    <li><a href="bio.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700 active">Bio</a></li>
-                    <li><a href="resume.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Resume</a></li>
-                    <li><a href="projects.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Projects</a></li>
-                    <li><a href="python-example.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Python</a><li>
-                    <li><a href="hobbies.html" class="nav-link px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700">Hobbies</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main class="flex-grow container mx-auto p-6 md:p-8">
-        <section id="home" class="bg-white p-6 rounded-xl shadow-md mb-8">
-            <h2 class="text-3xl font-semibold text-gray-800 mb-4">Welcome to My Portfolio!</h2>
-            <p class="text-lg leading-relaxed text-gray-700">
-                Hello! I'm Scandal Murty, an aspiring Data Analyst / Business Analyst currently pursuing an Associate's degree in Data Analytics. I am passionate about leveraging data to drive informed decisions and solve complex problems. This portfolio showcases my academic journey, professional aspirations, and personal projects.
-            </p>
-            <p class="text-lg leading-relaxed text-gray-700 mt-4">
-                My goal is to combine my analytical skills with my technical foundation to extract meaningful insights from data, contributing to business growth and efficiency. I am eager to learn and apply new technologies and methodologies in the field of data science.
-            </p>
-            <p class="text-lg leading-relaxed text-gray-700 mt-4">
-                Feel free to explore my resume, projects, and hobbies. I'm excited about the possibilities that data analysis offers and look forward to connecting with professionals in the field!
-            </p>
-            <p class="text-lg leading-relaxed text-gray-700 mt-4 font-medium">
-                — Scandal Murty
-            </p>
-            <div class="mt-6 flex flex-wrap gap-4">
-                <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">Connect on LinkedIn</a>
-                <a href="https://github.com/Scan93" target="_blank" class="inline-block bg-gray-700 hover:bg-gray-900 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">View GitHub Profile</a>
-            </div>
-        </section>
-
-        <section id="resume" class="bg-white p-6 rounded-xl shadow-md mb-8">
-            <h2 class="text-3xl font-semibold text-gray-800 mb-4">Scandal's Resume</h2>
-            <div class="flex flex-col items-center justify-center p-8 text-center">
-                <p class="text-xl leading-relaxed text-gray-700 mb-6">
-                    View and download my professional experience, education, and skills on my dedicated resume page.
-                </p>
-                <a href="resume.html" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
-                    View Full Resume
-                </a>
-            </div>
-        </section>
-
-        <section id="projects" class="bg-white p-6 rounded-xl shadow-md mb-8">
-            <h2 class="text-3xl font-semibold text-gray-800 mb-4">Data Analysis Projects</h2>
-            <div class="flex flex-col items-center justify-center p-8 text-center">
-                <p class="text-xl leading-relaxed text-gray-700 mb-6">
-                    Explore my data analysis projects with interactive dashboards and code on a separate page.
-                </p>
-                <a href="projects.html" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
-                    View My Projects
-                </a>
-            </div>
-        </section>
+<body class="min-h-screen">
+    <div id="content" class="max-w-6xl mx-auto bg-white shadow-2xl">
         
-        <section id="hobbies" class="bg-white p-6 rounded-xl shadow-md mb-8">
-            <h2 class="text-3xl font-semibold text-gray-800 mb-4">My Hobbies & Personal Projects</h2>
-            <div class="flex flex-col items-center justify-center p-8 text-center">
-                <p class="text-xl leading-relaxed text-gray-700 mb-6">
-                    Explore my personal projects and hobbies, including 3D printing and electrical engineering, on a dedicated page.
-                </p>
-                <a href="hobbies.html" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
-                    View My Hobbies
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-gray-800 text-white text-center p-4 mt-8 shadow-inner">
-        <div class="container mx-auto">
-            <p>&copy; Scandal Murty Portfolio. Updated November 2025.</p>
-            <p class="text-sm mt-2">
-                Connect with me:
-                <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="text-blue-400 hover:underline mx-2">LinkedIn</a> |
-                <a href="https://github.com/Scan93" target="_blank" class="text-blue-400 hover:underline mx-2">GitHub</a> |
-                <a href="mailto:scandalmurty@gmail.com" class="text-blue-400 hover:underline mx-2">Email</a>
+        <header class="p-8 bg-gray-800 text-white text-center">
+            <h1 class="text-5xl font-extrabold mb-1">SCANDAL MURTY</h1>
+            <h2 class="text-xl font-light text-blue-300">Aspiring Data Analyst | Operational & Logistical Mindset</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-gray-200">
+                A meticulous and results-driven professional leveraging **7 years of operational logistics experience** to transition into data analysis. Proven commitment to achieving **100% compliance** and utilizing **foundational knowledge** in SQL, Python, and Tableau to solve real-world business problems.
             </p>
-        </div>
-    </footer>
+            <div class="mt-6 flex justify-center space-x-4">
+                <a href="mailto:scandalmurty@gmail.com" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">Email Me Directly</a>
+                <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">LinkedIn</a>
+                <a href="https://github.com/Scan93" target="_blank" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">GitHub</a>
+                <a href="ScandalMurtyResume.pdf" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">View Resume (PDF)</a>
+            </div>
+        </header>
+
+        <main class="p-8">
+
+            <section id="skills" class="mb-10">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-header pb-2">Technical & Analytical Skills</h2>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">SQL (Foundational Querying)</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">Python (Foundational Syntax, Pandas)</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">Tableau / Power BI (Data Visualization)</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">Advanced Excel (VBA/Modeling)</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">Operational Logistics</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">Inventory Control (Solumina)</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">Schematics Interpretation</span>
+                </div>
+            </section>
+
+            <section id="projects" class="mb-10">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-header pb-2">Featured Data Projects (Demonstrating Foundational Skills)</h2>
+                
+                <div class="space-y-6">
+
+                    <div class="project-card p-6 border border-gray-200 rounded-lg shadow-sm bg-gray-50">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">1. E-commerce Sales Performance Analysis</h3>
+                        <p class="text-md font-medium text-gray-600 mb-3">**Goal:** Identify sales drivers and operational choke points using beginner tools to inform promotional spending.</p>
+                        
+                        <p class="text-gray-700 mb-4">
+                            Developed a comprehensive dashboard to analyze sales trends and customer behavior. Applied **foundational SQL** techniques for data cleaning and aggregation, and **Tableau** for visualization. [cite_start]This project required the meticulous data preparation skills honed through my **100% compliance** record in production[cite: 16].
+                        </p>
+
+                        <div class="tableau-container mb-4">
+                            <iframe src="https://public.tableau.com/views/AmazonSalesAnalysis_17538547769410/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link" frameborder="0" allowfullscreen="true" class="w-full h-full"></iframe>
+                        </div>
+
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-sm font-semibold text-blue-600">Foundational SQL, Tableau, Data Cleaning, Sales Forecasting</span>
+                            <a href="YOUR_GITHUB_REPO_URL_FOR_THIS_PROJECT" target="_blank" class="text-sm bg-gray-700 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-lg">View Code & Analysis</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card p-6 border border-gray-200 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">2. Customer Churn Prediction Model (Conceptual)</h3>
+                        <p class="text-md font-medium text-gray-600 mb-3">**Goal:** Use classification concepts to predict which customers are likely to cancel services, enabling proactive retention efforts.</p>
+                        
+                        <p class="text-gray-700 mb-4">
+                            Developed a conceptual model using **foundational Python** (**Pandas** for transformation and **Scikit-learn** concepts for initial modeling). [cite_start]This process required establishing a clear, systematic data flow, similar to interpreting complex technical schematics in a manufacturing environment[cite: 4].
+                        </p>
+
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-sm font-semibold text-blue-600">Foundational Python, ML Concepts, Process Logic</span>
+                            <a href="https://github.com/Scan93" target="_blank" class="text-sm bg-gray-700 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-lg">View Code & Analysis</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card p-6 border border-gray-200 rounded-lg shadow-sm">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">3. Market Basket Analysis for Cross-Selling</h3>
+                        <p class="text-md font-medium text-gray-600 mb-3">**Goal:** Discover strong purchasing patterns to optimize product placement and promotional strategies.</p>
+                        
+                        <p class="text-gray-700 mb-4">
+                            Explored transactional datasets to identify strong association rules using the **Apriori Algorithm** concept and **Python**. [cite_start]The resulting insights provide clear logistical coordination for merchandising, directly relating to my background in supply chain and inventory management[cite: 29].
+                        </p>
+
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-sm font-semibold text-blue-600">Python (Conceptual), Association Rules, Retail Strategy</span>
+                            <a href="https://github.com/Scan93" target="_blank" class="text-sm bg-gray-700 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-lg">View Code & Analysis</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="experience" class="mb-10">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-header pb-2">Relevant Experience</h2>
+                
+                <div class="space-y-6">
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Senior Production Operator | General Dynamics Mission Systems</h3>
+                        <p class="text-gray-600 italic">Apr 2023 - Current</p>
+                        <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
+                            [cite_start]<li>Achieved **100% compliance** with quality standards in bonding and laminating PWBs for space missions, demonstrating meticulous attention to detail and precision critical for data integrity[cite: 15, 16].</li>
+                            [cite_start]<li>Utilized **Solumina** to review schematics, manage instructions, and **track materials and components**, building a foundational understanding of data-driven workflow management[cite: 17].</li>
+                            [cite_start]<li>Created an **automated material inventory system**, directly increasing accuracy and saving tracking time, which reflects hands-on data management and efficiency improvement[cite: 18].</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Inbound Associate | Target</h3>
+                        <p class="text-gray-600 italic">Aug 2022 - Mar 2023</p>
+                        <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
+                            [cite_start]<li>Maintained **accurate inventory control** throughout the supply chain to support business operations[cite: 22].</li>
+                            [cite_start]<li>Stocked and organized new merchandise to ensure easy access and **accurate inventory**[cite: 24].</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+            
+            <section id="education" class="mb-10">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-header pb-2">Education & Certification</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h3 class="text-xl font-semibold text-gray-800">Associate in Applied Science, Data Analytics</h3>
+                        <p class="text-gray-600">Mesa Community College | [cite_start]Aug 2024 - May 2026 [cite: 36]</p>
+                        <p class="text-gray-700 mt-1 font-medium">3.9 GPA | [cite_start]Dean's List Fall 2024, Spring 2025 [cite: 39, 40, 41]</p>
+                    </div>
+                    
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h3 class="text-xl font-semibold text-gray-800">Google Data Analyst Certification</h3>
+                        [cite_start]<p class="text-gray-600">Completed August 2024 [cite: 45]</p>
+                        [cite_start]<p class="text-gray-700 mt-1">Foundational mastery in spreadsheets, **SQL for database querying**, **Tableau for visualization**, and an introduction to **R programming**[cite: 47].</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="bg-gray-800 text-white text-center p-4 shadow-inner border-t-2 border-blue-500">
+            <p>&copy; Scandal Murty Portfolio. All Rights Reserved. Updated December 2025.</p>
+        </footer>
+
+    </div>
 </body>
 </html>
