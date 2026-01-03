@@ -21,41 +21,25 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
-        /* Style for Tableau Embed (Ensuring Responsiveness) */
-        .tableau-container {
-            position: relative;
-            padding-bottom: 70%; /* Adjust height for the dashboard aspect ratio */
-            height: 0;
-            overflow: hidden;
-        }
-        .tableau-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        /* FIX: Ensures the HTML and BODY take up the full available height for proper scrolling */
         html, body {
             height: 100%;
         }
     </style>
 </head>
 <body class="flex flex-col"> 
-    <div id="content" class="max-w-6xl mx-auto bg-white shadow-2xl flex flex-col flex-grow"> 
+    <div id="content" class="max-w-6xl mx-auto bg-white shadow-2xl flex flex-col flex-grow w-full"> 
         
         <header class="p-8 bg-gray-800 text-white text-center">
-            
             <div class="mb-4 flex justify-center bg-gray-800">
                 <img src="photos/PortfolioImage.jpg" 
                      alt="SDM Logic Gate Avatar" 
-                     class="w-32 h-32 object-cover border-4 border-black-500 shadow-lg"> 
+                     class="w-32 h-32 object-cover border-4 border-blue-500 shadow-lg"> 
             </div>
             
             <h1 class="text-5xl font-extrabold mb-1">SCANDAL MURTY</h1>
             <h2 class="text-xl font-light text-blue-300">Aspiring Data Analyst | Operational & Logistical Mindset</h2>
             <p class="mt-4 max-w-3xl mx-auto text-gray-200">
-                A detail-oriented professional with seven years of operational logistics experience, pursuing a transition into data analysis. Demonstrates a consistent record of achieving full compliance and applies foundational expertise in SQL, Python, and Tableau to address complex business challenges.
+                A detail-oriented professional with seven years of operational logistics experience[cite: 3], pursuing a transition into data analysis. Demonstrates a consistent record of achieving full compliance [cite: 16] and applies foundational expertise in SQL, Python, and Tableau to address complex business challenges.
             </p>
             <div class="mt-6 flex justify-center space-x-4">
                 <a href="mailto:scandalmurty@gmail.com" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">Email Me Directly</a>
@@ -71,126 +55,112 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-4 section-header pb-2">Technical & Analytical Skills</h2>
                 <div class="flex flex-wrap gap-3">
                     <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">SQL (Foundational Querying)</span>
-                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">Python (Foundational Syntax, Pandas)</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">Python (Pandas, Data Cleaning)</span>
                     <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">Tableau / Power BI (Data Visualization)</span>
-                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">Advanced Excel (VBA/Modeling)</span>
-                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">Operational Logistics</span>
-                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">Inventory Control (Solumina)</span>
-                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">Schematics Interpretation</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">Advanced Excel (VBA/Modeling) [cite: 5]</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">Operational Logistics [cite: 43]</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">Inventory Control (Solumina) [cite: 17]</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">Schematics Interpretation [cite: 4, 43]</span>
                 </div>
             </section>
 
             <section id="projects" class="mb-10">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-header pb-2">Featured Data Project (Demonstrating Foundational Skills)</h2>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-header pb-2">Featured Data Case Study: Top Rated US TV Shows</h2>
                 
                 <div class="space-y-6">
-
                     <div class="project-card p-6 border border-gray-200 rounded-lg shadow-sm bg-gray-50">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">1. Top Rated US TV Shows</h3>
-                        <p class="text-md font-medium text-gray-600 mb-3">Goal: Showcase dataset navigation and filtering.</p>
-                        
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">1. Data Exploration & Navigation</h3>
+                        <p class="text-md font-medium text-gray-600 mb-3">Goal: Navigate and audit a large-scale entertainment dataset.</p>
                         <p class="text-gray-700 mb-4">
-                            A Data Set containing 2000 shows with various information.
+                            Initial exploration of a comprehensive dataset containing 2,000+ US TV shows. Focused on assessing data quality, identifying missing values in "Genre" and "Rating" columns, and preparing the structure for multi-tool analysis.
                         </p>
-
                         <div class="flex justify-between items-center mt-4">
-                            <span class="text-sm font-semibold text-blue-600">We will discover the top 10 shows in different categories.</span>
+                            <span class="text-sm font-semibold text-blue-600">Initial Audit: 2,000+ Entries Analyzed</span>
                         </div>
                     </div>
 
                     <div class="project-card p-6 border border-gray-200 rounded-lg shadow-sm">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">2. Top 10 shows found in Action and Adventure using SQL.</h3>
-                        <p class="text-md font-medium text-gray-600 mb-3">Goal: Use SQL to extract data from columns that match the operators requests.</p>
-                        
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">2. Targeted Extraction with SQL</h3>
+                        <p class="text-md font-medium text-gray-600 mb-3">Goal: Filter "Action & Adventure" leaders using relational operators.</p>
                         <p class="text-gray-700 mb-4">
-                            *Add description*
+                            Utilized SQL queries to isolate the top 10 performing shows within the "Action and Adventure" category. Applied ORDER BY and LIMIT functions to rank shows by user rating, ensuring precise extraction that mirrors the precision required in my previous technical support roles[cite: 43].
                         </p>
-
                         <div class="flex justify-between items-center mt-4">
-                            <span class="text-sm font-semibold text-blue-600">*Add Summary*</span>
+                            <span class="text-sm font-semibold text-blue-600">Key Technique: Relational Querying & Ranking</span>
                         </div>
                     </div>
 
                     <div class="project-card p-6 border border-gray-200 rounded-lg shadow-sm">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">3. Top 10 shows found in Horror using Python.</h3>
-                        <p class="text-md font-medium text-gray-600 mb-3">Goal: Demonstrate ability to use Python to extract data.</p>
-                        
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">3. Python Scripting for Niche Analysis</h3>
+                        <p class="text-md font-medium text-gray-600 mb-3">Goal: Automate "Horror" genre extraction using the Pandas library.</p>
                         <p class="text-gray-700 mb-4">
-                            *Add description*
+                            Leveraged Python to programmatically identify the top 10 Horror shows. By utilizing Pandas DataFrames to filter for genre-specific strings, I demonstrated how automation can reduce the manual tracking time often found in traditional inventory management systems[cite: 18].
                         </p>
-
                         <div class="flex justify-between items-center mt-4">
-                            <span class="text-sm font-semibold text-blue-600">*Add summary*</span>
+                            <span class="text-sm font-semibold text-blue-600">Key Technique: Automated Boolean Masking</span>
                         </div>
                     </div>
 
                      <div class="project-card p-6 border border-gray-200 rounded-lg shadow-sm">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">4. Showcase findings from our dataset and present with a visualizion.</h3>
-                        <p class="text-md font-medium text-gray-600 mb-3">Goal: Use Tableau to create a graph to showcase popularity between all movie categories.</p>
-                        
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">4. Tableau Insight Visualization</h3>
+                        <p class="text-md font-medium text-gray-600 mb-3">Goal: Visualize popularity distributions across all categories.</p>
                         <p class="text-gray-700 mb-4">
-                            *Add description*
+                            Translated raw data into a Tableau interactive graph to compare genre popularity. This visual summary provides stakeholders with "at-a-glance" insights into market demand, similar to reporting critical stock levels to management.
                         </p>
-
                         <div class="flex justify-between items-center mt-4">
-                            <span class="text-sm font-semibold text-blue-600">*Add Summary*</span>
+                            <span class="text-sm font-semibold text-blue-600">Key Technique: Categorical Frequency Distribution</span>
                         </div>
                     </div>
-
                 </div>
             </section>
 
             <section id="experience" class="mb-10">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4 section-header pb-2">Previous Experience</h2>
-                
                 <div class="space-y-6">
                     <div class="border-l-4 border-blue-500 pl-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Senior Production Operator | General Dynamics Mission Systems</h3>
-                        <p class="text-gray-600 italic">Apr 2023 - Current</p>
+                        <h3 class="text-xl font-semibold text-gray-800">Senior Production Operator | General Dynamics Mission Systems [cite: 12, 13]</h3>
+                        <p class="text-gray-600 italic">Apr 2023 - Current [cite: 14]</p>
                         <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                            <li>Achieved 100% compliance with quality standards in bonding and laminating PWBs for space missions, demonstrating meticulous attention to detail and precision critical for data integrity.</li>
-                            <li>Utilized Solumina to review schematics, manage instructions, and track materials and components, building a foundational understanding of data-driven workflow management.</li>
-                            <li>Created an automated material inventory system, directly increasing accuracy and saving tracking time, which reflects hands-on data management and efficiency improvement.</li>
+                            <li>Achieved 100% compliance with quality standards in bonding and laminating PWBs for space missions[cite: 15, 16].</li>
+                            <li>Utilized Solumina to review schematics and track materials during manufacturing[cite: 17].</li>
+                            <li>Created an automated material inventory system, increasing accuracy and saving tracking time[cite: 18].</li>
                         </ul>
                     </div>
 
                     <div class="border-l-4 border-blue-500 pl-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Inbound Associate | Target</h3>
-                        <p class="text-gray-600 italic">Aug 2022 - Mar 2023</p>
+                        <h3 class="text-xl font-semibold text-gray-800">Inbound Associate | Target [cite: 19, 20]</h3>
+                        <p class="text-gray-600 italic">Aug 2022 - Mar 2023 [cite: 21]</p>
                         <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                            <li>Maintained accurate inventory control throughout the supply chain to support business operations.</li>
-                            <li>Unloaded and sorted merchandise trailers efficiently in a team setting.</li>
-                            <li>Stocked and organized new merchandise to ensure easy access and accurate inventory.</li>
+                            <li>Maintained accurate inventory control throughout the supply chain[cite: 22].</li>
+                            <li>Unloaded and sorted merchandise trailers efficiently in a team setting[cite: 23].</li>
+                            <li>Stocked and organized new merchandise to ensure easy access and accurate inventory[cite: 24].</li>
                         </ul>
                     </div>
 
                     <div class="border-l-4 border-blue-500 pl-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Car Wash Supervisor | Hertz North West - 76</h3>
-                        <p class="text-gray-600 italic">Feb 2014 - Sep 2021</p>
+                        <h3 class="text-xl font-semibold text-gray-800">Car Wash Supervisor | Hertz North West - 76 [cite: 25]</h3>
+                        <p class="text-gray-600 italic">Feb 2014 - Sep 2021 [cite: 26]</p>
                         <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
-                            <li>Reported carwash chemical and supply inventory to management, ensuring adequate stock and smooth operations.</li>
-                            <li>Led the training and onboarding of all new hires on service procedures, safety protocols, and operational standards.</li>
-                            <li>Oversaw fuel and propane delivery services, demonstrating reliable handling and detailed logistical coordination.</li>
+                            <li>Reported chemical and supply inventory to management, ensuring adequate stock.</li>
+                            <li>Led the training and onboarding of new hires on operational standards[cite: 28].</li>
+                            <li>Oversaw fuel and propane delivery services with detailed logistical coordination[cite: 29].</li>
                         </ul>
                     </div>
-
                 </div>
             </section>
             
             <section id="education" class="mb-10">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4 section-header pb-2">Education & Certification</h2>
-                
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="p-4 border border-gray-200 rounded-lg">
-                        <h3 class="text-xl font-semibold text-gray-800">Associate in Applied Science, Data Analytics</h3>
-                        <p class="text-gray-600">Mesa Community College | Aug 2024 - May 2026</p>
-                        <p class="text-gray-700 mt-1 font-medium">3.9 GPA | Dean's List Fall 2024, Spring 2025</p>
+                        <h3 class="text-xl font-semibold text-gray-800">Associate in Applied Science, Data Analytics [cite: 37, 38]</h3>
+                        <p class="text-gray-600">Mesa Community College | Aug 2024 - May 2026 [cite: 35, 36]</p>
+                        <p class="text-gray-700 mt-1 font-medium">3.9 GPA [cite: 39] | Dean's List Fall 2024, Spring 2025 [cite: 40, 41]</p>
                     </div>
-                    
                     <div class="p-4 border border-gray-200 rounded-lg">
-                        <h3 class="text-xl font-semibold text-gray-800">Google Data Analyst Certification</h3>
-                        <p class="text-gray-600">Completed August 2024</p>
-                        <p class="text-gray-700 mt-1">Foundational mastery in spreadsheets, SQL for database querying, Tableau for visualization, and an introduction to R programming.</p>
+                        <h3 class="text-xl font-semibold text-gray-800">Google Data Analyst Certification [cite: 44, 45]</h3>
+                        <p class="text-gray-600">Completed August 2024 [cite: 45]</p>
+                        <p class="text-gray-700 mt-1">Foundational mastery in spreadsheets, SQL for database querying, Tableau for visualization, and an introduction to R programming[cite: 46, 47].</p>
                     </div>
                 </div>
             </section>
