@@ -150,25 +150,25 @@
             <img src="https://web.archive.org/web/20091027044549im_/http://geocities.com/Athens/Acropolis/1381/ie_logo.gif" alt="IE">
         </p>
     </div>
-    <script>
-async function getCounter() {
-    // This is a free API that tracks 'hits' per unique URL
-    // Replace 'scandal-fun-page' with any unique string for your site
-    const namespace = "scandal-data-zone"; 
-    const url = `https://api.countapi.xyz/hit/${namespace}/visits`;
 
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        // Pads the number with zeros to look like a classic 90s counter
-        document.getElementById('count').innerText = data.value.toString().padStart(7, '0');
-    } catch (error) {
-        console.log("Counter offline... falling back to 0001996");
-        document.getElementById('count').innerText = "0001996";
+    <script>
+    async function getCounter() {
+        const namespace = "scandal-analytics-hub-2026"; 
+        const url = `https://api.countapi.xyz/hit/${namespace}/visits`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error('Network issue');
+            const data = await response.json();
+            
+            document.getElementById('count').innerText = data.value.toString().padStart(7, '0');
+        } catch (error) {
+            console.log("Counter service unavailable. Displaying default.");
+            document.getElementById('count').innerText = "0001996";
+        }
     }
-}
-getCounter();
-</script>
+    getCounter();
+    </script>
 
 </body>
 </html>
