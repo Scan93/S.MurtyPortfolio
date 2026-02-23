@@ -1,243 +1,1065 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scandal Murty - Data Analyst Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1f2937; /* Dark Gray Background */
-        }
-        .section-header {
-            border-bottom: 2px solid #cbd5e1; /* Gray-300 divider */
-        }
-        .project-card {
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        html, body {
-            height: 100%;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sdmurty.com — Redesign Wireframe</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d0f14;
+  --surface: #141720;
+  --surface2: #1c2030;
+  --border: #252a3a;
+  --accent: #00d4ff;
+  --accent2: #7c6af7;
+  --text: #e8eaf0;
+  --muted: #6b7280;
+  --highlight: rgba(0,212,255,.08);
+}
+
+body {
+  font-family: 'Epilogue', sans-serif;
+  background: #07090e;
+  color: var(--text);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* ── Controls bar ── */
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.controls-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #4a5568;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.tab {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 5px 12px;
+  border: 1px solid #252a3a;
+  background: transparent;
+  color: #4a5568;
+  cursor: pointer;
+  border-radius: 4px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: all .2s;
+}
+.tab:hover { border-color: var(--accent); color: var(--accent); }
+.tab.active { background: var(--accent); border-color: var(--accent); color: #000; }
+
+.annotation-toggle {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #4a5568;
+  cursor: pointer;
+  user-select: none;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.annotation-toggle input { accent-color: var(--accent); }
+
+/* ── Browser wrapper ── */
+.browser {
+  max-width: 1120px;
+  margin: 0 auto;
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--border), 0 32px 80px rgba(0,0,0,.7);
+  overflow: hidden;
+  transition: max-width .35s ease;
+}
+.browser.mobile { max-width: 390px; }
+
+.browser-chrome {
+  background: #111318;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.dots { display: flex; gap: 5px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot:nth-child(1){ background:#ff5f57; }
+.dot:nth-child(2){ background:#ffbc2e; }
+.dot:nth-child(3){ background:#28c840; }
+.url-bar {
+  flex: 1;
+  background: #1a1d25;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 4px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* ── Page sections ── */
+.page { background: var(--bg); }
+
+/* NAV */
+.wf-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0;
+  background: rgba(13,15,20,.92);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+.nav-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: .1em;
+}
+.nav-links {
+  display: flex; gap: 28px; list-style: none;
+  font-size: 13px; color: var(--muted);
+}
+.nav-links li { cursor: pointer; transition: color .2s; }
+.nav-links li:hover { color: var(--text); }
+.nav-cta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 8px 18px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  border-radius: 4px;
+  letter-spacing: .06em;
+  transition: all .2s;
+}
+.nav-cta:hover { background: var(--accent); color: #000; }
+
+/* HERO */
+.wf-hero {
+  padding: 80px 48px 72px;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.wf-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,212,255,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-available {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #22c55e;
+  border: 1px solid rgba(34,197,94,.25);
+  background: rgba(34,197,94,.07);
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  letter-spacing: .06em;
+}
+.avail-dot {
+  width: 6px; height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .3; }
+}
+.hero-h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.hero-h1 span {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+.hero-sub strong { color: var(--text); font-weight: 500; }
+.hero-actions { display: flex; gap: 12px; align-items: center; margin-bottom: 36px; }
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #0099cc);
+  color: #000;
+  border: none;
+  padding: 13px 28px;
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: opacity .2s;
+}
+.btn-primary:hover { opacity: .85; }
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 12px 24px;
+  font-family: 'Epilogue', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all .2s;
+}
+.btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+.hero-stats {
+  display: flex;
+  gap: 32px;
+}
+.stat-item { }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .04em;
+}
+.hero-image-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.hero-photo-frame {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-photo-frame::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: conic-gradient(var(--accent), var(--accent2), transparent, var(--accent));
+  z-index: -1;
+  animation: spin 4s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.photo-placeholder {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  padding: 16px;
+  line-height: 1.6;
+}
+.hero-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.link-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .2s;
+  letter-spacing: .05em;
+}
+.link-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+/* SKILLS / TOOLBOX */
+.wf-skills {
+  padding: 64px 48px;
+  border-bottom: 1px solid var(--border);
+}
+.section-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.wf-h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 40px;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.skill-group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+  transition: border-color .2s;
+}
+.skill-group:hover { border-color: var(--accent2); }
+.skill-group-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent2);
+  margin-bottom: 18px;
+}
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
+}
+.skill-item:last-child { border-bottom: none; }
+.skill-bar-wrap {
+  margin-left: auto;
+  width: 60px;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.skill-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 2px;
+}
+
+/* CASE STUDY */
+.wf-case {
+  padding: 64px 48px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.case-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.case-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 300px;
+  line-height: 1.6;
+  text-align: right;
+}
+.case-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.case-step {
+  background: var(--bg);
+  padding: 30px 24px;
+  cursor: pointer;
+  transition: background .2s;
+  position: relative;
+}
+.case-step:hover { background: var(--highlight); }
+.step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  margin-bottom: 12px;
+  letter-spacing: .08em;
+}
+.step-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.step-goal {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.step-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent2);
+  background: rgba(124,106,247,.1);
+  border: 1px solid rgba(124,106,247,.2);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: .04em;
+}
+.case-cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.link-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 5px;
+  cursor: pointer;
+  letter-spacing: .04em;
+  transition: all .2s;
+}
+.link-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* EXPERIENCE */
+.wf-experience {
+  padding: 64px 48px;
+  border-bottom: 1px solid var(--border);
+}
+.exp-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+}
+.exp-sidebar { }
+.exp-sidebar p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 12px;
+}
+.exp-timeline { }
+.exp-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.exp-item:last-child { border-bottom: none; }
+.exp-dates {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .06em;
+  padding-top: 4px;
+  line-height: 1.6;
+}
+.exp-role {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.exp-company {
+  font-size: 12px;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .04em;
+  margin-bottom: 12px;
+}
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.exp-bullets li {
+  font-size: 13px;
+  color: var(--muted);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.6;
+}
+.exp-bullets li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.exp-highlight {
+  display: inline-block;
+  background: rgba(0,212,255,.08);
+  border: 1px solid rgba(0,212,255,.2);
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: .04em;
+  margin-top: 8px;
+}
+
+/* EDUCATION / CERTS */
+.wf-edu {
+  padding: 64px 48px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.edu-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 32px;
+  transition: border-color .2s;
+}
+.edu-card:hover { border-color: var(--accent2); }
+.edu-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.edu-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.edu-school {
+  font-size: 12px;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 14px;
+  letter-spacing: .04em;
+}
+.edu-detail {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.edu-badge {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(34,197,94,.08);
+  border: 1px solid rgba(34,197,94,.2);
+  color: #22c55e;
+  letter-spacing: .06em;
+}
+
+/* CTA FOOTER */
+.wf-cta {
+  padding: 80px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.wf-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0,212,255,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-tag { margin-bottom: 16px; }
+.cta-h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.cta-h2 span {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.cta-sub {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 36px;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+.cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* FOOTER */
+.wf-footer {
+  padding: 24px 48px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: .1em;
+}
+.footer-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .06em;
+}
+
+/* ── ANNOTATION SYSTEM ── */
+.ann {
+  position: relative;
+}
+.ann-badge {
+  position: absolute;
+  z-index: 50;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #f59e0b;
+  color: #000;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 0 3px rgba(245,158,11,.2);
+  transition: transform .15s;
+  user-select: none;
+}
+.ann-badge:hover { transform: scale(1.2); }
+.ann-badge:hover + .ann-tip { display: block; }
+.ann-tip {
+  display: none;
+  position: absolute;
+  z-index: 60;
+  background: #1c1a0e;
+  border: 1px solid rgba(245,158,11,.4);
+  color: #fde68a;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  max-width: 260px;
+  width: max-content;
+  box-shadow: 0 8px 24px rgba(0,0,0,.5);
+  pointer-events: none;
+}
+.ann-tip strong {
+  display: block;
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .7;
+  margin-bottom: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #f59e0b;
+}
+
+/* All Annotations Panel */
+.all-panel {
+  max-width: 1120px;
+  margin: 18px auto 0;
+  display: none;
+  background: #1a150a;
+  border: 1px solid rgba(245,158,11,.25);
+  border-radius: 10px;
+  padding: 24px 28px;
+}
+.all-panel.visible { display: block; }
+.all-panel-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #f59e0b;
+  margin-bottom: 18px;
+}
+.ap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+.ap-card {
+  background: rgba(245,158,11,.05);
+  border: 1px solid rgba(245,158,11,.15);
+  border-radius: 8px;
+  padding: 14px;
+}
+.ap-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: #f59e0b;
+  letter-spacing: .1em;
+  margin-bottom: 5px;
+}
+.ap-name { font-size: 12px; font-weight: 600; color: #fde68a; margin-bottom: 5px; font-family: 'Syne', sans-serif; }
+.ap-desc { font-size: 11px; color: #a37a30; line-height: 1.5; }
+
+/* Mobile */
+@media(max-width:500px){
+  .wf-nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .wf-hero { grid-template-columns: 1fr; padding: 40px 20px; }
+  .hero-image-col { order: -1; }
+  .hero-photo-frame { width: 140px; height: 140px; }
+  .hero-stats { gap: 20px; }
+  .skills-grid, .case-steps { grid-template-columns: 1fr; }
+  .exp-grid { grid-template-columns: 1fr; }
+  .exp-item { grid-template-columns: 1fr; gap: 4px; }
+  .wf-edu { grid-template-columns: 1fr; }
+  .wf-skills, .wf-case, .wf-experience, .wf-edu, .wf-cta, .wf-footer { padding-left: 20px; padding-right: 20px; }
+  .case-header { flex-direction: column; }
+  .case-subtitle { text-align: left; }
+}
+</style>
 </head>
-<body class="flex flex-col"> 
-    <div id="content" class="max-w-6xl mx-auto bg-white shadow-2xl flex flex-col flex-grow w-full"> 
-        
-        <header class="p-8 bg-gray-800 text-white text-center">
-            <div class="mb-4 flex justify-center bg-gray-800">
-                <img src="photos/PortfolioImage.jpg" 
-                     alt="SDM Logic Gate Avatar" 
-                     class="w-32 h-32 object-cover border-4 border-blue-500 shadow-lg"> 
+<body>
+
+<div class="controls">
+  <span class="controls-label">View:</span>
+  <button class="tab active" onclick="setView('desktop',this)">Desktop</button>
+  <button class="tab" onclick="setView('mobile',this)">Mobile</button>
+  <label class="annotation-toggle">
+    <input type="checkbox" id="panelToggle" onchange="togglePanel(this)"> Show all notes
+  </label>
+</div>
+
+<div class="browser" id="browser">
+  <div class="browser-chrome">
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    <div class="url-bar">sdmurty.com — Redesign Preview</div>
+  </div>
+
+  <div class="page">
+
+    <!-- NAV -->
+    <div class="ann">
+      <div class="ann-badge" style="top:13px;right:200px;">1</div>
+      <div class="ann-tip" style="top:38px;right:80px;"><strong>Sticky nav + open to work</strong>Add a subtle "Available for hire" badge in the nav. Recruiters scan navbars first—this immediately signals your status.</div>
+      <nav class="wf-nav">
+        <div class="nav-logo">SM // PORTFOLIO</div>
+        <ul class="nav-links">
+          <li>Skills</li><li>Projects</li><li>Experience</li><li>Contact</li>
+        </ul>
+        <button class="nav-cta">Hire Me →</button>
+      </nav>
+    </div>
+
+    <!-- HERO -->
+    <div class="ann">
+      <div class="ann-badge" style="top:32px;left:20px;">2</div>
+      <div class="ann-tip" style="top:56px;left:0;"><strong>Stronger headline</strong>Your current headline buries the lead. Lead with your unique angle: aerospace → data. That crossover is rare and memorable to recruiters.</div>
+      <div class="ann-badge" style="bottom:80px;left:20px;">3</div>
+      <div class="ann-tip" style="bottom:104px;left:0;"><strong>Quantified stat bar</strong>You already have great numbers (100% compliance, 3.9 GPA, 40+ inventory items improved). Surface them as scannable stats—recruiters spend ~7 seconds on a portfolio.</div>
+      <div class="ann-badge" style="top:32px;right:20px;">4</div>
+      <div class="ann-tip" style="top:56px;right:0;"><strong>Photo placement & links</strong>Your photo is buried. Move it hero-adjacent with your social links (GitHub, LinkedIn, Resume) all in one place—don't make visitors scroll to find them.</div>
+      <section class="wf-hero">
+        <div>
+          <div class="hero-available">
+            <div class="avail-dot"></div>
+            Open to opportunities
+          </div>
+          <h1 class="hero-h1">From <span>aerospace</span><br>precision to<br>data insight.</h1>
+          <p class="hero-sub">
+            <strong>Scandal Murty</strong> — Data Analyst with a manufacturing background. I bring the same exactness that kept space missions on spec to SQL, Tableau, and Python pipelines.
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary">View Case Study</button>
+            <button class="btn-ghost">Download Resume</button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-num">3.9</div>
+              <div class="stat-label">GPA</div>
             </div>
-            
-            <h1 class="text-5xl font-extrabold mb-1">SCANDAL MURTY</h1>
-            <h2 class="text-xl font-light text-blue-300">Data Analyst | Operational & Logistical Mindset</h2>
-            <p class="mt-4 max-w-3xl mx-auto text-gray-200">
-            Data Analyst and current Data Analytics student. Proven track record of precision in aerospace
-manufacturing, including the development of an automated material inventory system that increased
-tracking accuracy. Certified in Google Data Analytics with proficiency in SQL SSMS, Tableau, and Excel. Seeking
-to leverage a background in operational logistics and technical problem-solving to deliver data-driven
-insights.
-            </p>
-            <div class="mt-6 flex justify-center space-x-4">
-                <a href="mailto:scandalmurty@gmail.com" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">Email Me Directly</a>
-                <a href="https://www.linkedin.com/in/scandal-murty-403543225" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">LinkedIn</a>
-                <a href="https://github.com/Scan93" target="_blank" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">GitHub</a>
-                <a href="ScandalMurtyResume.pdf" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">View Resume (PDF)</a>
+            <div class="stat-item">
+              <div class="stat-num">100%</div>
+              <div class="stat-label">QA Compliance</div>
             </div>
-        </header>
+            <div class="stat-item">
+              <div class="stat-num">3+</div>
+              <div class="stat-label">Tools Certified</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">7+</div>
+              <div class="stat-label">Yrs Operations</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image-col">
+          <div class="hero-photo-frame">
+            <div class="photo-placeholder">Your photo<br>here<br><br>PortfolioImage.jpg</div>
+          </div>
+          <div class="hero-links">
+            <div class="link-pill">GitHub</div>
+            <div class="link-pill">LinkedIn</div>
+            <div class="link-pill">Resume PDF</div>
+            <div class="link-pill">Email</div>
+          </div>
+        </div>
+      </section>
+    </div>
 
-        <main class="p-8 flex-grow">
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
-                
-                <aside class="lg:col-span-1">
-                    <div class="sticky top-8">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-blue-500 pb-2">Technical Toolbox</h2>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <h3 class="text-sm font-bold text-blue-600 uppercase tracking-wider mb-3">Core Analytics</h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded">SQL SMS</span>
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded">Python (Pandas)</span>
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded">Tableau</span>
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded">Power BI</span>
-                                </div>
-                            </div>
+    <!-- SKILLS -->
+    <div class="ann">
+      <div class="ann-badge" style="top:16px;right:16px;">5</div>
+      <div class="ann-tip" style="top:40px;right:0;"><strong>Skill proficiency bars</strong>Your current toolbox is a plain text list. Adding visual proficiency indicators (even approximate ones) makes your skill depth scannable and more credible.</div>
+      <section class="wf-skills">
+        <div class="section-tag">// Technical Stack</div>
+        <h2 class="wf-h2">What I work with.</h2>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <div class="skill-group-title">Core Analytics</div>
+            <div class="skill-item">SQL / SSMS <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+            <div class="skill-item">Python (Pandas) <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div>
+            <div class="skill-item">Tableau <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+            <div class="skill-item">Power BI <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div></div>
+            <div class="skill-item">Excel / VBA <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Operational Tech</div>
+            <div class="skill-item">Solumina MES <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+            <div class="skill-item">Inventory Systems <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+            <div class="skill-item">VBA / Macros <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div></div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Soft Skills & Domain</div>
+            <div class="skill-item">Quality Compliance</div>
+            <div class="skill-item">Process Optimization</div>
+            <div class="skill-item">Inventory Control</div>
+            <div class="skill-item">Team Leadership</div>
+          </div>
+        </div>
+      </section>
+    </div>
 
-                            <div>
-                                <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Operational Tech</h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded">Solumina</span>
-                                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded">VBA / Macros</span>
-                                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded">Advanced Excel</span>
-                                </div>
-                            </div>
+    <!-- CASE STUDY -->
+    <div class="ann">
+      <div class="ann-badge" style="top:16px;right:16px;">6</div>
+      <div class="ann-tip" style="top:40px;right:0;"><strong>Case study visual flow</strong>Your 4-step analysis is great content—but it reads as a wall of text. Present each step as a card with its goal, technique, and a link/image. This shows process thinking, not just outputs.</div>
+      <div class="ann-badge" style="bottom:40px;left:16px;">7</div>
+      <div class="ann-tip" style="bottom:64px;left:0;"><strong>Missing: Key Finding / Insight</strong>The biggest gap on your site—what did you actually discover from the TV show data? Add a "Key Insight" callout. The analysis is the setup; the finding is the payoff recruiters want to see.</div>
+      <section class="wf-case">
+        <div class="case-header">
+          <div>
+            <div class="section-tag">// Featured Project</div>
+            <h2 class="wf-h2">Top 2,000 TV Shows<br>Analysis</h2>
+          </div>
+          <p class="case-subtitle">A multi-tool data pipeline: Excel → SQL → Python → Tableau</p>
+        </div>
+        <div class="case-steps">
+          <div class="case-step">
+            <div class="step-num">01 / EXPLORE</div>
+            <div class="step-title">Data Exploration</div>
+            <p class="step-goal">Audit 2,000-row dataset for quality and structure before analysis.</p>
+            <div class="step-tag">Excel</div>
+          </div>
+          <div class="case-step">
+            <div class="step-num">02 / EXTRACT</div>
+            <div class="step-title">SQL Querying</div>
+            <p class="step-goal">Isolate top 10 Action & Adventure shows using ORDER BY + TOP.</p>
+            <div class="step-tag">SQL SSMS</div>
+          </div>
+          <div class="case-step">
+            <div class="step-num">03 / AUTOMATE</div>
+            <div class="step-title">Python Scripting</div>
+            <p class="step-goal">Boolean masking to extract Horror genre leaders programmatically.</p>
+            <div class="step-tag">Pandas</div>
+          </div>
+          <div class="case-step">
+            <div class="step-num">04 / VISUALIZE</div>
+            <div class="step-title">Tableau Dashboard</div>
+            <p class="step-goal">Genre popularity distribution across the full 2,000-show dataset.</p>
+            <div class="step-tag">Tableau</div>
+          </div>
+        </div>
+        <!-- KEY INSIGHT CALLOUT (new addition) -->
+        <div style="margin-top:20px;background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.2);border-radius:8px;padding:24px 28px;display:flex;gap:24px;align-items:flex-start;">
+          <div style="font-size:28px;">💡</div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;">Key Finding — Add yours here</div>
+            <div style="font-size:14px;color:var(--text);font-style:italic;line-height:1.6;">"Drama & Reality genres dominate the top 200 by vote count, but Action & Adventure shows average 20% higher ratings per episode — suggesting niche but highly engaged audiences."</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:8px;">← Example. Replace with your actual insight from the analysis.</div>
+          </div>
+        </div>
+        <div class="case-cta">
+          <button class="link-btn">View on GitHub →</button>
+          <button class="link-btn">Kaggle Dataset →</button>
+          <button class="link-btn">View Tableau →</button>
+        </div>
+      </section>
+    </div>
 
-                            <div>
-                                <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Logistics Expert</h3>
-                                <div class="text-gray-600 text-sm space-y-1">
-                                    <p>• Inventory Control</p>
-                                    <p>• Quality Compliance</p>
-                                </div>
-                            </div>
-                        </div>
+    <!-- EXPERIENCE -->
+    <div class="ann">
+      <div class="ann-badge" style="top:16px;right:16px;">8</div>
+      <div class="ann-tip" style="top:40px;right:0;"><strong>Lead with GD, footnote the rest</strong>General Dynamics is your strongest credibility signal. Feature it prominently. Domino's and Target can stay but condense them—recruiters will focus on the most recent and relevant role.</div>
+      <section class="wf-experience">
+        <div class="exp-grid">
+          <div class="exp-sidebar">
+            <div class="section-tag">// Career</div>
+            <h2 class="wf-h2">Experience.</h2>
+            <p>Precision-driven work across aerospace manufacturing, operations, and logistics. Every role sharpened a skill that data analysis demands.</p>
+          </div>
+          <div class="exp-timeline">
+            <div class="exp-item">
+              <div class="exp-dates">Apr 2023<br>— Feb 2026</div>
+              <div>
+                <div class="exp-role">Senior Production Operator</div>
+                <div class="exp-company">General Dynamics Mission Systems</div>
+                <ul class="exp-bullets">
+                  <li>100% compliance with quality standards across space mission PWB bonding — zero defects across all audits.</li>
+                  <li>Built an automated material inventory system that measurably improved tracking accuracy and reduced manual time.</li>
+                  <li>Used Solumina daily to manage schematics, materials, and workflow data at scale.</li>
+                </ul>
+                <span class="exp-highlight">⭐ Key project: Automated Inventory System</span>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-dates">2014 — 2023</div>
+              <div>
+                <div class="exp-role">Previous Roles</div>
+                <div class="exp-company">Target · Domino's · Hertz 76</div>
+                <ul class="exp-bullets">
+                  <li>7+ years of operations, inventory management, team supervision, and customer-facing leadership across multiple industries.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
-                        <div class="mt-10 p-4 bg-blue-50 rounded-lg border border-blue-100">
-                            <p class="text-xs text-blue-800 font-medium">Looking for a precision-minded analyst?</p>
-                            <a href="mailto:scandalmurty@gmail.com" class="text-blue-600 text-sm font-bold hover:underline">Get in touch →</a>
-                        </div>
-                    </div>
-                </aside>
+    <!-- EDUCATION -->
+    <div class="ann">
+      <div class="ann-badge" style="top:16px;right:16px;">9</div>
+      <div class="ann-tip" style="top:40px;right:0;"><strong>Education needs more prominence</strong>Your 3.9 GPA and Dean's List are buried at the bottom. Move credentials up and display them as visual cards—these are strong differentiators for an entry-level analyst.</div>
+      <section class="wf-edu">
+        <div class="edu-card">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-title">AAS in Data Analytics</div>
+          <div class="edu-school">Mesa Community College · Expected Dec 2026</div>
+          <div class="edu-detail">3.9 GPA · Dean's List Fall 2024 & Spring 2025</div>
+          <div class="edu-badge">In Progress</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">📜</div>
+          <div class="edu-title">Google Data Analyst Certificate</div>
+          <div class="edu-school">Google · Completed August 2024</div>
+          <div class="edu-detail">Spreadsheets, SQL, Tableau, R programming. Industry-recognized certification from a top-tier tech company.</div>
+          <div class="edu-badge">Certified</div>
+        </div>
+      </section>
+    </div>
 
-                <div class="lg:col-span-3">
-                    <section id="projects" class="mb-10">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4 section-header pb-2">Featured Data Case Study: Top 2,000 TV Shows</h2>
-                        
-                        <div class="space-y-6">
-                            <div class="project-card p-6 border border-gray-200 rounded-lg bg-white border-l-4 border-l-yellow-500">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">1. Data Exploration & Navigation</h3>
-                            <p class="text-md font-medium text-gray-600 mb-3">Goal: Navigate and audit a large-scale entertainment dataset.</p>
-                            <p class="text-gray-700 mb-4">Initial exploration of a comprehensive dataset containing Top 2,000 Highest Rated TV Shows. Focused on assessing data quality and preparing the structure for multi-tool analysis.
-                        </p>
-                                <div class="flex flex-wrap gap-4 mt-4">
-                                    <a href="https://github.com/Scan93/S.MurtyPortfolio/blob/main/Files/List_of_2000_TV_Shows_Sample.csv"
-                                       target="_blank" 
-                                       class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 transition duration-150">
-                                    <img src="https://w7.pngwing.com/pngs/878/917/png-transparent-microsoft-excel-icon.png" class="w-4 h-4 mr-2" alt="Excel Logo">
-                                        View Sample Dataset on GitHub
-                                </a>
-                                    <a href="https://www.kaggle.com/datasets/raveennimbiwal/top-rated-tv-shows-dataset-global-2025"
-                                        target="_blank"
-                                        class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 transition duration-150">
-                                    <img src="https://www.kaggle.com/static/images/site-logo.svg" class="w-4 h-4 mr-2" alt="Kaggle Logo">
-                                        View Original Data File From Kaggle
-                                </a>
-                                </div>
-                            </div>
+    <!-- CTA -->
+    <div class="ann">
+      <div class="ann-badge" style="top:24px;right:24px;">10</div>
+      <div class="ann-tip" style="top:48px;right:0;"><strong>Closing CTA is missing</strong>Your current site ends without a strong call to action. You need one clear ask: hire me, email me, or download my resume. Don't let visitors leave without a next step.</div>
+      <section class="wf-cta">
+        <div class="section-tag cta-tag">// Let's Connect</div>
+        <h2 class="cta-h2">Looking for a <span>precision-minded</span><br>data analyst?</h2>
+        <p class="cta-sub">I bring aerospace-grade attention to detail to every dataset. Let's talk about how I can help your team turn raw data into clear decisions.</p>
+        <div class="cta-buttons">
+          <button class="btn-primary">Email Me Directly</button>
+          <button class="btn-ghost">Download Resume</button>
+        </div>
+      </section>
+    </div>
 
-                            <div class="project-card p-6 border border-gray-200 rounded-lg bg-white border-l-4 border-l-yellow-500">
-                                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">2. Targeted Extraction with SQL Server Management Studio 22</h3>
-                                    <p class="text-md font-medium text-gray-600 mb-3">Goal: Filter "Action & Adventure" leaders.</p>
-                                    <p class="text-gray-700 mb-4">Utilized SQL queries to isolate the top 10 performing shows from this category. Applied ORDER BY and TOP functions for precise extraction.</p>
-    
-                            <div class="flex justify-between items-center">
-                                    <span class="text-sm font-semibold text-blue-600">Key Technique: Relational Querying</span>
-                                    <a href="https://github.com/Scan93/S.MurtyPortfolio/blob/main/Files/PortfolioActionAdventureShot.png" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-yellow-600 hover:underline">
-                                        View SSMS Image ↗
-                                    </a>
-                                </div>
-                            </div>
+    <!-- FOOTER -->
+    <footer class="wf-footer">
+      <div class="footer-logo">SM //</div>
+      <div class="footer-note">Scandal Murty · Data Analyst Portfolio · Updated Feb 2026</div>
+    </footer>
 
-                            <div class="project-card p-6 border border-gray-200 rounded-lg bg-white border-l-4 border-l-yellow-500">
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-2">3. Python Scripting</h3>
-                                <p class="text-md font-medium text-gray-600 mb-3">Goal: Automate "Horror" genre extraction.</p>
-                                <p class="text-gray-700 mb-4">Leveraged Pandas to programmatically identify top shows, demonstrating how automation reduces manual tracking time.</p>
-                                <span class="text-sm font-semibold text-blue-600">Key Technique: Automated Boolean Masking</span>
-                            </div>
+  </div>
+</div>
 
-                            <div class="project-card p-6 border border-gray-200 rounded-lg bg-white border-l-4 border-l-yellow-500">
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-2">4. Tableau Insight Visualization</h3>
-                                <p class="text-md font-medium text-gray-600 mb-3">Goal: Visualize popularity distributions.</p>
-                                <p class="text-gray-700 mb-4">Translated raw data into a Tableau interactive graph to compare genre popularity and market demand.</p>
-                                <span class="text-sm font-semibold text-blue-600">Key Technique: Categorical Frequency Distribution</span>
-                            </div>
-                        </div>
-                    </section>
+<!-- Annotations Panel -->
+<div class="all-panel" id="allPanel">
+  <div class="all-panel-title">🔍 10 Specific Improvements for sdmurty.com — Hover badges on wireframe to explore</div>
+  <div class="ap-grid">
+    <div class="ap-card"><div class="ap-num">01</div><div class="ap-name">Sticky Nav + "Open to Work"</div><div class="ap-desc">Add a visible availability signal in the nav—recruiters check this immediately.</div></div>
+    <div class="ap-card"><div class="ap-num">02</div><div class="ap-name">Stronger, Unique Headline</div><div class="ap-desc">Aerospace → Data is a rare crossover. Lead with it. Your current headline is too generic.</div></div>
+    <div class="ap-card"><div class="ap-num">03</div><div class="ap-name">Quantified Stats Bar</div><div class="ap-desc">Surface your 3.9 GPA, 100% QA compliance, and years of experience as scannable numbers—not buried in paragraphs.</div></div>
+    <div class="ap-card"><div class="ap-num">04</div><div class="ap-name">Photo + Social Links Together</div><div class="ap-desc">Photo, GitHub, LinkedIn, and Resume PDF should live in one place at the top—not scattered across the page.</div></div>
+    <div class="ap-card"><div class="ap-num">05</div><div class="ap-name">Skill Proficiency Bars</div><div class="ap-desc">Plain text lists don't communicate depth. Visual bars (even approximate) make your skills instantly scannable.</div></div>
+    <div class="ap-card"><div class="ap-num">06</div><div class="ap-name">Case Study as Process Cards</div><div class="ap-desc">Your 4-step analysis reads as a wall of text. Restructure as cards with goal, technique, and link per step.</div></div>
+    <div class="ap-card"><div class="ap-num">07</div><div class="ap-name">Add a Key Finding / Insight</div><div class="ap-desc">Missing entirely. What did you discover from the TV data? This is the payoff—the thing that proves analyst thinking.</div></div>
+    <div class="ap-card"><div class="ap-num">08</div><div class="ap-name">Feature General Dynamics</div><div class="ap-desc">Your aerospace role is your strongest signal. Condense Domino's/Target into one line—don't bury the best with the rest.</div></div>
+    <div class="ap-card"><div class="ap-num">09</div><div class="ap-name">Promote Education Section</div><div class="ap-desc">3.9 GPA + Dean's List + Google Cert are entry-level analyst gold. Display as visual cards, not footnotes.</div></div>
+    <div class="ap-card"><div class="ap-num">10</div><div class="ap-name">Add a Closing CTA</div><div class="ap-desc">Your site currently ends without any call to action. Add a clear "Email Me" or "Download Resume" moment at the bottom.</div></div>
+  </div>
+</div>
 
-                    <div class="bg-gray-800 py-8 px-6 text-center text-white mb-10 rounded-lg">
-                        <h2 class="text-3xl font-extrabold">Professional Experience</h2>
-                        <p class="text-blue-300 mt-2 font-light">Bridging precision and data-driven insights</p>
-                    </div>
-
-                    <section id="experience" class="space-y-6">
-                        <div class="project-card p-6 border border-gray-200 rounded-lg bg-white border-l-4 border-l-blue-500">
-                            <div class="flex flex-col md:flex-row justify-between mb-4">
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-800">Senior Production Operator</h3>
-                                    <p class="text-gray-600">General Dynamics Mission Systems</p>
-                                </div>
-                                <span class="text-sm font-medium text-blue-600">Apr 2023 - Feb 2026</span>
-                            </div>
-                            <ul class="list-disc ml-5 text-gray-700 space-y-2">
-                                <li>Achieved 100% compliance with quality standards in bonding and laminating PWBs for space missions, demonstrating meticulous attention to detail and precision critical for data integrity.</li>
-                            <li>Utilized Solumina to review schematics, manage instructions, and track materials and components, building a foundational understanding of data-driven workflow management.</li>
-                            <li>Created an automated material inventory system, directly increasing accuracy and saving tracking time, which reflects hands-on data management and efficiency improvement.</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="project-card p-6 border border-gray-200 rounded-lg bg-white border-l-4 border-l-blue-500">
-                            <div class="flex flex-col md:flex-row justify-between mb-4">
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-800">Inbound Associate</h3>
-                                    <p class="text-gray-600">Target</p>
-                                </div>
-                                <span class="text-sm font-medium text-blue-600">Aug 2022 - Mar 2023</span>
-                            </div>
-                            <ul class="list-disc ml-5 text-gray-700 space-y-2">
-                                <li>Unloaded and sorted merchandise trailers efficiently in a team setting.</li>
-                                <li>Stocked and organized new merchandise to ensure easy access and accurate inventory.</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="project-card p-6 border border-gray-200 rounded-lg bg-white border-l-4 border-l-blue-500">
-                            <div class="flex flex-col md:flex-row justify-between mb-4">
-                            <div>
-                                    <h3 class="text-xl font-bold text-gray-800">Top Earning Delivery Driver</h3>
-                                    <p class="text-gray-600">Domino's</p>
-                                </div>
-                                <span class="text-sm font-medium text-blue-600">Nov 2021 - Jun 2022</span>
-                            </div>
-                            <ul class="list-disc ml-5 text-gray-700 space-y-2">
-                                <li>Top earning delivery driver in the 85242 area</li>
-                            </ul>
-                        </div>
-                      <div class="project-card p-6 border border-gray-200 rounded-lg bg-white border-l-4 border-l-blue-500">
-                            <div class="flex flex-col md:flex-row justify-between mb-4">
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-800">Supervisor</h3>
-                                    <p class="text-gray-600">Hertz 76</p>
-                                </div>
-                                <span class="text-sm font-medium text-blue-600">Feb 2014 - Sep 2021</span>
-                            </div>
-                            <ul class="list-disc ml-5 text-gray-700 space-y-2">
-                                <li>Reported carwash chemical and supply inventory to management, ensuring adequate stock and smooth operations.</li>
-                                <li>Led the training and onboarding of all new hires on service procedures, safety protocols, and operational standards.</li>
-                                <li>Delivered exceptional customer service within the fuel station and car wash.</li>
-                            </ul>
-                        </div>
-                      
-                    </section>
-
-                    <section id="education" class="mt-10">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4 section-header pb-2">Education</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="project-card p-6 border border-gray-200 rounded-lg bg-white border-l-4 border-l-green-500">
-                        <h3 class="text-xl font-semibold text-gray-800">AAS in Data Analytics at Mesa Community College</h3>
-                        <p class="text-blue-600">Expected December 2026</p>
-                        <p class="text-green-700 mt-1 font-medium">3.9 GPA | Dean's List Fall 2024, Spring 2025</p>
-                    </div>
-                            <div class="project-card p-6 border border-gray-200 rounded-lg bg-white border-l-4 border-l-green-500">
-                        <h3 class="text-xl font-semibold text-gray-800">Google Data Analyst Certification</h3>
-                        <p class="text-blue-600">Completed August 2024</p>
-                        <p class="text-gray-700 mt-1">Foundational mastery in spreadsheets, SQL for database querying, Tableau for visualization, and an introduction to R programming.</p>
-                    </div>
-                        </div>
-                    </section>
-                </div> </div> </main>
-
-        <footer class="bg-gray-800 text-white text-center p-8 border-t-4 border-blue-500">
-            <p class="text-lg font-light mb-2">Scandal Murty | Data Analyst Portfolio</p>
-            <p class="text-gray-400 text-sm">Updated February 2026.</p>
-            <p align="center">
-    <a href="analyticshub.html">Enter the HUB!</a>
-</p>
-        </footer>
-    </div> </body>
+<script>
+function setView(mode, btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('browser').classList.toggle('mobile', mode==='mobile');
+}
+function togglePanel(el){
+  document.getElementById('allPanel').classList.toggle('visible', el.checked);
+}
+</script>
+</body>
 </html>
