@@ -8,7 +8,8 @@ I am a Data Analyst who specializes in "finding the signal in the noise". My goa
 ---
 
 ### 🚀 Featured Insights
-Work in Progress.
+Job-Finder.py
+Additional insights coming soon!
 
 ---
 
