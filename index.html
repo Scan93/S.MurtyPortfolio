@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -503,7 +504,7 @@ nav {
   transition: border-color .25s, transform .25s;
 }
 .project-placeholder:hover { border-color: var(--accent2); transform: translateY(-3px); }
-.placeholder-icon { font-size: 32px; margin-bottom: 18px; }
+.placeholder-icon { font-size: 28px; margin-bottom: 18px; color: var(--accent); }
 .placeholder-title {
   font-family: 'Syne', sans-serif;
   font-size: 17px;
@@ -829,7 +830,7 @@ footer {
   <h2 class="section-h2">Case Studies.</h2>
   <div class="project-grid">
   <div class="project-placeholder">
-    <div class="placeholder-icon">📊</div>
+    <div class="placeholder-icon"><i class="fa-solid fa-tv"></i></div>
     <div class="placeholder-title">Top 2,000 TV Shows — Data Analysis</div>
     <p class="placeholder-sub">A multi-tool pipeline spanning Excel, SQL Server, Python (Pandas), and Tableau — from raw dataset audit to interactive genre visualization. <em>Full write-up coming soon.</em></p>
     <div class="placeholder-tags">
@@ -842,7 +843,7 @@ footer {
   </div>
 
   <div class="project-placeholder">
-    <div class="placeholder-icon">🤖</div>
+    <div class="placeholder-icon"><i class="fa-solid fa-robot"></i></div>
     <div class="placeholder-title">AI-Powered Job Finder — Python Automation</div>
     <p class="placeholder-sub">A fully automated job search pipeline built in Python. Pulls live listings daily from multiple job board APIs, scores each one against a resume using Claude AI, and delivers only the strongest matches (8/10+) via a formatted email digest.</p>
     <div class="placeholder-tags">
@@ -856,7 +857,7 @@ footer {
   </div>
 
   <div class="project-placeholder">
-    <div class="placeholder-icon">📊</div>
+    <div class="placeholder-icon"><i class="fa-solid fa-chart-line"></i></div>
     <div class="placeholder-title">Sales Performance Analysis</div>
     <p class="placeholder-sub">Analyzed 545,000+ retail transactions across 40+ countries to uncover revenue trends, top-performing products, and high-value customers. Built end-to-end in Python using pandas for data cleaning and transformation, with matplotlib and seaborn for visualization.</p>
     <div class="placeholder-tags">
