@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Powered Job Finder — Scandal Murty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d0f14;
+  --surface: #141720;
+  --surface2: #1c2030;
+  --border: #252a3a;
+  --accent: #00d4ff;
+  --accent2: #7c6af7;
+  --text: #e8eaf0;
+  --muted: #6b7280;
+  --highlight: rgba(0,212,255,.07);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Epilogue', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.75;
+}
+
+/* ── NAV ── */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 56px;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0;
+  background: rgba(13,15,20,.92);
+  backdrop-filter: blur(14px);
+  z-index: 100;
+}
+.nav-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: .1em;
+  text-decoration: none;
+}
+.nav-back {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: .05em;
+  transition: color .2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-back:hover { color: var(--accent); }
+
+/* ── HERO ── */
+.project-hero {
+  padding: 72px 56px 64px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.project-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(124,106,247,.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.project-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--accent2);
+  margin-bottom: 16px;
+}
+.project-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: 20px;
+}
+.project-title .grad {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.project-subtitle {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 620px;
+  margin-bottom: 36px;
+  line-height: 1.8;
+}
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.htag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 5px 14px;
+  border-radius: 5px;
+  background: rgba(0,212,255,.07);
+  border: 1px solid rgba(0,212,255,.2);
+  color: var(--accent);
+  letter-spacing: .05em;
+}
+.htag.purple {
+  background: rgba(124,106,247,.07);
+  border-color: rgba(124,106,247,.2);
+  color: var(--accent2);
+}
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.hstat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.hstat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .07em;
+  margin-top: 4px;
+}
+
+/* ── CONTENT ── */
+.content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 64px 56px;
+}
+.section-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.section-h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 20px;
+  letter-spacing: -.01em;
+}
+.prose {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+.prose strong { color: var(--text); font-weight: 500; }
+.prose a { color: var(--accent); text-decoration: none; }
+.prose a:hover { text-decoration: underline; }
+
+/* ── DIVIDER ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 56px 0;
+}
+
+/* ── PIPELINE ── */
+.pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  margin: 32px 0;
+}
+.pipe-step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  transition: border-color .2s;
+}
+.pipe-step:hover { border-color: var(--accent2); }
+.pipe-icon {
+  font-size: 22px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.pipe-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.pipe-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+.pipe-arrow {
+  color: var(--border);
+  font-size: 18px;
+  padding: 0 6px;
+  flex-shrink: 0;
+}
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 24px 0;
+}
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+.code-lang {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent2);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.code-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+}
+pre {
+  padding: 20px 22px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.kw  { color: var(--accent2); }
+.fn  { color: var(--accent); }
+.st  { color: #a8e6a3; }
+.cm  { color: var(--muted); font-style: italic; }
+.nm  { color: #f6ad55; }
+
+/* ── INFO CARDS ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 28px 0;
+}
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+}
+.info-card-icon {
+  font-size: 20px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.info-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.info-card-body {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── EMAIL PREVIEW ── */
+.email-preview {
+  background: #f7fafc;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+  margin: 24px 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+.email-preview h3 {
+  color: #2c5282;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.email-preview .ep-sub {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.email-job {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: #fff;
+}
+.email-job h4 { margin: 0 0 4px 0; font-size: 14px; color: #1a202c; }
+.email-job .meta { font-size: 12px; color: #555; margin-bottom: 6px; }
+.email-job .score { font-size: 13px; margin-bottom: 6px; }
+.email-job .score strong { color: #2b6cb0; }
+.email-job .reason { font-size: 12px; color: #555; font-style: italic; }
+.email-job .salary { font-size: 12px; color: #276749; font-weight: 600; margin-bottom: 4px; }
+.ep-powered { font-size: 11px; color: #999; margin-top: 12px; }
+
+/* ── FINDINGS ── */
+.finding-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 20px 0;
+}
+.finding-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.finding-list li i {
+  color: var(--accent);
+  font-size: 14px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.finding-list li strong { color: var(--text); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 24px 56px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: .1em;
+}
+.footer-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: .06em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .project-hero { padding: 48px 24px 40px; }
+  .content { padding: 40px 24px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 28px; }
+  .pipeline { gap: 8px; }
+  .pipe-arrow { display: none; }
+  footer { padding: 20px 24px; flex-direction: column; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">SM // PORTFOLIO</a>
+  <a href="index.html" class="nav-back"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+</nav>
+
+<!-- HERO -->
+<section class="project-hero">
+  <div class="project-tag">// Automation · Python · AI</div>
+  <h1 class="project-title">AI-Powered <span class="grad">Job Finder</span></h1>
+  <p class="project-subtitle">
+    A fully automated daily job search pipeline. Queries two live job board APIs, scores every result against a resume using Claude AI, and delivers only the strongest matches as a formatted email digest — every morning, hands-free.
+  </p>
+  <div class="hero-tags">
+    <span class="htag">Python</span>
+    <span class="htag">Claude AI API</span>
+    <span class="htag">REST APIs</span>
+    <span class="htag">SMTP Email</span>
+    <span class="htag">python-dotenv</span>
+    <span class="htag purple">Automation</span>
+    <span class="htag purple">NLP Scoring</span>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="hstat-num">2</div>
+      <div class="hstat-label">Job Board APIs</div>
+    </div>
+    <div>
+      <div class="hstat-num">8/10</div>
+      <div class="hstat-label">Min Match Score</div>
+    </div>
+    <div>
+      <div class="hstat-num">~400</div>
+      <div class="hstat-label">Listings Scored Daily</div>
+    </div>
+    <div>
+      <div class="hstat-num">Daily</div>
+      <div class="hstat-label">Automated Cadence</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <!-- PROBLEM -->
+  <div class="section-tag">// The Problem</div>
+  <h2 class="section-h2">Job searching is a full-time job.</h2>
+  <p class="prose">
+    Manually checking multiple job boards every day, reading through dozens of descriptions, and deciding which roles are actually worth applying to is slow, inconsistent, and exhausting — especially while enrolled in school full-time and targeting a specific geographic area and skill match.
+  </p>
+  <p class="prose">
+    The goal was to eliminate the daily search entirely. <strong>Pull the listings automatically. Score them against your actual resume. Only surface the ones that matter.</strong>
+  </p>
+
+  <hr class="divider">
+
+  <!-- PIPELINE -->
+  <div class="section-tag">// How It Works</div>
+  <h2 class="section-h2">Five-stage automated pipeline.</h2>
+
+  <div class="pipeline">
+    <div class="pipe-step">
+      <div class="pipe-icon"><i class="fa-solid fa-database"></i></div>
+      <div class="pipe-label">Stage 1</div>
+      <div class="pipe-name">Fetch Jobs</div>
+    </div>
+    <div class="pipe-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="pipe-step">
+      <div class="pipe-icon"><i class="fa-solid fa-filter"></i></div>
+      <div class="pipe-label">Stage 2</div>
+      <div class="pipe-name">Deduplicate</div>
+    </div>
+    <div class="pipe-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="pipe-step">
+      <div class="pipe-icon"><i class="fa-solid fa-robot"></i></div>
+      <div class="pipe-label">Stage 3</div>
+      <div class="pipe-name">AI Scoring</div>
+    </div>
+    <div class="pipe-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="pipe-step">
+      <div class="pipe-icon"><i class="fa-solid fa-arrow-up-wide-short"></i></div>
+      <div class="pipe-label">Stage 4</div>
+      <div class="pipe-name">Filter & Sort</div>
+    </div>
+    <div class="pipe-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="pipe-step">
+      <div class="pipe-icon"><i class="fa-solid fa-envelope"></i></div>
+      <div class="pipe-label">Stage 5</div>
+      <div class="pipe-name">Email Digest</div>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <div class="info-card-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <div class="info-card-title">Stage 1 — Fetch Jobs</div>
+      <div class="info-card-body">Queries <strong>Adzuna</strong> across 8 targeted search terms (data analyst, operations analyst, inventory analyst, etc.) within a 25-mile radius of Chandler, AZ. Also pulls <strong>Arbeitnow</strong> for remote and US-based roles — no API key required.</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon"><i class="fa-solid fa-copy"></i></div>
+      <div class="info-card-title">Stage 2 — Deduplicate</div>
+      <div class="info-card-body">Results from both sources are merged into a single dictionary keyed by job ID. This ensures the same listing surfaced under multiple search terms is only scored once, keeping the Claude API cost minimal.</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon"><i class="fa-solid fa-brain"></i></div>
+      <div class="info-card-title">Stage 3 — AI Scoring</div>
+      <div class="info-card-body">Each unique job is sent to <strong>Claude Haiku</strong> alongside the full resume text. Claude returns a structured JSON score (1–10) and a one-sentence rationale explaining the match quality.</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+      <div class="info-card-title">Stages 4 & 5 — Deliver</div>
+      <div class="info-card-body">Jobs scoring <strong>8 or higher</strong> are sorted by score, formatted as a styled HTML email, and delivered via Gmail SMTP. The digest includes job title, company, location, salary (when available), score, and a direct apply link.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CODE -->
+  <div class="section-tag">// Under the Hood</div>
+  <h2 class="section-h2">Key implementation details.</h2>
+
+  <p class="prose">The AI scoring prompt is intentionally structured — Claude is given a defined output format and instructed to respond with only valid JSON, making the response safe to parse directly without brittle string manipulation.</p>
+
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Python</span>
+      <span class="code-label">score_job() — Claude AI scoring</span>
+    </div>
+    <pre><span class="kw">def</span> <span class="fn">score_job</span>(client, job):
+    prompt = <span class="st">f"""You are a career advisor. Score how well this job
+matches the candidate's resume on a scale of 1-10.
+Only return a JSON object with these fields:
+  score (integer 1-10),
+  reason (1-2 sentences explaining the match).
+
+RESUME:
+{RESUME}
+
+JOB:
+Title: {title}
+Company: {company}
+Location: {location}
+Description: {description}
+
+Respond with only valid JSON:
+{{"score": 7, "reason": "Strong SQL match."}}"""</span>
+
+    message = client.<span class="fn">messages.create</span>(
+        model=<span class="st">"claude-haiku-4-5-20251001"</span>,
+        max_tokens=<span class="nm">150</span>,
+        messages=[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}]
+    )
+    result = json.<span class="fn">loads</span>(message.content[<span class="nm">0</span>].text.strip())
+    <span class="kw">return</span> result[<span class="st">"score"</span>], result[<span class="st">"reason"</span>]</pre>
+  </div>
+
+  <p class="prose">Deduplication is handled by building a dictionary keyed on job ID before scoring, so the same listing pulled under multiple search terms is never scored twice — keeping API calls and cost to a minimum.</p>
+
+  <div class="code-block">
+    <div class="code-header">
+      <span class="code-lang">Python</span>
+      <span class="code-label">main() — deduplication and scoring loop</span>
+    </div>
+    <pre><span class="cm"># Merge both sources, deduplicate by job ID</span>
+all_jobs = {}
+<span class="kw">for</span> job <span class="kw">in</span> adzuna_jobs + arbeitnow_jobs:
+    all_jobs[job[<span class="st">"id"</span>]] = job          <span class="cm"># same ID = overwrite, not duplicate</span>
+
+<span class="cm"># Score every unique listing</span>
+scored = []
+<span class="kw">for</span> job <span class="kw">in</span> all_jobs.<span class="fn">values</span>():
+    score, reason = <span class="fn">score_job</span>(client, job)
+    <span class="kw">if</span> score >= <span class="nm">8</span>:
+        scored.<span class="fn">append</span>((job, score, reason))
+
+<span class="cm"># Sort highest match first</span>
+scored.<span class="fn">sort</span>(key=<span class="kw">lambda</span> x: x[<span class="nm">1</span>], reverse=<span class="kw">True</span>)</pre>
+  </div>
+
+  <hr class="divider">
+
+  <!-- EMAIL PREVIEW -->
+  <div class="section-tag">// Output</div>
+  <h2 class="section-h2">What the daily digest looks like.</h2>
+  <p class="prose">The pipeline ends with a formatted HTML email delivered each morning. Each card shows the role, company, location, salary if available, AI match score, and a direct link to apply.</p>
+
+  <div class="email-preview">
+    <h3>📊 Your Daily Job Matches</h3>
+    <p class="ep-sub">Jobs near Chandler, AZ (+ remote) scored 8/10 or higher against your resume.</p>
+
+    <div class="email-job">
+      <h4>Data Analyst II — Operations</h4>
+      <p class="meta">🏢 Microchip Technology &nbsp;|&nbsp; 📍 Chandler, AZ &nbsp;|&nbsp; <span style="font-size:11px;color:#888;">via Adzuna</span></p>
+      <p class="salary">💰 $58,000 – $74,000/yr</p>
+      <p class="score"><strong>Match Score: <span style="color:#276749;">9/10</span></strong></p>
+      <p class="reason">Strong alignment on SQL, Tableau, and operational data experience within a manufacturing environment.</p>
+    </div>
+
+    <div class="email-job">
+      <h4>Inventory & Reporting Analyst</h4>
+      <p class="meta">🏢 Insight Global (Contract) &nbsp;|&nbsp; 📍 Mesa, AZ &nbsp;|&nbsp; <span style="font-size:11px;color:#888;">via Adzuna</span></p>
+      <p class="score"><strong>Match Score: <span style="color:#2b6cb0;">8/10</span></strong></p>
+      <p class="reason">Direct match on inventory control background and Excel/data tracking skills; contract role with strong conversion potential.</p>
+    </div>
+
+    <p class="ep-powered">Powered by Adzuna + Arbeitnow + Claude AI</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- LEARNINGS -->
+  <div class="section-tag">// Reflections</div>
+  <h2 class="section-h2">What this project demonstrated.</h2>
+
+  <ul class="finding-list">
+    <li>
+      <i class="fa-solid fa-circle-check"></i>
+      <span><strong>API integration end-to-end</strong> — authenticating with Adzuna, parsing paginated JSON responses, handling timeouts and exceptions gracefully across two different API schemas.</span>
+    </li>
+    <li>
+      <i class="fa-solid fa-circle-check"></i>
+      <span><strong>Prompt engineering for structured output</strong> — designing a Claude prompt that reliably returns parseable JSON rather than freeform text, with fallback handling for malformed responses.</span>
+    </li>
+    <li>
+      <i class="fa-solid fa-circle-check"></i>
+      <span><strong>Cost-aware design</strong> — deduplication before scoring means every API call to Claude is on a unique listing. On a typical day, ~400 listings deduplicate down significantly before hitting the model.</span>
+    </li>
+    <li>
+      <i class="fa-solid fa-circle-check"></i>
+      <span><strong>Secrets management</strong> — credentials for three separate services (Adzuna, Anthropic, Gmail) stored in a <code style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);">.env</code> file, loaded with python-dotenv, never hardcoded.</span>
+    </li>
+    <li>
+      <i class="fa-solid fa-circle-check"></i>
+      <span><strong>Automated scheduling</strong> — configured with Windows Task Scheduler to run daily at a set time, requiring zero manual intervention once deployed.</span>
+    </li>
+  </ul>
+
+  <div style="margin-top:40px; padding:24px; background:var(--surface); border:1px solid var(--border); border-radius:10px; display:flex; align-items:center; gap:20px;">
+    <i class="fa-brands fa-github" style="font-size:28px; color:var(--accent2); flex-shrink:0;"></i>
+    <div>
+      <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:600; color:var(--text); margin-bottom:4px;">View the full source code</div>
+      <a href="https://github.com/Scan93/S.MurtyPortfolio/blob/main/job_finder.py" target="_blank" style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent); text-decoration:none; letter-spacing:.04em;">github.com/Scan93/S.MurtyPortfolio → job_finder.py</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-logo">SM //</div>
+  <div class="footer-note">Scandal Murty · AI-Powered Job Finder · April 2026</div>
+</footer>
+
+</body>
+</html>
