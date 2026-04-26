@@ -620,6 +620,112 @@ footer {
   letter-spacing: .06em;
 }
 
+/* ── REVIEWS ── */
+#reviews {
+  padding: 72px 56px;
+  border-bottom: 1px solid var(--border);
+}
+.reviews-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.review-form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 30px;
+}
+.star-row { display: flex; gap: 10px; margin-bottom: 20px; }
+.star-btn {
+  font-size: 26px;
+  color: var(--border);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1;
+  transition: color .15s, transform .1s;
+}
+.star-btn.active { color: var(--accent); }
+.star-btn:hover { transform: scale(1.15); }
+.review-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 13px;
+  margin-bottom: 12px;
+  outline: none;
+  transition: border-color .2s;
+}
+.review-input:focus { border-color: var(--accent); }
+.review-input::placeholder { color: var(--muted); }
+textarea.review-input { resize: vertical; min-height: 80px; }
+.review-success {
+  display: none;
+  text-align: center;
+  padding: 30px 0;
+  color: var(--accent);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.reviews-right { display: flex; flex-direction: column; gap: 20px; }
+.review-avg-row { display: flex; align-items: baseline; gap: 10px; }
+.review-avg-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+.review-avg-meta { display: flex; flex-direction: column; gap: 4px; }
+.review-avg-stars { display: flex; gap: 3px; }
+.review-avg-stars i { font-size: 13px; color: var(--accent); }
+.review-avg-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.review-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  transition: border-color .25s;
+}
+.review-card:hover { border-color: var(--accent2); }
+.review-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.review-card-name { font-weight: 600; font-size: 14px; }
+.review-card-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+}
+.review-card-stars { display: flex; gap: 3px; margin-bottom: 8px; }
+.review-card-stars i { font-size: 12px; color: var(--accent); }
+.review-card-comment { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.no-reviews { font-size: 13px; color: var(--muted); padding: 20px 0; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   nav { padding: 16px 24px; }
@@ -648,6 +754,8 @@ footer {
   .project-placeholder { padding: 28px 20px; }
 
   #contact { padding: 72px 24px; }
+  #reviews { padding: 56px 24px; }
+  .reviews-layout { grid-template-columns: 1fr; }
   footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; gap: 8px; }
 }
 </style>
@@ -662,6 +770,7 @@ footer {
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#education">Education</a></li>
+    <li><a href="#reviews">Reviews</a></li>
   </ul>
   <a href="mailto:scandalmurty@gmail.com" class="nav-cta">Hire Me →</a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -673,6 +782,7 @@ footer {
   <a href="#experience" onclick="toggleMenu()">Experience</a>
   <a href="#projects" onclick="toggleMenu()">Projects</a>
   <a href="#education" onclick="toggleMenu()">Education</a>
+  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
   <a href="mailto:scandalmurty@gmail.com" onclick="toggleMenu()">Hire Me →</a>
 </div>
 
@@ -886,6 +996,44 @@ footer {
   </div>
 </section>
 
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-tag">// Portfolio Feedback</div>
+  <h2 class="section-h2">Leave a review.</h2>
+  <div class="reviews-layout">
+
+    <div>
+      <div class="review-form-card">
+        <form id="reviewForm">
+          <div class="star-row">
+            <button type="button" class="star-btn" data-val="1"><i class="fas fa-star"></i></button>
+            <button type="button" class="star-btn" data-val="2"><i class="fas fa-star"></i></button>
+            <button type="button" class="star-btn" data-val="3"><i class="fas fa-star"></i></button>
+            <button type="button" class="star-btn" data-val="4"><i class="fas fa-star"></i></button>
+            <button type="button" class="star-btn" data-val="5"><i class="fas fa-star"></i></button>
+          </div>
+          <input id="reviewName" class="review-input" type="text" placeholder="Your name" required>
+          <textarea id="reviewComment" class="review-input" placeholder="Share your thoughts (optional)"></textarea>
+          <button type="submit" class="btn-primary" style="width:100%;">Submit Review</button>
+        </form>
+        <div class="review-success" id="reviewSuccess">
+          <div style="font-size:28px;margin-bottom:8px;">✓</div>
+          Thank you for your feedback!<br>
+          <span style="color:var(--muted);font-size:12px;">It helps me improve this portfolio.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-right">
+      <div id="reviewAvg"></div>
+      <div class="reviews-list" id="reviewsList">
+        <div class="no-reviews">No reviews yet — be the first!</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">SM //</div>
@@ -893,6 +1041,89 @@ footer {
 </footer>
 
 <script>
+// ── REVIEWS ──
+const REVIEWS_URL = 'YOUR_APPS_SCRIPT_URL';
+
+let selectedRating = 0;
+const starBtns = document.querySelectorAll('.star-btn');
+
+function highlightStars(n) {
+  starBtns.forEach((btn, i) => btn.classList.toggle('active', i < n));
+}
+
+starBtns.forEach((btn, i) => {
+  btn.addEventListener('mouseover', () => highlightStars(i + 1));
+  btn.addEventListener('mouseout', () => highlightStars(selectedRating));
+  btn.addEventListener('click', () => { selectedRating = i + 1; highlightStars(selectedRating); });
+});
+
+document.getElementById('reviewForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  if (!selectedRating) { alert('Please select a star rating.'); return; }
+  fetch(REVIEWS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: document.getElementById('reviewName').value.trim(),
+      rating: selectedRating,
+      comment: document.getElementById('reviewComment').value.trim()
+    })
+  });
+  document.getElementById('reviewForm').style.display = 'none';
+  document.getElementById('reviewSuccess').style.display = 'block';
+});
+
+function renderStars(n) {
+  return Array.from({length: 5}, (_, i) =>
+    `<i class="${i < n ? 'fas' : 'far'} fa-star"></i>`
+  ).join('');
+}
+
+function safeHtml(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+function fmtDate(ts) {
+  return new Date(ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function loadReviews() {
+  fetch(REVIEWS_URL)
+    .then(r => r.json())
+    .then(reviews => {
+      const list = document.getElementById('reviewsList');
+      const avg = document.getElementById('reviewAvg');
+      if (!reviews.length) {
+        list.innerHTML = '<div class="no-reviews">No reviews yet — be the first!</div>';
+        return;
+      }
+      const mean = (reviews.reduce((s, r) => s + Number(r.rating), 0) / reviews.length).toFixed(1);
+      avg.innerHTML = `
+        <div class="review-avg-row">
+          <div class="review-avg-num">${mean}</div>
+          <div class="review-avg-meta">
+            <div class="review-avg-stars">${renderStars(Math.round(mean))}</div>
+            <div class="review-avg-label">${reviews.length} review${reviews.length !== 1 ? 's' : ''}</div>
+          </div>
+        </div>`;
+      list.innerHTML = reviews.map(r => `
+        <div class="review-card">
+          <div class="review-card-header">
+            <span class="review-card-name">${safeHtml(r.name)}</span>
+            <span class="review-card-date">${fmtDate(r.timestamp)}</span>
+          </div>
+          <div class="review-card-stars">${renderStars(Number(r.rating))}</div>
+          ${r.comment ? `<div class="review-card-comment">${safeHtml(r.comment)}</div>` : ''}
+        </div>`).join('');
+    })
+    .catch(() => {});
+}
+
+if (REVIEWS_URL !== 'YOUR_APPS_SCRIPT_URL') loadReviews();
+
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
