@@ -638,19 +638,35 @@ footer {
 }
 .footer-egg:hover { color: var(--accent); }
 .header-egg {
-  text-align: center;
-  padding: 6px 0;
+  padding: 20px 56px;
   border-bottom: 1px solid var(--border);
 }
-.header-egg a {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: var(--border);
-  letter-spacing: .08em;
+.hub-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 28px;
   text-decoration: none;
-  transition: color .4s;
+  transition: border-color .25s, transform .25s;
 }
-.header-egg a:hover { color: var(--accent); }
+.hub-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.hub-card-icon { font-size: 24px; color: var(--accent); flex-shrink: 0; }
+.hub-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.hub-card-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .04em;
+}
 
 /* ── REVIEWS ── */
 #reviews {
@@ -818,7 +834,15 @@ textarea.review-input { resize: vertical; min-height: 80px; }
   <a href="mailto:scandalmurty@gmail.com" onclick="toggleMenu()">Hire Me →</a>
 </div>
 
-<div class="header-egg"><a href="analyticshub.html">// go deeper</a></div>
+<div class="header-egg">
+  <a href="analyticshub.html" class="hub-card">
+    <div class="hub-card-icon"><i class="fa-solid fa-terminal"></i></div>
+    <div>
+      <div class="hub-card-title">The Analytics Hub</div>
+      <div class="hub-card-sub">// go deeper →</div>
+    </div>
+  </a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
