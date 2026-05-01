@@ -337,6 +337,15 @@ nav {
 }
 .skill-item:last-child { border-bottom: none; }
 .skill-name { flex: 1; }
+.skill-sub {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .03em;
+  line-height: 1.5;
+}
 .skill-bar-wrap {
   width: 64px; height: 3px;
   background: var(--border);
@@ -846,7 +855,6 @@ textarea.review-input { resize: vertical; min-height: 80px; }
       <div class="skill-item"><span class="skill-name">Python (Pandas)</span></div>
       <div class="skill-item"><span class="skill-name">Power BI</span></div>
       <div class="skill-item"><span class="skill-name">Excel / VBA</span></div>
-      <div class="skill-item"><span class="skill-name">Mechanical Sympathy</span></div>
     </div>
     <div class="skill-group">
       <div class="skill-group-title">Inventory & Supply Chain</div>
@@ -862,6 +870,11 @@ textarea.review-input { resize: vertical; min-height: 80px; }
       <div class="skill-item"><span class="skill-name">Process Optimization</span></div>
       <div class="skill-item"><span class="skill-name">Quality Compliance</span></div>
       <div class="skill-item"><span class="skill-name">Team Leadership</span></div>
+      <div class="skill-item">
+        <span class="skill-name">Mechanical Sympathy
+          <span class="skill-sub">Intuition for how physical systems behave — forged across 7+ yrs in aerospace</span>
+        </span>
+      </div>
     </div>
   </div>
 </section>
