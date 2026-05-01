@@ -367,8 +367,6 @@
                 <div class="counter-display">
                     <div id="visitorNum">000000</div>
                 </div>
-                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fsdmurty.com%2Fanalyticshub.html&count_bg=%23FF0000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=HITS&edge_flat=false"
-                     alt="Hits" id="hitsImg" style="display:none;" onload="syncCounter(this)">
             </div>
 
         </td>
@@ -432,27 +430,19 @@ setInterval(updateOnline, 4500);
 updateOnline();
 
 // ── VISITOR COUNTER ──
-// Pull real count from hits badge, fall back to localStorage estimate
-function syncCounter(img) {
-    const src = img.src;
-    // Parse the count out of the SVG text content if accessible; otherwise use stored value
-    let stored = parseInt(localStorage.getItem('hubVisits') || '0');
-    stored++;
-    localStorage.setItem('hubVisits', stored);
-    // Seed with a realistic base so it doesn't start at 1
-    const base = 1042;
-    const display = String(base + stored).padStart(6, '0');
-    document.getElementById('visitorNum').textContent = display;
-}
-
-// Fallback if hits image never loads
-(function() {
-    let stored = parseInt(localStorage.getItem('hubVisits') || '0');
-    stored++;
-    localStorage.setItem('hubVisits', stored);
-    const base = 1042;
-    document.getElementById('visitorNum').textContent = String(base + stored).padStart(6, '0');
-})();
+// Real server-side counter via counterapi.dev — increments for every visitor, every browser
+fetch('https://api.counterapi.dev/v1/sdmurty/analyticshub/up')
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById('visitorNum').textContent = String(data.count).padStart(6, '0');
+    })
+    .catch(() => {
+        // Fallback: localStorage estimate if API is unreachable
+        let stored = parseInt(localStorage.getItem('hubVisits') || '1042');
+        stored++;
+        localStorage.setItem('hubVisits', stored);
+        document.getElementById('visitorNum').textContent = String(stored).padStart(6, '0');
+    });
 
 // ── QUOTE OF THE DAY ──
 const QUOTES = [

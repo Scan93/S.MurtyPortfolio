@@ -148,6 +148,19 @@
         }
 
         .sidebar-link:hover { color: #FF00FF; }
+        /* ── CURSOR SPARKLES ── */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 13px;
+            animation: sparkleFade 0.8s forwards;
+            z-index: 9999;
+            line-height: 1;
+        }
+        @keyframes sparkleFade {
+            0%   { opacity: 1; transform: scale(1) translateY(0); }
+            100% { opacity: 0; transform: scale(0.2) translateY(-22px); }
+        }
     </style>
 </head>
 <body>
@@ -329,5 +342,24 @@
     </p>
 </div>
 
+<script>
+// ── CURSOR SPARKLES ──
+const SPARKLE_CHARS  = ['✦','★','✧','✶','✸','·','*'];
+const SPARKLE_COLORS = ['#FF00FF','#00FFFF','#FFFF00','#00FF00','#FF6600','#ffffff'];
+let lastSparkle = 0;
+document.addEventListener('mousemove', function(e) {
+    const now = Date.now();
+    if (now - lastSparkle < 40) return;
+    lastSparkle = now;
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.left  = (e.pageX + (Math.random() * 16 - 8)) + 'px';
+    s.style.top   = (e.pageY + (Math.random() * 16 - 8)) + 'px';
+    s.style.color = SPARKLE_COLORS[Math.floor(Math.random() * SPARKLE_COLORS.length)];
+    s.textContent = SPARKLE_CHARS[Math.floor(Math.random() * SPARKLE_CHARS.length)];
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 800);
+});
+</script>
 </body>
 </html>
