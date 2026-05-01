@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>*** DEAN'S WORKSHOP — PASSIONS.EXE ***</title>
+    <style>
+        body {
+            background-color: #000033;
+            background-image: url('https://www.transparenttextures.com/patterns/circuit-board.png');
+            color: #00FF00;
+            font-family: "Courier New", Courier, monospace;
+            margin: 20px;
+        }
+
+        .window {
+            border: 4px ridge #808080;
+            background-color: #000000;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .window-title {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            font-weight: bold;
+            padding: 3px 8px;
+            font-size: 0.85em;
+            margin: -10px -10px 10px -10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .win-btns {
+            display: flex;
+            gap: 3px;
+        }
+
+        .win-btn {
+            background: #c0c0c0;
+            border: 1px outset #fff;
+            width: 16px;
+            height: 14px;
+            font-size: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            cursor: default;
+            font-family: "Courier New", monospace;
+        }
+
+        .header-text {
+            color: #FF00FF;
+            text-align: center;
+            text-shadow: 2px 2px #ffffff;
+            font-size: 2em;
+            margin: 8px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 2px inset #808080;
+            padding: 15px;
+            vertical-align: top;
+        }
+
+        .sidebar {
+            width: 26%;
+            color: #FFFF00;
+        }
+
+        .pixel-btn {
+            display: inline-block;
+            margin: 4px;
+            padding: 5px 10px;
+            background: linear-gradient(to bottom, #7b1fa2, #4a148c);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: 3px outset #9c27b0;
+            font-weight: bold;
+            font-size: 0.78em;
+            font-family: "Courier New", Courier, monospace;
+            cursor: default;
+        }
+
+        .pixel-btn:active { border-style: inset; }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        hr {
+            border: 0;
+            height: 10px;
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+        }
+
+        hr.thin {
+            height: 2px;
+            background: #444;
+        }
+
+        .passion-block {
+            border: 1px dashed #00FF00;
+            padding: 12px;
+            margin: 14px 0;
+            background-color: #000511;
+        }
+
+        .passion-title {
+            color: #00FFFF;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            gap: 0;
+        }
+
+        .progress-bar {
+            background: #111;
+            border: 2px inset #555;
+            padding: 4px 8px;
+            font-size: 0.75em;
+            color: #00FF00;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-link {
+            color: #00FFFF;
+            text-decoration: none;
+            font-size: 0.85em;
+        }
+
+        .sidebar-link:hover { color: #FF00FF; }
+    </style>
+</head>
+<body>
+
+<!-- HEADER WINDOW -->
+<div class="window">
+    <div class="window-title">
+        <span>PASSIONS.EXE — Running</span>
+        <div class="win-btns">
+            <div class="win-btn">_</div>
+            <div class="win-btn">□</div>
+            <div class="win-btn">✕</div>
+        </div>
+    </div>
+    <h1 class="header-text">★ DEAN'S WORKSHOP ★</h1>
+    <marquee scrollamount="6">&gt;&gt;&gt; VOLTAGE: 12V ... LAYER HEIGHT: 0.2mm ... AI SESSION: ACTIVE ... CURIOSITY: MAXIMUM ... COFFEE: HOT ... LET'S BUILD SOMETHING &lt;&lt;&lt;</marquee>
+</div>
+
+<hr>
+
+<table>
+    <tr>
+
+        <!-- MAIN CONTENT -->
+        <td>
+
+            <!-- README -->
+            <div class="window">
+                <div class="window-title">
+                    <span>README.TXT</span>
+                    <div class="win-btns"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div></div>
+                </div>
+                <p style="color: #00FFFF; font-style: italic; margin-bottom: 10px;">
+                    "Behind every dashboard is someone who took apart a printer at age 9 just to see how it worked."
+                </p>
+                <p>
+                    This is where the professional resume ends and the real story begins. I grew up in the 90s — when hardware was hands-on, the internet was wild, and if you wanted to understand something you opened it up. That curiosity never got patched out.
+                </p>
+                <p>
+                    From the aerospace floor to the home workshop, the through-line has always been the same: I want to know how things work. Not just that they work — <i>how</i> and <i>why</i>.
+                </p>
+                <p>Welcome to the workshop.</p>
+            </div>
+
+            <!-- MECHANICAL ENGINEERING -->
+            <div class="passion-block">
+                <div class="passion-title">⚙ MECHANICAL ENGINEERING</div>
+                <p>
+                    Physical systems don't lie. Structural load paths, electrical circuit behavior, hydraulic pressure drops — they all follow rules, and once you understand the rules you can read a system just by looking at it. That's what I'm always chasing.
+                </p>
+                <p>
+                    Vehicles are one of my favorite domains because they're among the most complex engineered systems an everyday person owns and operates. Every subsystem — powertrain, suspension, electrical, thermal — talks to every other one. Understanding the whole picture is the goal.
+                </p>
+                <p>
+                    PC hardware scratches the same itch. Trace routing, power delivery, memory timing — there's a physical reality underneath every benchmark number, and I want to understand it.
+                </p>
+                <div class="tag-row">
+                    <span class="pixel-btn">STRUCTURAL</span>
+                    <span class="pixel-btn">ELECTRICAL</span>
+                    <span class="pixel-btn">HYDRAULICS</span>
+                    <span class="pixel-btn">VEHICLES</span>
+                    <span class="pixel-btn">PC HARDWARE</span>
+                    <span class="pixel-btn">THERMODYNAMICS</span>
+                </div>
+                <div class="progress-bar">
+                    INTEREST LEVEL: [████████████████████] MAXIMUM
+                </div>
+            </div>
+
+            <!-- 3D PRINTING -->
+            <div class="passion-block">
+                <div class="passion-title">▲ 3D PRINTING &amp; FABRICATION</div>
+                <span class="blink">[ ACTIVE HOBBY ]</span>
+                <p style="margin-top: 8px;">
+                    3D printing is where the digital and physical worlds collide. Design a part in CAD, slice it, send it to the machine — and a few hours later you're holding something real in your hand that didn't exist before. That loop never gets old.
+                </p>
+                <p>
+                    I use it for functional parts, prototypes, repair brackets, and the occasional project that exists purely because I wanted to see if I could make it. FDM is my go-to — it forces you to think about layer orientation, infill, and material properties before you ever hit print. Good constraints make you a better designer.
+                </p>
+                <div class="tag-row">
+                    <span class="pixel-btn">FDM PRINTING</span>
+                    <span class="pixel-btn">CAD DESIGN</span>
+                    <span class="pixel-btn">CURA SLICER</span>
+                    <span class="pixel-btn">FUNCTIONAL PARTS</span>
+                    <span class="pixel-btn">PROTOTYPING</span>
+                </div>
+                <div class="progress-bar">
+                    PRINT BED STATUS: [████████████░░░░░░░░] HEATING TO TEMP...
+                </div>
+            </div>
+
+            <!-- AI & CODING -->
+            <div class="passion-block">
+                <div class="passion-title">◈ AI &amp; CODING</div>
+                <p>
+                    When I started my data analytics program I expected to learn SQL and spreadsheets. Then I started building things in Python with AI collaboration — and the ceiling disappeared.
+                </p>
+                <p>
+                    Coding with AI isn't about shortcuts. It's about what a single person can build when the gap between idea and implementation shrinks. I've built job search automation pipelines, a full portfolio site, and a dungeon crawler game from scratch. None of those projects would have happened at this pace — or maybe at all — without AI as a collaborator.
+                </p>
+                <p>
+                    The possibilities feel genuinely endless, and I've only scratched the surface.
+                </p>
+                <div class="tag-row">
+                    <span class="pixel-btn">PYTHON</span>
+                    <span class="pixel-btn">CLAUDE AI</span>
+                    <span class="pixel-btn">AUTOMATION</span>
+                    <span class="pixel-btn">GAME DEV</span>
+                    <span class="pixel-btn">DATA PIPELINES</span>
+                </div>
+                <div class="progress-bar">
+                    NEURAL NET: [████████████████████] ONLINE &amp; READY
+                </div>
+            </div>
+
+            <p align="center" style="margin-top: 20px;">
+                <img src="https://web.archive.org/web/20091027005003im_/http://geocities.com/Tokyo/6618/undercon.gif" alt="Under Construction">
+                <br><i style="color: #FFFF00;">Always learning. Always building.</i>
+            </p>
+
+        </td>
+
+        <!-- SIDEBAR -->
+        <td class="sidebar">
+
+            <h3 align="center" style="color: #FF00FF;">WORKSHOP STATUS</h3>
+
+            <div class="window">
+                <div class="window-title"><span>STATUS.SYS</span></div>
+                <p style="font-size: 0.8em; line-height: 1.8;">
+                    🖨 3D Print: <span style="color:#00FF00;">QUEUED</span><br>
+                    🐍 Python: <span style="color:#00FF00;">ACTIVE</span><br>
+                    🤖 AI Session: <span style="color:#00FF00;">RUNNING</span><br>
+                    🔧 Side Project: <span style="color:#FFFF00;">IN PROGRESS</span><br>
+                    ☕ Coffee: <span style="color:#FF0000;">CRITICAL LOW</span>
+                </p>
+            </div>
+
+            <hr class="thin">
+
+            <h3 align="center">DISCIPLINES</h3>
+            <p align="center" style="line-height: 2.2;">
+                <a href="#" class="sidebar-link">Mechanical Engineering</a><br>
+                <a href="#" class="sidebar-link">3D Printing &amp; CAD</a><br>
+                <a href="#" class="sidebar-link">PC Hardware</a><br>
+                <a href="#" class="sidebar-link">Vehicles &amp; Powertrains</a><br>
+                <a href="#" class="sidebar-link">AI &amp; Automation</a><br>
+                <a href="#" class="sidebar-link">DIY &amp; Fabrication</a>
+            </p>
+
+            <hr class="thin">
+
+            <div align="center" style="font-size: 0.8em; line-height: 1.8;">
+                <p style="color: #FFFF00;">WORKSHOP FOUNDED</p>
+                <p style="font-size: 1.6em; color: #FF00FF; font-weight: bold; margin: 4px 0;">199X</p>
+                <p style="color: #00FF00;">CURIOSITY.EXE<br>NEVER PATCHED</p>
+            </div>
+
+            <hr class="thin">
+
+            <div align="center">
+                <p style="font-size: 0.75em;">WORKSHOP VISITORS:</p>
+                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fsdmurty.com%2Fpassions.html&count_bg=%23FF0000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=HITS&edge_flat=false" alt="Hits">
+            </div>
+
+        </td>
+
+    </tr>
+</table>
+
+<hr>
+
+<div align="center">
+    <p style="color: #808080;">Best viewed in <b>Netscape Navigator 3.0</b> at 640x480 resolution</p>
+    <p>
+        <a href="analyticshub.html" style="color: #00FFFF;">◄ Back to Analytics Hub</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="index.html" style="color: #00FFFF;">Back to Professional Portfolio</a>
+    </p>
+</div>
+
+</body>
+</html>
