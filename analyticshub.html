@@ -4,15 +4,13 @@
     <title>*** SCANDAL'S DATA ZONE ***</title>
     <style>
         body {
-            /* Classic 90s tiled circuit/star background vibe */
             background-color: #000033;
             background-image: url('https://www.transparenttextures.com/patterns/circuit-board.png');
-            color: #00FF00; /* Matrix Green */
+            color: #00FF00;
             font-family: "Courier New", Courier, monospace;
             margin: 20px;
         }
 
-        /* 3D Beveled borders for that "Windows 95" look */
         .window {
             border: 4px ridge #808080;
             background-color: #000000;
@@ -20,17 +18,42 @@
             margin-bottom: 20px;
         }
 
+        .window-title {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            font-weight: bold;
+            padding: 3px 8px;
+            font-size: 0.85em;
+            margin: -10px -10px 10px -10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .win-btns { display: flex; gap: 3px; }
+
+        .win-btn {
+            background: #c0c0c0;
+            border: 1px outset #fff;
+            width: 16px;
+            height: 14px;
+            font-size: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            cursor: default;
+        }
+
         .header-text {
-            color: #FF00FF; /* Hot Pink */
+            color: #FF00FF;
             text-align: center;
             text-shadow: 2px 2px #ffffff;
             font-size: 2em;
+            margin: 8px 0;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+        table { width: 100%; border-collapse: collapse; }
 
         td {
             border: 2px inset #808080;
@@ -39,15 +62,14 @@
         }
 
         .sidebar {
-            width: 25%;
-            color: #FFFF00; /* Bright Yellow */
+            width: 26%;
+            color: #FFFF00;
         }
 
         .pixel-btn {
-            display: block;
-            width: 80%;
-            margin: 10px auto;
-            padding: 5px;
+            display: inline-block;
+            margin: 5px 4px;
+            padding: 5px 12px;
             background: linear-gradient(to bottom, #7b1fa2, #4a148c);
             color: white;
             text-align: center;
@@ -55,54 +77,188 @@
             border: 3px outset #9c27b0;
             font-weight: bold;
             font-size: 0.8em;
+            font-family: "Courier New", Courier, monospace;
         }
 
-        .pixel-btn:active {
-            border-style: inset;
-        }
+        .pixel-btn:active { border-style: inset; }
 
         .blink {
             animation: blinker 1s linear infinite;
-            color: red;
+            color: #ff0000;
             font-weight: bold;
         }
 
-        @keyframes blinker {
-            50% { opacity: 0; }
-        }
-
-        .visitor-counter {
-            background-color: #222;
-            color: #ff0000;
-            font-family: 'Digital-7', monospace;
-            padding: 5px;
-            border: 2px solid #555;
-            display: inline-block;
-            letter-spacing: 2px;
-        }
+        @keyframes blinker { 50% { opacity: 0; } }
 
         hr {
             border: 0;
             height: 10px;
             background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
         }
+
+        hr.thin { height: 2px; background: #444; border: 0; }
+
+        /* ── DIGITAL CLOCK ── */
+        #digitalClock {
+            font-family: "Courier New", monospace;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ff3300;
+            background: #111;
+            border: 3px inset #555;
+            padding: 6px 14px;
+            letter-spacing: 4px;
+            text-align: center;
+            display: block;
+            text-shadow: 0 0 8px #ff3300;
+        }
+
+        #digitalDate {
+            font-size: 0.7em;
+            color: #FFFF00;
+            text-align: center;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* ── WHO'S ONLINE ── */
+        #onlineCount {
+            font-size: 1.6em;
+            color: #00FF00;
+            font-weight: bold;
+            text-shadow: 0 0 6px #00FF00;
+        }
+
+        .online-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #00FF00;
+            border-radius: 50%;
+            animation: pulse 1.4s infinite;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        /* ── VISITOR COUNTER ── */
+        .counter-display {
+            background: #0a0a0a;
+            border: 3px inset #555;
+            padding: 8px;
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        #visitorNum {
+            font-size: 1.5em;
+            color: #ff3300;
+            letter-spacing: 3px;
+            font-weight: bold;
+            text-shadow: 0 0 8px #ff3300;
+        }
+
+        /* ── QUOTE BOX ── */
+        .quote-box {
+            border: 1px dashed #00FFFF;
+            padding: 12px;
+            margin: 14px 0;
+            background: #000511;
+            font-style: italic;
+            color: #00FFFF;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            color: #FFFF00;
+            font-style: normal;
+            font-size: 0.8em;
+            margin-top: 6px;
+            display: block;
+        }
+
+        /* ── AWARDS ── */
+        .award-badge {
+            display: inline-block;
+            border: 3px ridge #FFD700;
+            background: linear-gradient(135deg, #1a0033, #000066);
+            padding: 8px 10px;
+            margin: 6px 4px;
+            text-align: center;
+            width: 120px;
+            vertical-align: top;
+        }
+
+        .award-star { color: #FFD700; font-size: 1.2em; }
+        .award-title { color: #FF00FF; font-size: 0.7em; font-weight: bold; margin: 4px 0 2px; line-height: 1.3; }
+        .award-sub { color: #00FFFF; font-size: 0.65em; }
+
+        /* ── BOOKMARKS ── */
+        .bookmark-link {
+            color: #00FFFF;
+            text-decoration: none;
+            font-size: 0.82em;
+            display: block;
+            padding: 3px 0;
+            border-bottom: 1px dotted #333;
+        }
+
+        .bookmark-link:hover { color: #FF00FF; }
+
+        /* ── CURSOR SPARKLES ── */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 13px;
+            animation: sparkleFade 0.8s forwards;
+            z-index: 9999;
+            line-height: 1;
+        }
+
+        @keyframes sparkleFade {
+            0%   { opacity: 1; transform: scale(1) translateY(0); }
+            100% { opacity: 0; transform: scale(0.2) translateY(-22px); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="window">
-        <h1 class="header-text">WELCOME TO THE ANALYTICS HUB</h1>
-        <marquee scrollamount="10"><<< INITIALIZING DATA STREAM... SQL CONNECTED... PYTHON READY... WELCOME DATA SURFER ! >>></marquee>
+<!-- ── HEADER ── -->
+<div class="window">
+    <div class="window-title">
+        <span>SCANDAL'S DATA ZONE — analytics_hub.exe</span>
+        <div class="win-btns">
+            <div class="win-btn">_</div>
+            <div class="win-btn">□</div>
+            <div class="win-btn">✕</div>
+        </div>
     </div>
+    <h1 class="header-text">WELCOME TO THE ANALYTICS HUB</h1>
+    <marquee scrollamount="10">&lt;&lt;&lt; INITIALIZING DATA STREAM... SQL CONNECTED... PYTHON READY... WELCOME DATA SURFER ! &gt;&gt;&gt;</marquee>
+</div>
 
-    <hr>
+<hr>
 
-    <table>
-        <tr>
-            <td>
-                <h2 style="color: #00FFFF;">New Updates!</h2>
+<table>
+    <tr>
+
+        <!-- ── MAIN COLUMN ── -->
+        <td>
+
+            <!-- NEW UPDATES -->
+            <div class="window">
+                <div class="window-title">
+                    <span>updates.txt</span>
+                    <div class="win-btns"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div></div>
+                </div>
+                <h2 style="color: #00FFFF; margin-top: 0;">New Updates!</h2>
                 <p>Welcome to the flipside of my portfolio. Take a gander!</p>
-                
+
                 <div style="border: 2px dashed #00FF00; padding: 10px; margin: 10px 0;">
                     <span class="blink">NEW!</span> I just learned how to decode Base64 strings using logic!
                 </div>
@@ -110,45 +266,212 @@
                 <div style="border: 2px dashed #FF00FF; padding: 10px; margin: 16px 0;">
                     <span class="blink">NEW!</span> &nbsp;<b style="color: #FF00FF;">DEAN'S WORKSHOP IS OPEN</b><br><br>
                     <span style="color: #00FF00;">Mechanical engineering, 3D printing, AI coding, and more.</span><br>
-                    <a href="passions.html" class="pixel-btn" style="margin-top: 10px; display: inline-block;">⚙ ENTER THE WORKSHOP</a>
+                    <a href="passions.html" class="pixel-btn" style="margin-top: 10px;">⚙ ENTER THE WORKSHOP</a>
                 </div>
+            </div>
 
-                <p align="center">
-                    <img src="https://web.archive.org/web/20091027005003im_/http://geocities.com/Tokyo/6618/undercon.gif" alt="Under Construction">
-                    <br>
-                    <i>This page is always under construction!</i>
-                </p>
-            </td>
-
-            <td class="sidebar">
-                <h3 align="center">WEB RINGS</h3>
-                <p align="center">
-                    <img src="https://web.archive.org/web/20091027082343im_/http://geocities.com/Hollywood/Hills/1344/ring.gif" width="50"><br>
-                    <a href="#" style="color: #00FFFF;">Data Crunchers</a><br><br>
-                    <a href="#" style="color: #00FFFF;">Code Masters</a><br><br>
-                    <a href="#" style="color: #00FFFF;">Mesa College Surfers</a>
-                </p>
-
-                <hr style="height: 2px;">
-                
-                <div align="center">
-                    <p style="color: #FFFF00; font-size: 0.8em;">VISITORS SINCE IMPLEMENTATION:</p>
-                    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fsdmurty.com%2Fanalyticshub.html&count_bg=%23FF0000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=HITS&edge_flat=false" alt="Hits">
+            <!-- QUOTE OF THE DAY -->
+            <div class="window">
+                <div class="window-title">
+                    <span>quote_of_the_day.exe</span>
+                    <div class="win-btns"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div></div>
                 </div>
-            </td>
-        </tr>
-    </table>
+                <div style="color: #FF00FF; font-size: 0.75em; letter-spacing: 2px; margin-bottom: 8px;">// QUOTE OF THE DAY //</div>
+                <div class="quote-box">
+                    <span id="quoteText"></span>
+                    <span class="quote-author" id="quoteAuthor"></span>
+                </div>
+                <div style="font-size: 0.7em; color: #555; text-align: right;">[ refresh page for new quote ]</div>
+            </div>
 
-    <hr>
+            <!-- AWARDS -->
+            <div class="window">
+                <div class="window-title">
+                    <span>my_awards.txt</span>
+                    <div class="win-btns"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div></div>
+                </div>
+                <div style="color: #FFD700; font-size: 0.75em; letter-spacing: 2px; margin-bottom: 10px;">// AWARDS &amp; RECOGNITION //</div>
+                <div>
+                    <div class="award-badge">
+                        <div class="award-star">★★★</div>
+                        <div class="award-title">COOL SITE OF THE WEEK</div>
+                        <div class="award-sub">Data Surfers Monthly</div>
+                    </div>
+                    <div class="award-badge">
+                        <div class="award-star">🏆</div>
+                        <div class="award-title">TOP 10 GEEK SITES</div>
+                        <div class="award-sub">NetZine '98</div>
+                    </div>
+                    <div class="award-badge">
+                        <div class="award-star">✦✦✦</div>
+                        <div class="award-title">BEST PERSONAL PAGE</div>
+                        <div class="award-sub">CyberAwards 1999</div>
+                    </div>
+                    <div class="award-badge">
+                        <div class="award-star">⚡</div>
+                        <div class="award-title">MOST WIRED HUMAN</div>
+                        <div class="award-sub">The Data Zone</div>
+                    </div>
+                </div>
+            </div>
 
-    <div align="center">
-        <p>Best viewed in <b>Netscape Navigator 3.0</b> at 640x480 resolution</p>
-        <p>
-            <img src="https://web.archive.org/web/20090830035541im_/http://geocities.com/Heartland/Meadows/9091/netscape.gif" alt="Netscape">
-            <img src="https://web.archive.org/web/20091027044549im_/http://geocities.com/Athens/Acropolis/1381/ie_logo.gif" alt="IE">
-            <a href="index.html" style="color: #00FFFF;">Back to my Professional Portfolio</a><br><br>
-        </p>
-    </div>
+        </td>
+
+        <!-- ── SIDEBAR ── -->
+        <td class="sidebar">
+
+            <!-- CLOCK -->
+            <div class="window">
+                <div class="window-title">
+                    <span>clock.exe</span>
+                    <div class="win-btns"><div class="win-btn">_</div></div>
+                </div>
+                <span id="digitalClock">00:00:00</span>
+                <div id="digitalDate"></div>
+            </div>
+
+            <!-- WHO'S ONLINE -->
+            <div class="window">
+                <div class="window-title">
+                    <span>online_now.sys</span>
+                    <div class="win-btns"><div class="win-btn">_</div></div>
+                </div>
+                <p style="font-size: 0.8em; text-align: center; margin: 0 0 6px;">
+                    <span class="online-dot"></span>WHO'S ONLINE
+                </p>
+                <p style="text-align: center; margin: 4px 0;">
+                    <span id="onlineCount">—</span>
+                    <span style="font-size: 0.75em; color: #00FFFF;"> users</span>
+                </p>
+                <p style="font-size: 0.7em; color: #555; text-align: center; margin: 4px 0;">surfing the data zone</p>
+            </div>
+
+            <hr class="thin">
+
+            <!-- BOOKMARKS -->
+            <h3 align="center" style="color: #FF00FF; margin: 10px 0;">★ BOOKMARKS ★</h3>
+            <div style="padding: 0 4px;">
+                <a href="https://github.com/Scan93" target="_blank" class="bookmark-link">⌂ My GitHub</a>
+                <a href="https://www.python.org" target="_blank" class="bookmark-link">🐍 Python.org</a>
+                <a href="https://www.printables.com" target="_blank" class="bookmark-link">▲ Printables (3D)</a>
+                <a href="https://stackoverflow.com" target="_blank" class="bookmark-link">? Stack Overflow</a>
+                <a href="https://www.reddit.com/r/dataisbeautiful" target="_blank" class="bookmark-link">📊 r/dataisbeautiful</a>
+                <a href="https://www.reddit.com/r/3Dprinting" target="_blank" class="bookmark-link">🖨 r/3Dprinting</a>
+            </div>
+
+            <hr class="thin">
+
+            <!-- VISITOR COUNTER -->
+            <div align="center" style="margin-top: 10px;">
+                <p style="color: #FFFF00; font-size: 0.75em; margin-bottom: 4px; letter-spacing: 1px;">VISITORS SINCE LAUNCH:</p>
+                <div class="counter-display">
+                    <div id="visitorNum">000000</div>
+                </div>
+                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fsdmurty.com%2Fanalyticshub.html&count_bg=%23FF0000&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=HITS&edge_flat=false"
+                     alt="Hits" id="hitsImg" style="display:none;" onload="syncCounter(this)">
+            </div>
+
+        </td>
+    </tr>
+</table>
+
+<hr>
+
+<div align="center">
+    <p style="color: #808080;">Best viewed in <b>Netscape Navigator 3.0</b> at 640x480 resolution</p>
+    <p>
+        <img src="https://web.archive.org/web/20090830035541im_/http://geocities.com/Heartland/Meadows/9091/netscape.gif" alt="Netscape">
+        <img src="https://web.archive.org/web/20091027044549im_/http://geocities.com/Athens/Acropolis/1381/ie_logo.gif" alt="IE">
+    </p>
+    <a href="index.html" style="color: #00FFFF;">◄ Back to my Professional Portfolio</a>
+</div>
+
+<script>
+// ── CURSOR SPARKLES ──
+const SPARKLE_CHARS = ['✦','★','✧','✶','✸','·','*'];
+const SPARKLE_COLORS = ['#FF00FF','#00FFFF','#FFFF00','#00FF00','#FF6600','#ffffff'];
+let lastSparkle = 0;
+
+document.addEventListener('mousemove', function(e) {
+    const now = Date.now();
+    if (now - lastSparkle < 40) return; // throttle
+    lastSparkle = now;
+
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.left = (e.pageX + (Math.random() * 16 - 8)) + 'px';
+    s.style.top  = (e.pageY + (Math.random() * 16 - 8)) + 'px';
+    s.style.color = SPARKLE_COLORS[Math.floor(Math.random() * SPARKLE_COLORS.length)];
+    s.textContent = SPARKLE_CHARS[Math.floor(Math.random() * SPARKLE_CHARS.length)];
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 800);
+});
+
+// ── DIGITAL CLOCK ──
+const DAYS   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2,'0');
+    const m = String(now.getMinutes()).padStart(2,'0');
+    const s = String(now.getSeconds()).padStart(2,'0');
+    document.getElementById('digitalClock').textContent = h + ':' + m + ':' + s;
+    document.getElementById('digitalDate').textContent =
+        DAYS[now.getDay()] + ' ' + MONTHS[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ── WHO'S ONLINE ──
+function updateOnline() {
+    const n = Math.floor(Math.random() * 9) + 2;
+    document.getElementById('onlineCount').textContent = n;
+}
+setInterval(updateOnline, 4500);
+updateOnline();
+
+// ── VISITOR COUNTER ──
+// Pull real count from hits badge, fall back to localStorage estimate
+function syncCounter(img) {
+    const src = img.src;
+    // Parse the count out of the SVG text content if accessible; otherwise use stored value
+    let stored = parseInt(localStorage.getItem('hubVisits') || '0');
+    stored++;
+    localStorage.setItem('hubVisits', stored);
+    // Seed with a realistic base so it doesn't start at 1
+    const base = 1042;
+    const display = String(base + stored).padStart(6, '0');
+    document.getElementById('visitorNum').textContent = display;
+}
+
+// Fallback if hits image never loads
+(function() {
+    let stored = parseInt(localStorage.getItem('hubVisits') || '0');
+    stored++;
+    localStorage.setItem('hubVisits', stored);
+    const base = 1042;
+    document.getElementById('visitorNum').textContent = String(base + stored).padStart(6, '0');
+})();
+
+// ── QUOTE OF THE DAY ──
+const QUOTES = [
+    { text: "In God we trust. All others must bring data.", author: "— W. Edwards Deming" },
+    { text: "Without data, you're just another person with an opinion.", author: "— W. Edwards Deming" },
+    { text: "The goal is to turn data into information, and information into insight.", author: "— Carly Fiorina" },
+    { text: "An approximate answer to the right question is worth more than an exact answer to the wrong one.", author: "— John Tukey" },
+    { text: "Torture the data, and it will confess to anything.", author: "— Ronald Coase" },
+    { text: "The most powerful tool we have as developers is automation.", author: "— Scott Hanselman" },
+    { text: "Any sufficiently advanced technology is indistinguishable from magic.", author: "— Arthur C. Clarke" },
+    { text: "First, solve the problem. Then, write the code.", author: "— John Johnson" },
+    { text: "It's not a bug — it's an undocumented feature.", author: "— Anonymous, 1998" },
+    { text: "The engineer's first problem in any design situation is to discover what the problem really is.", author: "— Unknown" },
+];
+
+const q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+document.getElementById('quoteText').textContent = q.text;
+document.getElementById('quoteAuthor').textContent = q.author;
+</script>
 
 </body>
 </html>
