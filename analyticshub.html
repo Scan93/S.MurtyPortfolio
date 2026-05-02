@@ -405,24 +405,9 @@
                 <div style="color: #FFD700; font-size: 0.75em; letter-spacing: 2px; margin-bottom: 10px;">// AWARDS &amp; RECOGNITION //</div>
                 <div>
                     <div class="award-badge">
-                        <div class="award-star">★★★</div>
-                        <div class="award-title">COOL SITE OF THE WEEK</div>
-                        <div class="award-sub">Data Surfers Monthly</div>
-                    </div>
-                    <div class="award-badge">
-                        <div class="award-star">🏆</div>
-                        <div class="award-title">TOP 10 GEEK SITES</div>
-                        <div class="award-sub">NetZine '98</div>
-                    </div>
-                    <div class="award-badge">
-                        <div class="award-star">✦✦✦</div>
-                        <div class="award-title">BEST PERSONAL PAGE</div>
-                        <div class="award-sub">CyberAwards 1999</div>
-                    </div>
-                    <div class="award-badge">
-                        <div class="award-star">⚡</div>
-                        <div class="award-title">MOST WIRED HUMAN</div>
-                        <div class="award-sub">The Data Zone</div>
+                        <div class="award-star">🎓</div>
+                        <div class="award-title">DEAN'S LIST</div>
+                        <div class="award-sub">Academic Year 2024–2025</div>
                     </div>
                 </div>
             </div>
@@ -523,10 +508,12 @@ const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 
 function updateClock() {
     const now = new Date();
-    const h = String(now.getHours()).padStart(2,'0');
+    const raw = now.getHours();
+    const h = String(raw % 12 || 12).padStart(2, '0');
     const m = String(now.getMinutes()).padStart(2,'0');
     const s = String(now.getSeconds()).padStart(2,'0');
-    document.getElementById('digitalClock').textContent = h + ':' + m + ':' + s;
+    const ampm = raw >= 12 ? 'PM' : 'AM';
+    document.getElementById('digitalClock').textContent = h + ':' + m + ':' + s + ' ' + ampm;
     document.getElementById('digitalDate').textContent =
         DAYS[now.getDay()] + ' ' + MONTHS[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
 }
