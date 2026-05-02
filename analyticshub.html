@@ -430,17 +430,21 @@ setInterval(updateOnline, 4500);
 updateOnline();
 
 // ── VISITOR COUNTER ──
-// Real server-side counter via counterapi.dev — increments for every visitor, every browser
-fetch('https://api.counterapi.dev/v1/sdmurty/analyticshub/up')
+// Only increments once per browser — unique visitor tracking via localStorage
+const alreadyCounted = localStorage.getItem('hubCounted');
+const counterUrl = alreadyCounted
+    ? 'https://api.counterapi.dev/v1/sdmurty/analyticshub'
+    : 'https://api.counterapi.dev/v1/sdmurty/analyticshub/up';
+fetch(counterUrl)
     .then(r => r.json())
     .then(data => {
+        if (!alreadyCounted) localStorage.setItem('hubCounted', '1');
         document.getElementById('visitorNum').textContent = String(data.count).padStart(6, '0');
     })
     .catch(() => {
         // Fallback: localStorage estimate if API is unreachable
         let stored = parseInt(localStorage.getItem('hubVisits') || '1042');
-        stored++;
-        localStorage.setItem('hubVisits', stored);
+        if (!alreadyCounted) { stored++; localStorage.setItem('hubVisits', stored); }
         document.getElementById('visitorNum').textContent = String(stored).padStart(6, '0');
     });
 
