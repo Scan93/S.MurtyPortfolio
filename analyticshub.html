@@ -224,9 +224,121 @@
             0%   { opacity: 1; transform: scale(1) translateY(0); }
             100% { opacity: 0; transform: scale(0.2) translateY(-22px); }
         }
+
+        /* ── WELCOME OVERLAY ── */
+        #welcomeOverlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 20, 0.88);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #welcomeOverlay.hidden { display: none; }
+        #welcomeWindow {
+            background: #000000;
+            border: 4px ridge #808080;
+            width: min(540px, 94vw);
+            font-family: "Courier New", Courier, monospace;
+            animation: winPop 0.25s ease-out;
+        }
+        @keyframes winPop {
+            from { transform: scale(0.85); opacity: 0; }
+            to   { transform: scale(1);    opacity: 1; }
+        }
+        #welcomeWindow .window-title {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            font-weight: bold;
+            padding: 4px 8px;
+            font-size: 0.85em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #welcomeBody {
+            padding: 20px 22px 16px;
+        }
+        #welcomeBody h2 {
+            color: #FF00FF;
+            text-align: center;
+            text-shadow: 2px 2px #ffffff;
+            font-size: 1.3em;
+            margin: 0 0 6px;
+        }
+        #welcomeBody .welcome-sub {
+            color: #00FFFF;
+            text-align: center;
+            font-size: 0.75em;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        #welcomeBody p {
+            color: #00FF00;
+            font-size: 0.82em;
+            line-height: 1.75;
+            margin: 0 0 12px;
+        }
+        #welcomeBody ul {
+            color: #FFFF00;
+            font-size: 0.8em;
+            line-height: 2;
+            padding-left: 20px;
+            margin: 0 0 16px;
+        }
+        #welcomeBody .welcome-footer {
+            color: #555;
+            font-size: 0.7em;
+            text-align: center;
+            margin-top: 10px;
+        }
+        #enterBtn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to bottom, #7b1fa2, #4a148c);
+            color: #ffffff;
+            border: 3px outset #9c27b0;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.95em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+            text-align: center;
+        }
+        #enterBtn:active { border-style: inset; }
+        #enterBtn:hover { background: linear-gradient(to bottom, #9c27b0, #6a1b9a); }
     </style>
 </head>
 <body>
+
+<!-- ── WELCOME OVERLAY ── -->
+<div id="welcomeOverlay" class="hidden">
+    <div id="welcomeWindow">
+        <div class="window-title">
+            <span>WELCOME.exe — First Time Visitor Detected</span>
+            <div class="win-btns">
+                <div class="win-btn" onclick="closeWelcome()">✕</div>
+            </div>
+        </div>
+        <div id="welcomeBody">
+            <h2>⚡ YOU FOUND THE HUB ⚡</h2>
+            <div class="welcome-sub">// INITIALIZING WELCOME PROTOCOL... COMPLETE //</div>
+            <p>Welcome, data surfer! You've stumbled into the hidden side of <b style="color:#FF00FF;">Scandal Murty's</b> portfolio — a retro corner of the internet where analytics meets nostalgia.</p>
+            <p>Here's what you'll find inside:</p>
+            <ul>
+                <li>📊 &nbsp;Live updates from the data lab</li>
+                <li>💬 &nbsp;Quotes from the legends of data</li>
+                <li>⚙ &nbsp;Dean's Workshop — engineering & passion projects</li>
+                <li>🏆 &nbsp;Awards (the prestigious kind)</li>
+                <li>🔖 &nbsp;Curated bookmarks for fellow nerds</li>
+            </ul>
+            <button id="enterBtn" onclick="closeWelcome()">[ ENTER THE HUB ]</button>
+            <div class="welcome-footer">This message will self-destruct. You will not see it again.</div>
+        </div>
+    </div>
+</div>
 
 <!-- ── HEADER ── -->
 <div class="window">
@@ -465,6 +577,15 @@ const QUOTES = [
 const q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
 document.getElementById('quoteText').textContent = q.text;
 document.getElementById('quoteAuthor').textContent = q.author;
+
+// ── WELCOME OVERLAY ──
+function closeWelcome() {
+    document.getElementById('welcomeOverlay').classList.add('hidden');
+    localStorage.setItem('hubWelcomed', '1');
+}
+if (!localStorage.getItem('hubWelcomed')) {
+    document.getElementById('welcomeOverlay').classList.remove('hidden');
+}
 </script>
 
 </body>
