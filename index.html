@@ -360,6 +360,116 @@ nav {
   transition: width .8s ease;
 }
 
+/* ── SKILL SEARCH ── */
+.skill-search-wrap {
+  margin-bottom: 44px;
+  position: relative;
+}
+.skill-search-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px 14px 44px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  box-sizing: border-box;
+}
+.skill-search-input::placeholder { color: var(--muted); }
+.skill-search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0,212,255,.08);
+}
+.skill-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 13px;
+  pointer-events: none;
+}
+.skill-result-card {
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 28px 30px;
+  margin-top: 12px;
+  animation: fadeSlideIn .18s ease;
+}
+.skill-result-card.not-found {
+  border-color: var(--border);
+  opacity: .7;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.skill-result-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.skill-result-category {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent2);
+  margin-bottom: 14px;
+}
+.skill-result-desc {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.skill-result-used-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.skill-result-used-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.skill-result-used-list li {
+  font-size: 13px;
+  color: var(--text);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.skill-result-used-list li:last-child { border-bottom: none; }
+.skill-result-used-list li::before {
+  content: '→';
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+.skill-not-found-msg {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.skill-not-found-msg span {
+  color: var(--text);
+  font-style: italic;
+}
+
 /* ── EXPERIENCE ── */
 #experience {
   padding: 72px 56px;
@@ -896,6 +1006,20 @@ textarea.review-input { resize: vertical; min-height: 80px; }
 <section id="skills">
   <div class="section-tag">// Technical Stack</div>
   <h2 class="section-h2">What I work with.</h2>
+
+  <div class="skill-search-wrap">
+    <i class="fa-solid fa-magnifying-glass skill-search-icon"></i>
+    <input
+      type="text"
+      id="skillSearchInput"
+      class="skill-search-input"
+      placeholder="Search a skill — e.g. SQL, Python, Power BI..."
+      autocomplete="off"
+      spellcheck="false"
+    />
+    <div id="skillSearchResult"></div>
+  </div>
+
   <div class="skills-grid">
     <div class="skill-group">
       <div class="skill-group-title">Analytics & Tools</div>
@@ -1096,7 +1220,7 @@ textarea.review-input { resize: vertical; min-height: 80px; }
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">SM //</div>
-  <div class="footer-note">Scandal Murty · Data Analyst Portfolio · Updated May 2026</div>
+  <div class="footer-note">Scandal Murty · Data Analyst Portfolio · Updated April 2026</div>
 </footer>
 
 <script>
@@ -1183,6 +1307,78 @@ function loadReviews() {
 
 if (REVIEWS_URL !== 'https://script.google.com/macros/s/AKfycbwDus2M7ZHlfs_jQjNySh6y7efi1fG5vsAjy5Cms6LRDMs0oLOY0A9QhP_e_QD7RPVBdA/exec') loadReviews();
 
+/* ── SKILL SEARCH ── */
+(function() {
+  const GIST_RAW_URL_KEY = 'skillsGistRawUrl';
+
+  function normalize(s) {
+    return (s || '').toLowerCase().trim();
+  }
+
+  function findSkill(query, skills) {
+    const q = normalize(query);
+    if (!q) return null;
+    return skills.find(skill => {
+      if (normalize(skill.name) === q) return true;
+      if ((skill.aliases || []).some(a => normalize(a) === q)) return true;
+      if (normalize(skill.name).includes(q)) return true;
+      if ((skill.aliases || []).some(a => normalize(a).includes(q))) return true;
+      return false;
+    }) || null;
+  }
+
+  function renderResult(skill, query) {
+    const el = document.getElementById('skillSearchResult');
+    if (!query.trim()) { el.innerHTML = ''; return; }
+    if (!skill) {
+      el.innerHTML = `
+        <div class="skill-result-card not-found">
+          <div class="skill-result-name">Not in my toolkit yet</div>
+          <div class="skill-not-found-msg">I haven't added <span>"${query}"</span> to my profile yet — either it's something I haven't learned, or I just haven't documented it. Either way, worth asking me directly.</div>
+        </div>`;
+      return;
+    }
+    const usedItems = (skill.usedIn || []).map(u => `<li>${u}</li>`).join('');
+    el.innerHTML = `
+      <div class="skill-result-card">
+        <div class="skill-result-name">${skill.name}</div>
+        <div class="skill-result-category">// ${skill.category}</div>
+        <div class="skill-result-desc">${skill.description}</div>
+        ${usedItems ? `<div class="skill-result-used-title">Where I've used it</div><ul class="skill-result-used-list">${usedItems}</ul>` : ''}
+      </div>`;
+  }
+
+  function initSearch(skills) {
+    const input = document.getElementById('skillSearchInput');
+    if (!input) return;
+    let debounce;
+    input.addEventListener('input', function() {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        const skill = findSkill(this.value, skills);
+        renderResult(skill, this.value);
+      }, 160);
+    });
+  }
+
+  const gistUrl = localStorage.getItem(GIST_RAW_URL_KEY);
+  if (gistUrl) {
+    fetch(gistUrl + '?t=' + Date.now())
+      .then(r => r.text())
+      .then(text => {
+        const match = text.match(/const SKILLS_DATA\s*=\s*(\[[\s\S]*?\]);/);
+        if (!match) throw new Error('parse fail');
+        const skills = JSON.parse(match[1]);
+        initSearch(skills);
+      })
+      .catch(() => {
+        if (typeof SKILLS_DATA !== 'undefined') initSearch(SKILLS_DATA);
+      });
+  } else if (typeof SKILLS_DATA !== 'undefined') {
+    initSearch(SKILLS_DATA);
+  }
+})();
+
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
@@ -1195,5 +1391,6 @@ document.addEventListener('click', function(e) {
   }
 });
 </script>
+<script src="skills-data.js"></script>
 </body>
 </html>

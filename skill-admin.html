@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Admin — sdmurty.com</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0d0f14;
+  --surface: #141720;
+  --surface2: #1c2030;
+  --border: #252a3a;
+  --accent: #00d4ff;
+  --accent2: #7c6af7;
+  --text: #e8eaf0;
+  --muted: #6b7280;
+  --red: #f87171;
+  --green: #4ade80;
+}
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 40px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--accent);
+  font-family: monospace;
+}
+.subtitle { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.card-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent2);
+  margin-bottom: 16px;
+  font-family: monospace;
+}
+label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 5px; margin-top: 14px; font-family: monospace; }
+label:first-of-type { margin-top: 0; }
+input, textarea, select {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--text);
+  outline: none;
+  font-family: monospace;
+  transition: border-color .2s;
+}
+input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+textarea { resize: vertical; min-height: 80px; }
+.btn {
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-family: monospace;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: opacity .2s;
+}
+.btn:hover { opacity: .85; }
+.btn-primary { background: var(--accent); color: #0d0f14; }
+.btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+.btn-danger { background: var(--red); color: #0d0f14; }
+.btn-row { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.status {
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 7px;
+  margin-top: 12px;
+  font-family: monospace;
+  display: none;
+}
+.status.ok { background: rgba(74,222,128,.1); border: 1px solid var(--green); color: var(--green); display: block; }
+.status.err { background: rgba(248,113,113,.1); border: 1px solid var(--red); color: var(--red); display: block; }
+.skill-list { margin-top: 8px; }
+.skill-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  gap: 10px;
+}
+.skill-row:last-child { border-bottom: none; }
+.skill-row-name { flex: 1; }
+.skill-row-cat { color: var(--muted); font-size: 11px; font-family: monospace; }
+.pill-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.pill {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  color: var(--muted);
+  font-family: monospace;
+}
+.used-textarea { min-height: 100px; }
+hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+#setupSection, #mainSection { display: none; }
+.hint { font-size: 11px; color: var(--muted); margin-top: 5px; font-family: monospace; }
+a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<h1>// skill-admin</h1>
+<p class="subtitle">Add or remove skills for sdmurty.com — changes go live immediately, no push needed.</p>
+
+<!-- SETUP -->
+<div class="card" id="setupSection">
+  <div class="card-title">First-Time Setup</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
+    This tool stores your skills in a <strong style="color:var(--text)">public GitHub Gist</strong>. The site fetches it live on every page load.<br><br>
+    You need a GitHub Personal Access Token with <code>gist</code> scope.
+    <a href="https://github.com/settings/tokens/new?scopes=gist&description=sdmurty-skill-admin" target="_blank">Create one here →</a>
+  </p>
+  <label>GitHub Personal Access Token (stored locally, never sent anywhere except GitHub API)</label>
+  <input type="password" id="setupPat" placeholder="ghp_..." />
+  <label>Gist ID (leave blank to create a new Gist automatically)</label>
+  <input type="text" id="setupGistId" placeholder="Optional — paste existing Gist ID" />
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="setupSave()">Save & Connect</button>
+  </div>
+  <div class="status" id="setupStatus"></div>
+</div>
+
+<!-- MAIN -->
+<div id="mainSection">
+  <div class="card">
+    <div class="card-title">Add New Skill</div>
+    <label>Skill Name *</label>
+    <input type="text" id="newName" placeholder="e.g. Tableau" />
+    <label>Category *</label>
+    <select id="newCategory">
+      <option>Analytics & Tools</option>
+      <option>Inventory & Supply Chain</option>
+      <option>Domain Expertise</option>
+      <option>Web Development</option>
+      <option>Mobile Development</option>
+      <option>AI & Automation</option>
+      <option>Other</option>
+    </select>
+    <label>Your Description * (first-person, conversational)</label>
+    <textarea id="newDesc" placeholder="I use Tableau for..."></textarea>
+    <label>Search Aliases (comma-separated, optional)</label>
+    <input type="text" id="newAliases" placeholder="e.g. tableau, data viz, visualization" />
+    <label>Where I've Used It (one per line) *</label>
+    <textarea class="used-textarea" id="newUsed" placeholder="Spirit AeroSystems — daily production reports&#10;CIS215 coursework — dashboard project"></textarea>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="addSkill()">Add Skill &amp; Publish</button>
+      <button class="btn btn-secondary" onclick="clearForm()">Clear</button>
+    </div>
+    <div class="status" id="addStatus"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Current Skills (<span id="skillCount">0</span>)</div>
+    <div class="skill-list" id="skillList">Loading...</div>
+    <div class="btn-row" style="margin-top:20px">
+      <button class="btn btn-secondary" onclick="loadSkills()">Refresh</button>
+      <button class="btn btn-secondary" onclick="showSettings()">Settings / Reconnect</button>
+    </div>
+  </div>
+
+  <div class="card" id="gistLinkCard" style="display:none">
+    <div class="card-title">Live Data URL</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:8px">Copy this raw URL into the site's localStorage to activate live loading:</p>
+    <input type="text" id="gistRawUrl" readonly onclick="this.select()" />
+    <p class="hint">On sdmurty.com, open DevTools Console and run:<br>
+    <code id="localStorageCmd" style="color:var(--accent)"></code></p>
+  </div>
+</div>
+
+<script>
+const PAT_KEY = 'skillAdminPat';
+const GIST_ID_KEY = 'skillAdminGistId';
+const GIST_RAW_URL_KEY = 'skillsGistRawUrl';
+const GIST_FILENAME = 'skills-data.js';
+
+function getPat() { return localStorage.getItem(PAT_KEY) || ''; }
+function getGistId() { return localStorage.getItem(GIST_ID_KEY) || ''; }
+
+function showStatus(id, msg, type) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'status ' + type;
+}
+
+function init() {
+  if (getPat() && getGistId()) {
+    document.getElementById('setupSection').style.display = 'none';
+    document.getElementById('mainSection').style.display = 'block';
+    loadSkills();
+    showGistLink();
+  } else {
+    document.getElementById('setupSection').style.display = 'block';
+    document.getElementById('mainSection').style.display = 'none';
+  }
+}
+
+function showSettings() {
+  document.getElementById('setupSection').style.display = 'block';
+  document.getElementById('setupPat').value = getPat();
+  document.getElementById('setupGistId').value = getGistId();
+}
+
+async function setupSave() {
+  const pat = document.getElementById('setupPat').value.trim();
+  const gistIdInput = document.getElementById('setupGistId').value.trim();
+  if (!pat) { showStatus('setupStatus', 'PAT is required.', 'err'); return; }
+
+  showStatus('setupStatus', 'Connecting...', 'ok');
+
+  try {
+    let gistId = gistIdInput;
+    if (!gistId) {
+      // Create a new gist seeded with skills-data.js if available
+      let seedSkills = [];
+      try {
+        const r = await fetch('skills-data.js');
+        const t = await r.text();
+        const m = t.match(/const SKILLS_DATA\s*=\s*(\[[\s\S]*?\]);/);
+        if (m) seedSkills = JSON.parse(m[1]);
+      } catch(e) {}
+      const defaultContent = buildFileContent(seedSkills);
+      const res = await fetch('https://api.github.com/gists', {
+        method: 'POST',
+        headers: { Authorization: 'token ' + pat, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          description: 'sdmurty.com skill data',
+          public: true,
+          files: { [GIST_FILENAME]: { content: defaultContent } }
+        })
+      });
+      if (!res.ok) throw new Error('Failed to create gist: ' + res.status);
+      const data = await res.json();
+      gistId = data.id;
+      localStorage.setItem('skillAdminGistOwner', data.owner.login);
+    } else {
+      // Verify access
+      const res = await fetch('https://api.github.com/gists/' + gistId, {
+        headers: { Authorization: 'token ' + pat }
+      });
+      if (!res.ok) throw new Error('Could not access gist: ' + res.status);
+      const gdata = await res.json();
+      localStorage.setItem('skillAdminGistOwner', gdata.owner.login);
+    }
+
+    localStorage.setItem(PAT_KEY, pat);
+    localStorage.setItem(GIST_ID_KEY, gistId);
+    showStatus('setupStatus', 'Connected! Gist ID: ' + gistId, 'ok');
+    setTimeout(init, 800);
+  } catch (e) {
+    showStatus('setupStatus', 'Error: ' + e.message, 'err');
+  }
+}
+
+async function fetchCurrentSkills() {
+  const res = await fetch('https://api.github.com/gists/' + getGistId(), {
+    headers: { Authorization: 'token ' + getPat() }
+  });
+  if (!res.ok) throw new Error('Could not load gist: ' + res.status);
+  const data = await res.json();
+  const content = data.files[GIST_FILENAME]?.content || 'const SKILLS_DATA = [];';
+  const match = content.match(/const SKILLS_DATA\s*=\s*(\[[\s\S]*?\]);/);
+  if (!match) return [];
+  return JSON.parse(match[1]);
+}
+
+async function loadSkills() {
+  const listEl = document.getElementById('skillList');
+  listEl.innerHTML = '<div style="color:var(--muted);font-size:13px">Loading...</div>';
+  try {
+    const skills = await fetchCurrentSkills();
+    document.getElementById('skillCount').textContent = skills.length;
+    if (!skills.length) {
+      listEl.innerHTML = '<div style="color:var(--muted);font-size:13px">No skills yet. Add one above.</div>';
+      return;
+    }
+    listEl.innerHTML = skills.map((s, i) => `
+      <div class="skill-row">
+        <div>
+          <div class="skill-row-name">${s.name}</div>
+          <div class="skill-row-cat">${s.category}</div>
+          ${s.aliases?.length ? `<div class="pill-row">${s.aliases.map(a => `<span class="pill">${a}</span>`).join('')}</div>` : ''}
+        </div>
+        <button class="btn btn-danger" style="font-size:11px;padding:6px 12px" onclick="deleteSkill(${i})">Remove</button>
+      </div>`).join('');
+  } catch(e) {
+    listEl.innerHTML = `<div style="color:var(--red);font-size:13px">Error: ${e.message}</div>`;
+  }
+}
+
+function buildFileContent(skills) {
+  return 'const SKILLS_DATA = ' + JSON.stringify(skills, null, 2) + ';\n';
+}
+
+async function saveSkills(skills) {
+  const res = await fetch('https://api.github.com/gists/' + getGistId(), {
+    method: 'PATCH',
+    headers: { Authorization: 'token ' + getPat(), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ files: { [GIST_FILENAME]: { content: buildFileContent(skills) } } })
+  });
+  if (!res.ok) throw new Error('Save failed: ' + res.status);
+  return res.json();
+}
+
+async function addSkill() {
+  const name = document.getElementById('newName').value.trim();
+  const category = document.getElementById('newCategory').value;
+  const desc = document.getElementById('newDesc').value.trim();
+  const aliasRaw = document.getElementById('newAliases').value.trim();
+  const usedRaw = document.getElementById('newUsed').value.trim();
+
+  if (!name || !desc || !usedRaw) {
+    showStatus('addStatus', 'Name, description, and used-in are required.', 'err');
+    return;
+  }
+
+  showStatus('addStatus', 'Saving...', 'ok');
+
+  try {
+    const skills = await fetchCurrentSkills();
+    const newSkill = { name, category, description: desc, usedIn: usedRaw.split('\n').map(s => s.trim()).filter(Boolean) };
+    if (aliasRaw) newSkill.aliases = aliasRaw.split(',').map(s => s.trim()).filter(Boolean);
+    skills.push(newSkill);
+    await saveSkills(skills);
+    showStatus('addStatus', `"${name}" added and live on sdmurty.com!`, 'ok');
+    clearForm();
+    loadSkills();
+  } catch(e) {
+    showStatus('addStatus', 'Error: ' + e.message, 'err');
+  }
+}
+
+async function deleteSkill(index) {
+  if (!confirm('Remove this skill?')) return;
+  try {
+    const skills = await fetchCurrentSkills();
+    skills.splice(index, 1);
+    await saveSkills(skills);
+    loadSkills();
+  } catch(e) {
+    alert('Error: ' + e.message);
+  }
+}
+
+function clearForm() {
+  ['newName','newDesc','newAliases','newUsed'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('newCategory').selectedIndex = 0;
+}
+
+function showGistLink() {
+  const gistId = getGistId();
+  if (!gistId) return;
+  const owner = localStorage.getItem('skillAdminGistOwner') || 'Scan93';
+  const rawUrl = `https://gist.githubusercontent.com/${owner}/${gistId}/raw/${GIST_FILENAME}`;
+  localStorage.setItem(GIST_RAW_URL_KEY, rawUrl);
+  const card = document.getElementById('gistLinkCard');
+  card.style.display = 'block';
+  document.getElementById('gistRawUrl').value = rawUrl;
+  document.getElementById('localStorageCmd').textContent = `localStorage.setItem('skillsGistRawUrl', '${rawUrl}')`;
+}
+
+init();
+</script>
+</body>
+</html>
