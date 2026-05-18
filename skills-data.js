@@ -34,4 +34,17 @@ const SKILLS_DATA = [
       "Personal vehicles -- diagnostics, maintenance, and engine work"
     ]
   }
+  ,
+  {
+    name: "Python",
+    aliases: ["python coding", "python programming"],
+    category: "Computer Science",
+    description: "A skill under active development to this day. My studies at Mesa Community College gave me the foundational knowledge of Python and my performance in those classes reflects my understanding of the language. I use Python very often -- constant exposure through personal projects and working with Claude keeps it sharp.",
+    usedIn: [
+      "Mesa Community College -- Python coursework, foundational through applied programming",
+      "Finance Project -- automated PDF report generator",
+      "SIGNAL -- market research agent using the Anthropic API",
+      "Portfolio website -- scripting and automation supporting site development"
+    ]
+  }
 ];
