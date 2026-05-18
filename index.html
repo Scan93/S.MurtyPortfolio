@@ -1322,55 +1322,63 @@ document.addEventListener('click', function(e) {
 <script src=”skills-data.js”></script>
 <script>
 (function() {
-  var GIST_RAW_URL_KEY = ‘skillsGistRawUrl’;
+  var skills = typeof SKILLS_DATA !== ‘undefined’ ? SKILLS_DATA : [];
+
   function normalize(s) { return (s || ‘’).toLowerCase().trim(); }
-  function findSkill(query, skills) {
+
+  function findSkill(query) {
     var q = normalize(query);
     if (!q) return null;
-    return skills.find(function(skill) {
-      if (normalize(skill.name) === q) return true;
-      if ((skill.aliases || []).some(function(a) { return normalize(a) === q; })) return true;
-      if (normalize(skill.name).includes(q)) return true;
-      if ((skill.aliases || []).some(function(a) { return normalize(a).includes(q); })) return true;
-      return false;
-    }) || null;
+    for (var i = 0; i < skills.length; i++) {
+      var s = skills[i];
+      var aliases = s.aliases || [];
+      if (normalize(s.name) === q) return s;
+      for (var j = 0; j < aliases.length; j++) { if (normalize(aliases[j]) === q) return s; }
+      if (normalize(s.name).indexOf(q) !== -1) return s;
+      for (var k = 0; k < aliases.length; k++) { if (normalize(aliases[k]).indexOf(q) !== -1) return s; }
+    }
+    return null;
   }
+
   function renderResult(skill, query) {
     var el = document.getElementById(‘skillSearchResult’);
     if (!query.trim()) { el.innerHTML = ‘’; return; }
     if (!skill) {
-      el.innerHTML = ‘<div class=”skill-result-card not-found”><div class=”skill-result-name”>Not in my toolkit yet</div><div class=”skill-not-found-msg”>I haven\’t added <span>”’ + query + ‘”</span> to my profile yet — either it\’s something I haven\’t learned, or I just haven\’t documented it. Either way, worth asking me directly.</div></div>’;
+      el.innerHTML = ‘<div class=”skill-result-card not-found”><div class=”skill-result-name”>Not in my toolkit yet</div><div class=”skill-not-found-msg”>I haven\’t added <span>&ldquo;’ + query + ‘&rdquo;</span> to my profile yet &mdash; either it\’s something I haven\’t learned, or I just haven\’t documented it. Either way, worth asking me directly.</div></div>’;
       return;
     }
-    var usedItems = (skill.usedIn || []).map(function(u) { return ‘<li>’ + u + ‘</li>’; }).join(‘’);
-    el.innerHTML = ‘<div class=”skill-result-card”><div class=”skill-result-name”>’ + skill.name + ‘</div><div class=”skill-result-category”>// ‘ + skill.category + ‘</div><div class=”skill-result-desc”>’ + skill.description + ‘</div>’ + (usedItems ? ‘<div class=”skill-result-used-title”>Where I\’ve used it</div><ul class=”skill-result-used-list”>’ + usedItems + ‘</ul>’ : ‘’) + ‘</div>’;
+    var usedItems = ‘’;
+    for (var i = 0; i < (skill.usedIn || []).length; i++) {
+      usedItems += ‘<li>’ + skill.usedIn[i] + ‘</li>’;
+    }
+    el.innerHTML = ‘<div class=”skill-result-card”>’
+      + ‘<div class=”skill-result-name”>’ + skill.name + ‘</div>’
+      + ‘<div class=”skill-result-category”>// ‘ + skill.category + ‘</div>’
+      + ‘<div class=”skill-result-desc”>’ + skill.description + ‘</div>’
+      + (usedItems ? ‘<div class=”skill-result-used-title”>Where I\’ve used it</div><ul class=”skill-result-used-list”>’ + usedItems + ‘</ul>’ : ‘’)
+      + ‘</div>’;
   }
-  function initSearch(skills) {
-    var input = document.getElementById(‘skillSearchInput’);
-    if (!input) return;
+
+  var input = document.getElementById(‘skillSearchInput’);
+  if (input) {
     var debounce;
     input.addEventListener(‘input’, function() {
-      clearTimeout(debounce);
       var val = this.value;
-      debounce = setTimeout(function() {
-        renderResult(findSkill(val, skills), val);
-      }, 160);
+      clearTimeout(debounce);
+      debounce = setTimeout(function() { renderResult(findSkill(val), val); }, 160);
     });
   }
-  var gistUrl = localStorage.getItem(GIST_RAW_URL_KEY);
+
+  // Upgrade to live Gist data if configured
+  var gistUrl = localStorage.getItem(‘skillsGistRawUrl’);
   if (gistUrl) {
     fetch(gistUrl + ‘?t=’ + Date.now())
       .then(function(r) { return r.text(); })
       .then(function(text) {
-        var match = text.match(/const SKILLS_DATA\s*=\s*(\[[\s\S]*?\]);/);
-        if (!match) throw new Error(‘parse fail’);
-        initSearch(JSON.parse(match[1]));
+        var m = text.match(/(\[[\s\S]*\])\s*;?\s*$/);
+        if (m) skills = JSON.parse(m[1]);
       })
-      .catch(function() {
-        if (typeof SKILLS_DATA !== ‘undefined’) initSearch(SKILLS_DATA);
-      });
-  } else if (typeof SKILLS_DATA !== ‘undefined’) {
-    initSearch(SKILLS_DATA);
+      .catch(function() {});
   }
 })();
 </script>
