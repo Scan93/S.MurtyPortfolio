@@ -13,4 +13,14 @@ const SKILLS_DATA = [
       "Finance Project -- automated PDF report generator"
     ]
   }
+  ,
+  {
+    name: "Solumina MES",
+    aliases: ["solumina", "mes", "manufacturing execution system"],
+    category: "Manufacturing",
+    description: "Solumina is a Manufacturing Execution System that hosted the work instructions for every operation on the floor. It handled data collection for all materials involved and managed sign-offs on completed operations. I used it daily for just under 3 years at General Dynamics Mission Systems.",
+    usedIn: [
+      "General Dynamics Mission Systems -- daily use for reading work instructions, material data collection, and operation sign-offs"
+    ]
+  }
 ];
