@@ -23,4 +23,15 @@ const SKILLS_DATA = [
       "General Dynamics Mission Systems -- daily use for reading work instructions, material data collection, and operation sign-offs"
     ]
   }
+  ,
+  {
+    name: "Automotive Diagnostics & Repair",
+    aliases: ["automotive", "mechanics", "mechanical repair", "diagnostics"],
+    category: "Mechanical Experience",
+    description: "A skill developed personally over 12 years, with my uncle -- an ASE certified technician -- as my role model and mentor. I am capable of performing light to mid engine work ranging from spark plug replacement to complete intake manifold replacement and similar work. Diagnosing problems starts with defining the area of concern, then running a trial and error process to replicate the problem and isolate the root cause.",
+    usedIn: [
+      "Personal -- 12 years of hands-on automotive work under mentorship of an ASE certified technician",
+      "Personal vehicles -- diagnostics, maintenance, and engine work"
+    ]
+  }
 ];
