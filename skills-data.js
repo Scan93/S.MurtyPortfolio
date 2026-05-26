@@ -36,6 +36,19 @@ const SKILLS_DATA = [
   }
   ,
   {
+    name: "Microsoft Office",
+    aliases: ["office", "excel", "word", "powerpoint", "access", "microsoft", "spreadsheet"],
+    category: "Tools",
+    description: "Daily use of Microsoft Office throughout my career at General Dynamics and in personal ventures at home. Excel is my strongest suit — I've completed two Excel courses at Mesa Community College, including an advanced Excel class. I've also worked with Access to import, read, and manage data, and create templates for adding and editing records.",
+    usedIn: [
+      "General Dynamics Mission Systems -- daily use of Office suite in a professional environment",
+      "Mesa Community College -- two Excel courses (including advanced Excel) and Access coursework",
+      "Personal projects -- ongoing use across personal finance, planning, and data work",
+      "Personal life -- regular home use for organization and personal ventures"
+    ]
+  }
+  ,
+  {
     name: "Python",
     aliases: ["python coding", "python programming"],
     category: "Computer Science",
