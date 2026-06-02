@@ -24,14 +24,14 @@
       "aliases": ["javascript", "js", "node", "node.js", "nodejs", "vanilla js", "ecmascript"],
       "category": "Computer Science",
       "layer": 2,
-      "competency": "Professional",
-      "description": "JavaScript is my go-to language for web apps and terminal scripts. I work in both browser-side vanilla JS (no frameworks) and Node.js for server-side and API-driven tools. Every web app I've shipped runs without a build step or framework dependency.",
+      "competency": "Learning",
+      "description": "I work with JavaScript through Claude AI — I define the logic, behavior, and requirements for each project, and Claude generates the code. I can read and follow JavaScript well enough to understand what's happening, catch issues, and make targeted edits, but I don't write it from scratch independently. Node.js projects like SIGNAL follow the same pattern: I architect the tool and Claude implements it.",
       "usedIn": [
-        "StockBin — full inventory tracker web app; vanilla JS handling all CRUD, photo compression, localStorage, and PWA behavior",
-        "Portfolio website (sdmurty.com) — skills search, visitor counter, interactive overlays, and retro analytics hub",
-        "SIGNAL — Node.js terminal script calling the Anthropic API to generate market research reports",
-        "Job Tracker — dark-mode job application tracker with export/import and employment history",
-        "PoolCalc — pool chemical dosage calculator with BarcodeDetector API integration"
+        "StockBin — directed full app logic including CRUD, photo compression, localStorage, and PWA behavior",
+        "Portfolio website (sdmurty.com) — directed skills search, visitor counter, and interactive features",
+        "SIGNAL — architected Node.js market research agent calling the Anthropic API; Claude implemented the script",
+        "Job Tracker — directed application tracking logic, export/import, and employment history features",
+        "PoolCalc — directed chemical dosage logic and BarcodeDetector API integration"
       ],
       "tags": ["programming", "web", "frontend", "node"]
     },
