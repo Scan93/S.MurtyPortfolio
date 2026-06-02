@@ -40,14 +40,13 @@
       "aliases": ["html", "css", "html5", "css3", "web design", "frontend", "front-end", "markup"],
       "category": "Computer Science",
       "layer": 2,
-      "competency": "Professional",
-      "description": "I build complete, production-ready web interfaces in HTML and CSS — no frameworks, no build tools. My work is mobile-first, dark-themed, and built to ship. Every project I've deployed publicly is hand-written HTML/CSS.",
+      "competency": "Learning",
+      "description": "I work with HTML and CSS through Claude AI — I direct the structure, design decisions, and behavior of every project, and Claude generates the code. I can read and understand the output, review it for correctness, and make targeted edits, but I don't write markup from scratch by hand. Every web project I've shipped was built this way: I bring the vision and requirements, Claude brings the syntax.",
       "usedIn": [
-        "Portfolio website (sdmurty.com) — full multi-page site with skills search, retro analytics hub, and passions page",
-        "StockBin — mobile-first PWA material inventory tracker with dark theme and card grid layout",
-        "PoolCalc — PWA chemical dosage calculator with dark UI designed for iPhone field use",
-        "Job Tracker — dark-mode application manager with modal forms and filterable table",
-        "GitHub Pages — all projects deployed via static hosting"
+        "Portfolio website (sdmurty.com) — directed full multi-page site design including skills search, retro analytics hub, and passions page",
+        "StockBin — directed mobile-first PWA layout, dark theme, and card grid; deployed via GitHub Pages",
+        "PoolCalc — directed PWA design and dark UI for iPhone field use",
+        "Job Tracker — directed dark-mode application manager with modal forms and filterable table"
       ],
       "tags": ["web", "frontend", "design", "markup"]
     },
