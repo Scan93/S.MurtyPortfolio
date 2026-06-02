@@ -1,0 +1,296 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-06-01",
+  "description": "Master skills dataset — canonical source of truth for portfolio skill search and recruiter-facing profiles.",
+  "skills": [
+    {
+      "name": "Python",
+      "aliases": ["python", "python3", "py", "scripting", "python programming"],
+      "category": "Computer Science",
+      "layer": 2,
+      "competency": "Professional",
+      "description": "Python is my primary programming language and a skill under active, daily development. My studies at Mesa Community College gave me the foundational knowledge and my performance in those classes reflects my understanding of the language. I apply Python constantly across personal projects — from data automation scripts to PDF generation to browser automation.",
+      "usedIn": [
+        "Mesa Community College — Python coursework, foundational through applied programming",
+        "Finance Project — automated monthly PDF report generator using fpdf2",
+        "Data Analysis — loading and cleaning a 672,000-row sales dataset using pandas in Jupyter",
+        "Playwright bot — LinkedIn Easy Apply automation script",
+        "Dungeon Hunter — Pygame hobby RPG with chest system, NPC town, and multi-quest logic"
+      ],
+      "tags": ["programming", "automation", "data", "scripting"]
+    },
+    {
+      "name": "JavaScript",
+      "aliases": ["javascript", "js", "node", "node.js", "nodejs", "vanilla js", "ecmascript"],
+      "category": "Computer Science",
+      "layer": 2,
+      "competency": "Professional",
+      "description": "JavaScript is my go-to language for web apps and terminal scripts. I work in both browser-side vanilla JS (no frameworks) and Node.js for server-side and API-driven tools. Every web app I've shipped runs without a build step or framework dependency.",
+      "usedIn": [
+        "StockBin — full inventory tracker web app; vanilla JS handling all CRUD, photo compression, localStorage, and PWA behavior",
+        "Portfolio website (sdmurty.com) — skills search, visitor counter, interactive overlays, and retro analytics hub",
+        "SIGNAL — Node.js terminal script calling the Anthropic API to generate market research reports",
+        "Job Tracker — dark-mode job application tracker with export/import and employment history",
+        "PoolCalc — pool chemical dosage calculator with BarcodeDetector API integration"
+      ],
+      "tags": ["programming", "web", "frontend", "node"]
+    },
+    {
+      "name": "HTML & CSS",
+      "aliases": ["html", "css", "html5", "css3", "web design", "frontend", "front-end", "markup"],
+      "category": "Computer Science",
+      "layer": 2,
+      "competency": "Professional",
+      "description": "I build complete, production-ready web interfaces in HTML and CSS — no frameworks, no build tools. My work is mobile-first, dark-themed, and built to ship. Every project I've deployed publicly is hand-written HTML/CSS.",
+      "usedIn": [
+        "Portfolio website (sdmurty.com) — full multi-page site with skills search, retro analytics hub, and passions page",
+        "StockBin — mobile-first PWA material inventory tracker with dark theme and card grid layout",
+        "PoolCalc — PWA chemical dosage calculator with dark UI designed for iPhone field use",
+        "Job Tracker — dark-mode application manager with modal forms and filterable table",
+        "GitHub Pages — all projects deployed via static hosting"
+      ],
+      "tags": ["web", "frontend", "design", "markup"]
+    },
+    {
+      "name": "SQL",
+      "aliases": ["sql", "structured query language", "database", "queries", "relational database"],
+      "category": "Data Analysis",
+      "layer": 2,
+      "competency": "Learning",
+      "description": "I have foundational SQL knowledge from coursework at Mesa Community College, covering queries, joins, and relational database concepts. This is an active area of development as I build toward Data Analyst and Supply Chain roles where SQL is a daily tool.",
+      "usedIn": [
+        "Mesa Community College — SQL coursework covering relational database design, queries, and joins"
+      ],
+      "tags": ["data", "database", "sql", "analysis"]
+    },
+    {
+      "name": "pandas",
+      "aliases": ["pandas", "numpy", "data manipulation", "dataframe", "data wrangling", "pd"],
+      "category": "Data Analysis",
+      "layer": 2,
+      "competency": "Professional",
+      "description": "pandas is my primary tool for data manipulation and analysis. I use it to load, clean, join, and transform datasets — including large Excel files that would be impractical in a standard spreadsheet application.",
+      "usedIn": [
+        "Sales Performance Analysis — loaded and began cleaning a 672,000-row Excel dataset using pandas in Jupyter",
+        "Finance Project — data cleaning and transformation for monthly financial reporting",
+        "Mesa Community College — Python and data coursework using pandas"
+      ],
+      "tags": ["data", "python", "analysis", "etl"]
+    },
+    {
+      "name": "Jupyter Notebooks",
+      "aliases": ["jupyter", "notebook", "ipynb", "jupyter lab", "jupyter notebook"],
+      "category": "Data Analysis",
+      "layer": 2,
+      "competency": "Professional",
+      "description": "Jupyter is my workspace for data analysis. I use it to document my process, run iterative transformations, and produce readable outputs that combine code, results, and narrative — ideal for portfolio and shareable analysis work.",
+      "usedIn": [
+        "Sales Performance Analysis — active Jupyter notebook for loading, auditing, and cleaning a 672K-row sales dataset",
+        "Data Analysis Portfolio — using Jupyter for all three CIS215-based portfolio projects",
+        "Mesa Community College — coursework using Jupyter for Python assignments"
+      ],
+      "tags": ["data", "python", "analysis", "notebooks"]
+    },
+    {
+      "name": "Microsoft Office",
+      "aliases": ["office", "excel", "word", "powerpoint", "access", "microsoft", "spreadsheet", "ms office", "microsoft excel"],
+      "category": "Tools",
+      "layer": 2,
+      "competency": "Professional",
+      "description": "Daily use of Microsoft Office throughout my career at General Dynamics and in personal projects. Excel is my strongest suit — I've completed two Excel courses at Mesa Community College, including an advanced class. I've also worked with Access to import, read, and manage data, and build templates for adding and editing records.",
+      "usedIn": [
+        "General Dynamics Mission Systems — daily use of the Office suite in a professional manufacturing environment",
+        "Mesa Community College — two Excel courses (including advanced Excel) and Access coursework",
+        "Personal projects — personal finance tracking, planning, and data organization"
+      ],
+      "tags": ["tools", "productivity", "data", "spreadsheets"]
+    },
+    {
+      "name": "Git & GitHub",
+      "aliases": ["git", "github", "version control", "source control", "repo", "github pages"],
+      "category": "Tools",
+      "layer": 1,
+      "competency": "Professional",
+      "description": "Git is a daily tool across every project I build. I manage branches, write commit messages, push to GitHub, and deploy via GitHub Pages. All of my public projects are version-controlled and hosted on my GitHub profile.",
+      "usedIn": [
+        "Portfolio website — branch-based workflow (skills branch → merge to main → live on sdmurty.com)",
+        "StockBin — public GitHub repo; version-controlled through full development lifecycle",
+        "PoolCalc — deployed via GitHub Pages at scan93.github.io/PoolCalc",
+        "SIGNAL, Finance Project, Dungeon Hunter — all tracked with Git from day one"
+      ],
+      "tags": ["tools", "devops", "version-control", "workflow"]
+    },
+    {
+      "name": "Claude AI",
+      "aliases": ["claude", "ai", "anthropic", "llm", "claude api", "anthropic api", "generative ai", "ai tools"],
+      "category": "AI & Automation",
+      "layer": 2,
+      "competency": "Professional",
+      "description": "I use Claude daily — both as a development collaborator and through the Anthropic API in tools I've built. I've moved beyond prompt-and-paste into building AI-driven agents that generate structured reports, make decisions, and interact with external systems.",
+      "usedIn": [
+        "SIGNAL — Node.js agent that calls claude-opus via the Anthropic API, streams output, and saves full market research reports as markdown",
+        "StockBin — product research, UX decisions, and full-stack development",
+        "PoolCalc — design and full development of the PWA chemical dosage calculator",
+        "Portfolio website (sdmurty.com) — design, development, and ongoing feature additions",
+        "Finance Project — automated PDF report generator",
+        "Dungeon Hunter — full game design and development in Pygame"
+      ],
+      "tags": ["ai", "automation", "api", "llm"]
+    },
+    {
+      "name": "API Integration",
+      "aliases": ["api", "rest api", "api integration", "web api", "http", "fetch", "json api"],
+      "category": "Computer Science",
+      "layer": 1,
+      "competency": "Professional",
+      "description": "I integrate third-party APIs across my projects — from AI providers to government datasets to browser-native hardware APIs. I read documentation, handle auth, manage responses, and build around API constraints and rate limits.",
+      "usedIn": [
+        "SIGNAL — Anthropic API (streaming, model selection, prompt engineering)",
+        "PoolCalc — BarcodeDetector API for camera-based barcode scanning",
+        "Portfolio website — counterapi.dev visitor counter integration",
+        "Data Analysis — USDA FoodData Central CSV data (government open data)",
+        "Finance Project — structured JSON data pipelines for report generation"
+      ],
+      "tags": ["programming", "web", "integration", "data"]
+    },
+    {
+      "name": "Playwright",
+      "aliases": ["playwright", "browser automation", "web automation", "selenium", "scraping"],
+      "category": "AI & Automation",
+      "layer": 2,
+      "competency": "Learning",
+      "description": "I've worked with Playwright in Python to automate browser interactions. My most complex use was a LinkedIn Easy Apply bot that navigated multi-step job application forms, handled dynamic page states, and submitted applications programmatically.",
+      "usedIn": [
+        "LinkedIn Easy Apply bot — Python/Playwright script that auto-fills and submits job applications on LinkedIn"
+      ],
+      "tags": ["automation", "python", "web", "testing"]
+    },
+    {
+      "name": "Progressive Web Apps",
+      "aliases": ["pwa", "progressive web app", "manifest", "service worker", "offline", "installable app", "web app"],
+      "category": "Computer Science",
+      "layer": 2,
+      "competency": "Professional",
+      "description": "I build web apps with full PWA support — installable on mobile, manifest-configured, and optimized for field use. I've implemented camera APIs, photo compression, and offline-tolerant local storage patterns.",
+      "usedIn": [
+        "StockBin — PWA-ready material inventory tracker installable on iOS/Android; includes photo capture and localStorage persistence",
+        "PoolCalc — dark-mode PWA with BarcodeDetector API for barcode scanning; designed for iPhone use in pool service environments"
+      ],
+      "tags": ["web", "mobile", "pwa", "frontend"]
+    },
+    {
+      "name": "Solumina MES",
+      "aliases": ["solumina", "mes", "manufacturing execution system", "shop floor", "work instructions"],
+      "category": "Manufacturing",
+      "layer": 3,
+      "competency": "Professional",
+      "description": "Solumina is a Manufacturing Execution System that hosted the work instructions for every operation on the production floor. It handled data collection for all materials involved and managed sign-offs on completed operations. I used it daily for just under 3 years at General Dynamics Mission Systems.",
+      "usedIn": [
+        "General Dynamics Mission Systems — daily use for reading work instructions, material data collection, and operation sign-offs across manufacturing operations"
+      ],
+      "tags": ["manufacturing", "mes", "operations", "materials"]
+    },
+    {
+      "name": "Supply Chain & Inventory Management",
+      "aliases": ["supply chain", "inventory", "materials management", "procurement", "logistics", "inventory management", "materials"],
+      "category": "Operations",
+      "layer": 3,
+      "competency": "Professional",
+      "description": "Hands-on experience in a materials and manufacturing environment, paired with independent software development in the space. I understand inventory workflows from both the floor level and the data layer — tracking materials, managing shortages, and designing systems that solve real operational problems.",
+      "usedIn": [
+        "General Dynamics Mission Systems — materials tracking and management in a defense manufacturing environment",
+        "StockBin — designed and built a complete inventory management web app for makers and tradespeople; addresses real pain points around duplicate purchases and mid-project material shortages"
+      ],
+      "tags": ["operations", "supply-chain", "inventory", "materials", "manufacturing"]
+    },
+    {
+      "name": "Data Analysis",
+      "aliases": ["data analysis", "data analyst", "eda", "exploratory data analysis", "data cleaning", "etl", "data pipeline"],
+      "category": "Data Analysis",
+      "layer": 3,
+      "competency": "Professional",
+      "description": "I treat data analysis as a full-cycle process: ingest the source data, audit it, clean it, transform it, and produce usable output. My portfolio projects apply this to real-world datasets. I'm comfortable with large files, missing data, and multi-source joins.",
+      "usedIn": [
+        "Sales Performance Analysis — loading, auditing, and cleaning a 672,000-row Excel dataset in Jupyter using pandas",
+        "Finance Project — monthly data ingestion, calculation pipeline, and PDF report generation from JSON account records",
+        "Mesa Community College — CIS215 coursework using real-world datasets"
+      ],
+      "tags": ["data", "analysis", "etl", "cleaning", "python"]
+    },
+    {
+      "name": "Automotive Diagnostics & Repair",
+      "aliases": ["automotive", "mechanics", "mechanical repair", "diagnostics", "cars", "engine", "auto repair", "ase"],
+      "category": "Mechanical Experience",
+      "layer": 3,
+      "competency": "Professional",
+      "description": "A skill developed personally over 12 years, with my uncle — an ASE certified technician — as my role model and mentor. I am capable of performing light to mid engine work ranging from spark plug replacement to complete intake manifold replacement. Diagnosing problems starts with defining the area of concern, then running a trial and error process to replicate the issue and isolate the root cause.",
+      "usedIn": [
+        "Personal — 12 years of hands-on automotive work under mentorship of an ASE certified technician",
+        "Personal vehicles — diagnostics, maintenance, spark plug replacement, intake manifold work, and general engine repair"
+      ],
+      "tags": ["mechanical", "automotive", "diagnostics", "hands-on"]
+    },
+    {
+      "name": "3D Printing",
+      "aliases": ["3d printing", "fdm", "resin", "filament", "bambu", "slicing", "additive manufacturing", "maker"],
+      "category": "Mechanical Experience",
+      "layer": 3,
+      "competency": "Professional",
+      "description": "I work with both FDM (filament) and resin printing. I'm deep enough in the space that I built a commercial-grade inventory tracker specifically for makers and 3D print shops. I understand material properties, slicer workflows, and the real operational pain points of managing a material stock across projects.",
+      "usedIn": [
+        "StockBin — built a material inventory tracker for the maker and 3D printing market; product design informed by real first-hand workflow experience",
+        "Personal workshop — active FDM and resin printing for hobby projects and functional parts"
+      ],
+      "tags": ["mechanical", "hardware", "maker", "manufacturing"]
+    },
+    {
+      "name": "Home Assistant & IoT Automation",
+      "aliases": ["home assistant", "iot", "mqtt", "smart home", "home automation", "mosquitto", "iot automation"],
+      "category": "Systems & Infrastructure",
+      "layer": 2,
+      "competency": "Learning",
+      "description": "I run Home Assistant locally to control IoT devices on my home network without cloud dependencies. My Electronics Admin project involves subnet scanning, MQTT protocol interception, and building Python scripts to control smart devices directly.",
+      "usedIn": [
+        "Electronics Admin Project — local Home Assistant deployment as the control platform for smart plugs, bulbs, and sensors",
+        "MQTT/Mosquitto — protocol interception and device command relay on local subnet"
+      ],
+      "tags": ["iot", "networking", "automation", "systems"]
+    },
+    {
+      "name": "Network Scanning & Analysis",
+      "aliases": ["nmap", "wireshark", "network", "subnet", "packet analysis", "network discovery", "network analysis"],
+      "category": "Systems & Infrastructure",
+      "layer": 2,
+      "competency": "Learning",
+      "description": "I use Nmap (via python-nmap) and Wireshark to discover and analyze devices on my local subnet. Part of my Electronics Admin project — the goal is building a complete picture of what's on the network before writing automation and control scripts.",
+      "usedIn": [
+        "Electronics Admin Project — subnet scanning with python-nmap to build a JSON device topology map; Wireshark for protocol analysis of MQTT and REST payloads"
+      ],
+      "tags": ["networking", "iot", "security", "systems"]
+    },
+    {
+      "name": "Pygame",
+      "aliases": ["pygame", "game development", "game dev", "2d game", "python game"],
+      "category": "Computer Science",
+      "layer": 2,
+      "competency": "Learning",
+      "description": "I use Pygame to build hobby games in Python. My project Dungeon Hunter has grown into a complete game loop with a chest system, NPC town, tabbed inventory bags, multi-quest system, auto-journal, and VSync rendering.",
+      "usedIn": [
+        "Dungeon Hunter — Python/Pygame hobby RPG with chest system, VSync, tabbed bags, multi-quest, NPC town, and auto-journal"
+      ],
+      "tags": ["gaming", "python", "hobby", "programming"]
+    },
+    {
+      "name": "PDF Generation",
+      "aliases": ["fpdf", "fpdf2", "pdf", "pdf report", "report generation", "document generation"],
+      "category": "AI & Automation",
+      "layer": 2,
+      "competency": "Learning",
+      "description": "I use fpdf2 in Python to programmatically generate formatted PDF reports from structured data. This powers the report output of my personal finance automation system — pulling account data from JSON, running calculations, and producing a clean monthly statement.",
+      "usedIn": [
+        "Finance Project — automated monthly financial statement generator; ingests JSON account data, applies calculations, and outputs a formatted PDF report"
+      ],
+      "tags": ["automation", "python", "reporting", "data"]
+    }
+  ]
+}

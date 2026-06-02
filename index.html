@@ -1323,6 +1323,7 @@ document.addEventListener('click', function(e) {
 <script>
 (function() {
   var skills = typeof SKILLS_DATA !== 'undefined' ? SKILLS_DATA : [];
+  var pendingQuery = null;
 
   function normalize(s) { return (s || '').toLowerCase().trim(); }
 
@@ -1369,17 +1370,16 @@ document.addEventListener('click', function(e) {
     });
   }
 
-  // Upgrade to live Gist data if configured
-  var gistUrl = localStorage.getItem('skillsGistRawUrl');
-  if (gistUrl) {
-    fetch(gistUrl + '?t=' + Date.now())
-      .then(function(r) { return r.text(); })
-      .then(function(text) {
-        var m = text.match(/(\[[\s\S]*\])\s*;?\s*$/);
-        if (m) skills = JSON.parse(m[1]);
-      })
-      .catch(function() {});
-  }
+  // Load live skills from skills.json (canonical master dataset)
+  fetch('skills.json?t=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data && Array.isArray(data.skills)) {
+        skills = data.skills;
+        if (input && input.value.trim()) renderResult(findSkill(input.value), input.value);
+      }
+    })
+    .catch(function() {});
 })();
 </script>
 </body>
