@@ -305,74 +305,26 @@ nav {
   margin-bottom: 44px;
   letter-spacing: -.01em;
 }
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.skill-group {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 30px;
-  transition: border-color .25s, transform .25s;
-}
-.skill-group:hover { border-color: var(--accent2); transform: translateY(-3px); }
-.skill-group-title {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--accent2);
-  margin-bottom: 20px;
-}
-.skill-item {
-  display: flex;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
-  color: var(--text);
-  gap: 10px;
-}
-.skill-item:last-child { border-bottom: none; }
-.skill-name { flex: 1; }
-.skill-sub {
-  display: block;
-  font-size: 10px;
-  color: var(--muted);
-  margin-top: 3px;
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: .03em;
-  line-height: 1.5;
-}
-.skill-bar-wrap {
-  width: 64px; height: 3px;
-  background: var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.skill-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  border-radius: 2px;
-  transition: width .8s ease;
-}
-
 /* ── SKILL SEARCH ── */
+.skills-intro {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 540px;
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
 .skill-search-wrap {
-  margin-bottom: 44px;
   position: relative;
+  margin-bottom: 16px;
 }
 .skill-search-input {
   width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 18px 14px 44px;
+  border-radius: 12px;
+  padding: 18px 20px 18px 52px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text);
   outline: none;
   transition: border-color .2s, box-shadow .2s;
@@ -385,12 +337,44 @@ nav {
 }
 .skill-search-icon {
   position: absolute;
-  left: 16px;
+  left: 18px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--muted);
-  font-size: 13px;
+  font-size: 15px;
   pointer-events: none;
+}
+.skill-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.skill-prompts-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-right: 4px;
+}
+.skill-prompt-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+  letter-spacing: .05em;
+}
+.skill-prompt-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(0,212,255,.06);
 }
 .skill-result-card {
   background: var(--surface);
@@ -1048,7 +1032,8 @@ textarea.review-input { resize: vertical; min-height: 80px; }
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-tag">// Technical Stack</div>
-  <h2 class="section-h2">What I work with.</h2>
+  <h2 class="section-h2">Find the skill you need.</h2>
+  <p class="skills-intro">Search any tool, technology, or domain below. If I have real experience with it, you'll see exactly where and how I've used it — no guessing.</p>
 
   <div class="skill-search-wrap">
     <i class="fa-solid fa-magnifying-glass skill-search-icon"></i>
@@ -1056,40 +1041,25 @@ textarea.review-input { resize: vertical; min-height: 80px; }
       type="text"
       id="skillSearchInput"
       class="skill-search-input"
-      placeholder="Search a skill -- e.g. SQL, Python, Power BI..."
+      placeholder="e.g. Python, SQL, Supply Chain, Excel, Git..."
       autocomplete="off"
       spellcheck="false"
     />
-    <div id="skillSearchResult"></div>
   </div>
 
-  <div class="skills-grid">
-    <div class="skill-group">
-      <div class="skill-group-title">Analytics & Tools</div>
-      <div class="skill-item"><span class="skill-name">SQL / SSMS</span></div>
-      <div class="skill-item"><span class="skill-name">Python (Pandas)</span></div>
-      <div class="skill-item"><span class="skill-name">Power BI</span></div>
-      <div class="skill-item"><span class="skill-name">Excel / VBA</span></div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Inventory & Supply Chain</div>
-      <div class="skill-item"><span class="skill-name">Inventory Systems</span></div>
-      <div class="skill-item"><span class="skill-name">Procurement</span></div>
-      <div class="skill-item"><span class="skill-name">Materials Tracking</span></div>
-      <div class="skill-item"><span class="skill-name">Retail Operations</span></div>
-      <div class="skill-item"><span class="skill-name">Solumina MES</span></div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Domain Expertise</div>
-      <div class="skill-item"><span class="skill-name">Aerospace Manufacturing</span></div>
-      <div class="skill-item"><span class="skill-name">Process Optimization</span></div>
-      <div class="skill-item"><span class="skill-name">Quality Compliance</span></div>
-      <div class="skill-item"><span class="skill-name">Team Leadership</span></div>
-      <div class="skill-item">
-        <span class="skill-name">Mechanical Sympathy</span>
-      </div>
-    </div>
+  <div class="skill-prompts">
+    <span class="skill-prompts-label">Try:</span>
+    <button class="skill-prompt-chip" onclick="triggerSkillSearch('Python')">Python</button>
+    <button class="skill-prompt-chip" onclick="triggerSkillSearch('SQL')">SQL</button>
+    <button class="skill-prompt-chip" onclick="triggerSkillSearch('Supply Chain')">Supply Chain</button>
+    <button class="skill-prompt-chip" onclick="triggerSkillSearch('Excel')">Excel</button>
+    <button class="skill-prompt-chip" onclick="triggerSkillSearch('JavaScript')">JavaScript</button>
+    <button class="skill-prompt-chip" onclick="triggerSkillSearch('Claude AI')">Claude AI</button>
+    <button class="skill-prompt-chip" onclick="triggerSkillSearch('Git')">Git</button>
+    <button class="skill-prompt-chip" onclick="triggerSkillSearch('3D Printing')">3D Printing</button>
   </div>
+
+  <div id="skillSearchResult"></div>
 </section>
   
 <!-- PROJECTS -->
@@ -1386,6 +1356,16 @@ document.addEventListener('click', function(e) {
 });
 </script>
 <script src="skills-data.js"></script>
+<script>
+function triggerSkillSearch(val) {
+  var input = document.getElementById('skillSearchInput');
+  if (!input) return;
+  input.value = val;
+  input.dispatchEvent(new Event('input'));
+  input.focus();
+  document.getElementById('skills').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
 <script>
 (function() {
   var skills = typeof SKILLS_DATA !== 'undefined' ? SKILLS_DATA : [];
