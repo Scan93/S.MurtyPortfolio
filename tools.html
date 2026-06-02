@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Tools — S. Murty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #0a0c12;
+    --surface: #12151f;
+    --surface2: #1a1e2e;
+    --border: #232840;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --text: #e8eaf2;
+    --muted: #6b7280;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+    --display: 'Syne', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.6; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 50; background: rgba(10,12,18,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 40px; display: flex; align-items: center; height: 60px; gap: 24px; }
+  .nav-logo { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; letter-spacing: .05em; white-space: nowrap; }
+  .nav-back { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; transition: color .2s; margin-left: auto; }
+  .nav-back:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero { padding: 80px 40px 60px; max-width: 900px; margin: 0 auto; }
+  .section-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .hero h1 { font-family: var(--display); font-size: clamp(36px, 6vw, 56px); font-weight: 800; line-height: 1.1; color: var(--text); margin-bottom: 18px; }
+  .hero p { font-size: 16px; color: var(--muted); max-width: 560px; line-height: 1.8; }
+
+  /* TOOL CARD */
+  .tools-list { max-width: 900px; margin: 0 auto; padding: 0 40px 100px; display: flex; flex-direction: column; gap: 48px; }
+
+  .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color .25s; }
+  .tool-card:hover { border-color: rgba(0,212,255,.3); }
+
+  .tool-card-header { padding: 36px 40px 28px; }
+  .tool-icon { font-size: 32px; color: var(--accent); margin-bottom: 16px; }
+  .tool-name { font-family: var(--display); font-size: 26px; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+  .tool-desc { font-size: 15px; color: var(--muted); line-height: 1.8; max-width: 620px; margin-bottom: 24px; }
+
+  .tool-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .ttag { font-family: var(--mono); font-size: 10px; padding: 5px 12px; border-radius: 5px; background: rgba(0,212,255,.07); border: 1px solid rgba(0,212,255,.2); color: var(--accent); letter-spacing: .05em; }
+
+  .tool-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #000; font-family: var(--mono); font-size: 12px; font-weight: 600; padding: 12px 24px; border-radius: 8px; text-decoration: none; transition: opacity .2s; letter-spacing: .05em; }
+  .btn-primary:hover { opacity: .85; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--text); font-family: var(--mono); font-size: 12px; font-weight: 600; padding: 12px 24px; border-radius: 8px; text-decoration: none; border: 1px solid var(--border); transition: border-color .2s, color .2s; letter-spacing: .05em; }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* FEATURES */
+  .tool-features { border-top: 1px solid var(--border); padding: 28px 40px; background: var(--surface2); display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feature { }
+  .feature-icon { font-size: 18px; color: var(--accent2); margin-bottom: 8px; }
+  .feature-title { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 5px; letter-spacing: .03em; }
+  .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* DATA NOTE */
+  .data-note { border-top: 1px solid var(--border); padding: 18px 40px; display: flex; align-items: center; gap: 10px; }
+  .data-note i { color: var(--accent); font-size: 13px; }
+  .data-note p { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .03em; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 40px; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .05em; }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 680px) {
+    nav { padding: 0 20px; }
+    .hero { padding: 48px 20px 40px; }
+    .tools-list { padding: 0 20px 60px; }
+    .tool-card-header { padding: 24px; }
+    .tool-features { grid-template-columns: 1fr; padding: 20px 24px; }
+    .data-note { padding: 16px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">SM // PORTFOLIO</a>
+  <a href="index.html" class="nav-back">&#8592; Back to Portfolio</a>
+</nav>
+
+<div class="hero">
+  <div class="section-tag">// Mini Tools</div>
+  <h1>Built for real use.</h1>
+  <p>Small, self-contained tools I built to solve specific problems. No installs, no accounts — open in a browser and start using. Download the HTML file to keep a local copy that works offline.</p>
+</div>
+
+<div class="tools-list">
+
+  <!-- JOB APPLICATION TRACKER -->
+  <div id="job-tracker" class="tool-card">
+    <div class="tool-card-header">
+      <div class="tool-icon"><i class="fa-solid fa-briefcase"></i></div>
+      <div class="tool-name">Job Application Tracker</div>
+      <p class="tool-desc">A dark-mode job search dashboard for tracking every application in one place. Log status, salary, links, and notes. Store your employment history for quick reference during applications. Keep a list of job boards you're actively watching. Export your data to JSON anytime and import it back — your data stays with you.</p>
+      <div class="tool-tags">
+        <span class="ttag">Vanilla JS</span>
+        <span class="ttag">localStorage</span>
+        <span class="ttag">No Backend</span>
+        <span class="ttag">Export / Import</span>
+        <span class="ttag">Dark Mode</span>
+      </div>
+      <div class="tool-cta">
+        <a href="job-tracker.html" class="btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Tool</a>
+        <a href="job-tracker.html" download="job-tracker.html" class="btn-secondary"><i class="fa-solid fa-download"></i> Download HTML</a>
+      </div>
+    </div>
+    <div class="tool-features">
+      <div class="feature">
+        <div class="feature-icon"><i class="fa-solid fa-table-list"></i></div>
+        <div class="feature-title">Applications Table</div>
+        <p class="feature-desc">Track title, company, status, date, salary, and notes. Filter by status, date range, or keyword. Sort any column.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><i class="fa-solid fa-id-card"></i></div>
+        <div class="feature-title">Employment History</div>
+        <p class="feature-desc">Store past employers, titles, dates, salaries, and addresses — all the info you need when filling out applications.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+        <div class="feature-title">Export & Import</div>
+        <p class="feature-desc">Save everything to a JSON file. Load it back on any device. No account, no cloud — your data stays local.</p>
+      </div>
+    </div>
+    <div class="data-note">
+      <i class="fa-solid fa-circle-info"></i>
+      <p>All data is stored in your browser's localStorage. Nothing is sent to a server. Export regularly to keep a backup.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Built by <a href="index.html">S. Murty</a> &mdash; more tools coming soon.
+</footer>
+
+</body>
+</html>

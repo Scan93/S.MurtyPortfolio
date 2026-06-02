@@ -668,6 +668,47 @@ nav {
   letter-spacing: .05em;
 }
 
+/* ── MINI TOOLS ── */
+#tools { padding: 80px 56px; }
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+.tool-card-sm {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color .25s, transform .25s;
+}
+.tool-card-sm:hover { border-color: var(--accent2); transform: translateY(-2px); }
+.tool-card-sm-icon { font-size: 20px; color: var(--accent); }
+.tool-card-sm-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.tool-card-sm-desc { font-size: 12px; color: var(--muted); line-height: 1.65; flex: 1; }
+.tool-card-sm-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.tool-card-sm-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tool-card-sm-tags .ptag { font-size: 9px; padding: 3px 8px; }
+.tool-card-sm-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: .05em;
+  white-space: nowrap;
+  transition: opacity .2s;
+}
+.tool-card-sm-link:hover { opacity: .7; }
+
 /* ── CTA ── */
 #contact {
   padding: 96px 56px;
@@ -926,6 +967,7 @@ textarea.review-input { resize: vertical; min-height: 80px; }
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#tools">Tools</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#reviews">Reviews</a></li>
   </ul>
@@ -938,6 +980,7 @@ textarea.review-input { resize: vertical; min-height: 80px; }
   <a href="#skills" onclick="toggleMenu()">Skills</a>
   <a href="#experience" onclick="toggleMenu()">Experience</a>
   <a href="#projects" onclick="toggleMenu()">Projects</a>
+  <a href="#tools" onclick="toggleMenu()">Tools</a>
   <a href="#education" onclick="toggleMenu()">Education</a>
   <a href="#reviews" onclick="toggleMenu()">Reviews</a>
   <a href="mailto:scandalmurty@gmail.com" onclick="toggleMenu()">Hire Me →</a>
@@ -1083,6 +1126,29 @@ textarea.review-input { resize: vertical; min-height: 80px; }
       <a class="ptag" href="job_finder.html" target="_blank" style="text-decoration:none;">View Project →</a>
     </div>
   </div>
+  </div>
+</section>
+
+  <!-- MINI TOOLS -->
+<section id="tools">
+  <div class="section-tag">// Mini Tools</div>
+  <h2 class="section-h2">Built for real use.</h2>
+  <div class="tools-grid">
+
+    <div class="tool-card-sm">
+      <div class="tool-card-sm-icon"><i class="fa-solid fa-briefcase"></i></div>
+      <div class="tool-card-sm-name">Job Application Tracker</div>
+      <p class="tool-card-sm-desc">A dark-mode dashboard for tracking every job application. Log status, salary, notes, and links. Store employment history for quick reference. Export to JSON and import it back on any device.</p>
+      <div class="tool-card-sm-footer">
+        <div class="tool-card-sm-tags">
+          <span class="ptag">Vanilla JS</span>
+          <span class="ptag">localStorage</span>
+          <span class="ptag">No Backend</span>
+        </div>
+        <a href="tools.html#job-tracker" class="tool-card-sm-link">View →</a>
+      </div>
+    </div>
+
   </div>
 </section>
 

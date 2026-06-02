@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Application Tracker</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --border: #2e3350;
+    --accent: #4f8ef7;
+    --accent2: #7c5cbf;
+    --text: #e2e6f0;
+    --muted: #6b7280;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #38bdf8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; }
+
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; gap: 16px; }
+  .back-link { color: var(--muted); font-size: 13px; text-decoration: none; transition: color .2s; white-space: nowrap; }
+  .back-link:hover { color: var(--accent); }
+  header h1 { font-size: 20px; font-weight: 700; color: var(--accent); }
+  header span { color: var(--muted); font-size: 13px; }
+  .header-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+
+  nav { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 24px; }
+  nav button { background: none; border: none; color: var(--muted); padding: 12px 20px; cursor: pointer; font-size: 14px; border-bottom: 2px solid transparent; transition: all .2s; }
+  nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
+  nav button:hover:not(.active) { color: var(--text); }
+
+  .tab { display: none; padding: 24px; max-width: 1400px; margin: 0 auto; }
+  .tab.active { display: block; }
+
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; min-width: 100px; }
+  .stat .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+  .stat .value { font-size: 22px; font-weight: 700; margin-top: 2px; }
+
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; align-items: flex-end; }
+  .filters label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+  .filters input, .filters select { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 7px 10px; font-size: 13px; min-width: 140px; }
+  .filters input:focus, .filters select:focus { outline: none; border-color: var(--accent); }
+  .btn { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 8px 16px; cursor: pointer; font-size: 13px; font-weight: 600; transition: opacity .2s; }
+  .btn:hover { opacity: .85; }
+  .btn.secondary { background: var(--surface2); border: 1px solid var(--border); color: var(--text); font-weight: 400; }
+  .btn.danger { background: var(--danger); }
+  .btn.sm { padding: 4px 10px; font-size: 12px; }
+
+  .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; }
+  thead { background: var(--surface2); }
+  thead th { padding: 10px 12px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); white-space: nowrap; cursor: pointer; user-select: none; }
+  thead th:hover { color: var(--text); }
+  thead th .sort-icon { margin-left: 4px; opacity: .4; }
+  thead th.sorted .sort-icon { opacity: 1; color: var(--accent); }
+  tbody tr { border-top: 1px solid var(--border); transition: background .15s; }
+  tbody tr:hover { background: var(--surface2); }
+  tbody td { padding: 9px 12px; vertical-align: middle; }
+  .no-data { text-align: center; color: var(--muted); padding: 40px; }
+
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .badge-applied { background: #1e3a5f; color: #60a5fa; }
+  .badge-denied { background: #3b1c1c; color: #f87171; }
+  .badge-accepted { background: #14352a; color: #4ade80; }
+  .badge-interviewed { background: #2d2254; color: #a78bfa; }
+  .badge-offer { background: #1a3a2a; color: #34d399; }
+  .badge-withdrawn { background: #2d2d14; color: #fbbf24; }
+  .badge-terminated { background: #2d1f14; color: #fb923c; }
+
+  .actions { display: flex; gap: 6px; }
+  .icon-btn { background: none; border: none; cursor: pointer; color: var(--muted); font-size: 14px; padding: 2px 5px; border-radius: 4px; transition: all .15s; }
+  .icon-btn:hover { background: var(--surface2); color: var(--text); }
+  .icon-btn.del:hover { color: var(--danger); }
+
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; }
+  .modal h2 { font-size: 17px; margin-bottom: 18px; color: var(--text); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-grid .full { grid-column: 1 / -1; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-size: 12px; color: var(--muted); }
+  .field input, .field select, .field textarea { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 8px 10px; font-size: 13px; width: 100%; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+  .field textarea { resize: vertical; min-height: 70px; font-family: inherit; }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+
+  .emp-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+  .emp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+  .emp-card h3 { font-size: 15px; color: var(--accent); margin-bottom: 4px; }
+  .emp-card .title { color: var(--text); font-weight: 600; margin-bottom: 10px; }
+  .emp-card .detail { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .emp-card .detail:last-child { border-bottom: none; }
+  .emp-card .detail .key { color: var(--muted); }
+  .emp-card-actions { display: flex; gap: 8px; margin-top: 12px; }
+
+  .boards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .board-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .board-card .name { font-weight: 600; font-size: 14px; }
+  .board-card .link-btn { color: var(--accent); font-size: 12px; text-decoration: none; }
+  .board-card .link-btn:hover { text-decoration: underline; }
+  .board-card-actions { display: flex; gap: 6px; align-items: center; }
+
+  .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .section-header h2 { font-size: 16px; font-weight: 700; }
+  .result-count { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+
+  a.link { color: var(--accent); text-decoration: none; font-size: 12px; }
+  a.link:hover { text-decoration: underline; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back-link" href="https://sdmurty.com">&#8592; sdmurty.com</a>
+  <h1>&#128188; Job Application Tracker</h1>
+  <span id="last-updated"></span>
+  <div class="header-actions">
+    <button class="btn secondary" onclick="exportData()">&#8681; Export</button>
+    <label class="btn secondary" style="cursor:pointer;margin:0">&#8679; Import<input type="file" accept=".json" onchange="importData(event)" style="display:none"></label>
+  </div>
+</header>
+
+<nav>
+  <button class="active" onclick="showTab('applications', event)">Applications</button>
+  <button onclick="showTab('employment', event)">Employment History</button>
+  <button onclick="showTab('boards', event)">Job Boards</button>
+</nav>
+
+<!-- APPLICATIONS TAB -->
+<div id="tab-applications" class="tab active">
+  <div class="stats" id="app-stats"></div>
+  <div class="section-header">
+    <div class="filters">
+      <label>Search<input type="text" id="f-search" placeholder="Title or company..." oninput="applyFilters()"></label>
+      <label>Status
+        <select id="f-status" onchange="applyFilters()">
+          <option value="">All Statuses</option>
+          <option>Applied</option>
+          <option>Interviewed</option>
+          <option>Offer Received</option>
+          <option>Accepted</option>
+          <option>Denied</option>
+          <option>Withdrawn</option>
+          <option>Process Self Terminated</option>
+        </select>
+      </label>
+      <label>Company<input type="text" id="f-company" placeholder="Filter company..." oninput="applyFilters()"></label>
+      <label>Date From<input type="date" id="f-date-from" onchange="applyFilters()"></label>
+      <label>Date To<input type="date" id="f-date-to" onchange="applyFilters()"></label>
+      <label style="visibility:hidden">.</label>
+      <button class="btn secondary" onclick="clearFilters()">Clear</button>
+    </div>
+    <button class="btn" onclick="openAppModal()">+ Add Application</button>
+  </div>
+  <div class="result-count" id="app-count"></div>
+  <div class="table-wrap">
+    <table id="app-table">
+      <thead>
+        <tr>
+          <th onclick="sortApps('title')" data-col="title">Title <span class="sort-icon">&#8597;</span></th>
+          <th onclick="sortApps('company')" data-col="company">Company <span class="sort-icon">&#8597;</span></th>
+          <th onclick="sortApps('status')" data-col="status">Status <span class="sort-icon">&#8597;</span></th>
+          <th onclick="sortApps('date')" data-col="date">Date Submitted <span class="sort-icon">&#8597;</span></th>
+          <th>Salary</th>
+          <th>Links</th>
+          <th>Notes</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="app-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- EMPLOYMENT TAB -->
+<div id="tab-employment" class="tab">
+  <div class="section-header">
+    <h2>Employment History</h2>
+    <button class="btn" onclick="openEmpModal()">+ Add Job</button>
+  </div>
+  <div class="emp-cards" id="emp-cards"></div>
+</div>
+
+<!-- JOB BOARDS TAB -->
+<div id="tab-boards" class="tab">
+  <div class="section-header">
+    <h2>Job Boards</h2>
+    <button class="btn" onclick="openBoardModal()">+ Add Board</button>
+  </div>
+  <div class="boards-grid" id="boards-grid"></div>
+</div>
+
+<!-- Application modal -->
+<div id="app-modal" class="modal-overlay hidden">
+  <div class="modal">
+    <h2 id="app-modal-title">Add Application</h2>
+    <div class="form-grid">
+      <div class="field full"><label>Job Title *</label><input id="m-title" placeholder="e.g. Data Analyst"></div>
+      <div class="field"><label>Company *</label><input id="m-company" placeholder="e.g. Boeing"></div>
+      <div class="field"><label>Status</label>
+        <select id="m-status">
+          <option>Applied</option>
+          <option>Interviewed</option>
+          <option>Offer Received</option>
+          <option>Accepted</option>
+          <option>Denied</option>
+          <option>Withdrawn</option>
+          <option>Process Self Terminated</option>
+        </select>
+      </div>
+      <div class="field"><label>Date Submitted</label><input type="date" id="m-date"></div>
+      <div class="field"><label>Projected Salary</label><input id="m-salary" placeholder="e.g. $55,000 or $25/hr"></div>
+      <div class="field"><label>Company Website</label><input id="m-link-home" placeholder="URL"></div>
+      <div class="field"><label>Job Posting Link</label><input id="m-link-post" placeholder="URL"></div>
+      <div class="field full"><label>Notes / Feedback</label><textarea id="m-notes" placeholder="Any notes..."></textarea></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn secondary" onclick="closeAppModal()">Cancel</button>
+      <button class="btn" onclick="saveApp()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Employment modal -->
+<div id="emp-modal" class="modal-overlay hidden">
+  <div class="modal">
+    <h2 id="emp-modal-title">Add Employment Record</h2>
+    <div class="form-grid">
+      <div class="field full"><label>Employer *</label><input id="e-employer" placeholder="Company name"></div>
+      <div class="field full"><label>Job Title</label><input id="e-title" placeholder="Your title"></div>
+      <div class="field"><label>Start Date</label><input type="date" id="e-start"></div>
+      <div class="field"><label>End Date</label><input type="date" id="e-end"></div>
+      <div class="field"><label>Starting Salary</label><input id="e-sal-start" placeholder="e.g. $39,520/yr"></div>
+      <div class="field"><label>Ending Salary</label><input id="e-sal-end" placeholder="e.g. $47,840/yr"></div>
+      <div class="field full"><label>Street Address</label><input id="e-street" placeholder="Street"></div>
+      <div class="field"><label>City</label><input id="e-city" placeholder="City"></div>
+      <div class="field"><label>Zip</label><input id="e-zip" placeholder="Zip"></div>
+      <div class="field"><label>Phone</label><input id="e-phone" placeholder="Main phone"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn secondary" onclick="closeEmpModal()">Cancel</button>
+      <button class="btn" onclick="saveEmp()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Board modal -->
+<div id="board-modal" class="modal-overlay hidden">
+  <div class="modal">
+    <h2>Add Job Board</h2>
+    <div class="form-grid">
+      <div class="field full"><label>Board / Company Name *</label><input id="b-name" placeholder="e.g. LinkedIn"></div>
+      <div class="field full"><label>URL</label><input id="b-url" placeholder="https://..."></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn secondary" onclick="closeBoardModal()">Cancel</button>
+      <button class="btn" onclick="saveBoard()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STATUS_CLASSES = {
+  'Applied': 'badge-applied',
+  'Interviewed': 'badge-interviewed',
+  'Offer Received': 'badge-offer',
+  'Accepted': 'badge-accepted',
+  'Denied': 'badge-denied',
+  'Withdrawn': 'badge-withdrawn',
+  'Process Self Terminated': 'badge-terminated',
+};
+
+const DEFAULT_APPS = [
+  {id:1,title:"Data Analyst I",company:"Acme Analytics",status:"Denied",date:"2026-01-10",salary:"$55,000/yr",linkHome:"",linkPost:"",notes:""},
+  {id:2,title:"Supply Chain Coordinator",company:"TechCorp Inc.",status:"Interviewed",date:"2026-01-18",salary:"$52,000/yr",linkHome:"",linkPost:"",notes:"Phone screen went well. Waiting on follow-up."},
+  {id:3,title:"Inventory Analyst",company:"Westfield Manufacturing",status:"Applied",date:"2026-02-02",salary:"$25/hr",linkHome:"",linkPost:"",notes:""},
+  {id:4,title:"Operations Analyst",company:"Metro Logistics",status:"Applied",date:"2026-02-14",salary:"",linkHome:"",linkPost:"",notes:"Found via LinkedIn"},
+  {id:5,title:"Junior Data Analyst",company:"Brightfield Solutions",status:"Offer Received",date:"2026-02-20",salary:"$58,000/yr",linkHome:"",linkPost:"",notes:"Offer received — considering."},
+];
+
+const DEFAULT_EMP = [
+  {id:1,employer:"Sample Manufacturing Co.",title:"Operations Coordinator",start:"2020-03-15",end:"2022-11-01",salStart:"$38,000/yr",salEnd:"$44,000/yr",street:"",city:"",zip:"",phone:""},
+  {id:2,employer:"Retail Distribution Inc.",title:"Warehouse Associate",start:"2018-06-01",end:"2020-02-28",salStart:"$31,200/yr",salEnd:"$33,800/yr",street:"",city:"",zip:"",phone:""},
+];
+
+const DEFAULT_BOARDS = [
+  {id:1,name:"LinkedIn Jobs",url:"https://www.linkedin.com/jobs/"},
+  {id:2,name:"Indeed",url:"https://www.indeed.com/"},
+  {id:3,name:"Glassdoor",url:"https://www.glassdoor.com/Job/"},
+  {id:4,name:"Handshake",url:"https://joinhandshake.com/"},
+  {id:5,name:"Company Career Portals",url:""},
+];
+
+let apps = JSON.parse(localStorage.getItem('tracker_apps') || 'null') || DEFAULT_APPS;
+let emps = JSON.parse(localStorage.getItem('tracker_emps') || 'null') || DEFAULT_EMP;
+let boards = JSON.parse(localStorage.getItem('tracker_boards') || 'null') || DEFAULT_BOARDS;
+let nextAppId = Math.max(0, ...apps.map(a => a.id)) + 1;
+let nextEmpId = Math.max(0, ...emps.map(e => e.id)) + 1;
+let nextBoardId = Math.max(0, ...boards.map(b => b.id)) + 1;
+
+let editingAppId = null;
+let editingEmpId = null;
+let sortCol = 'date';
+let sortDir = -1;
+
+function save() {
+  localStorage.setItem('tracker_apps', JSON.stringify(apps));
+  localStorage.setItem('tracker_emps', JSON.stringify(emps));
+  localStorage.setItem('tracker_boards', JSON.stringify(boards));
+  document.getElementById('last-updated').textContent = 'Saved ' + new Date().toLocaleTimeString();
+}
+
+function showTab(name, event) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (event && event.currentTarget) event.currentTarget.classList.add('active');
+}
+
+function getStatusBadgeClass(s) { return STATUS_CLASSES[s] || 'badge-applied'; }
+
+function applyFilters() { renderApps(); }
+
+function clearFilters() {
+  ['f-search','f-company','f-date-from','f-date-to'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-status').value = '';
+  renderApps();
+}
+
+function sortApps(col) {
+  if (sortCol === col) sortDir *= -1;
+  else { sortCol = col; sortDir = 1; }
+  renderApps();
+}
+
+function getFiltered() {
+  const search = document.getElementById('f-search').value.toLowerCase();
+  const status = document.getElementById('f-status').value;
+  const company = document.getElementById('f-company').value.toLowerCase();
+  const dateFrom = document.getElementById('f-date-from').value;
+  const dateTo = document.getElementById('f-date-to').value;
+
+  return apps.filter(a => {
+    if (search && !a.title.toLowerCase().includes(search) && !a.company.toLowerCase().includes(search)) return false;
+    if (status && a.status !== status) return false;
+    if (company && !a.company.toLowerCase().includes(company)) return false;
+    if (dateFrom && a.date && a.date < dateFrom) return false;
+    if (dateTo && a.date && a.date > dateTo) return false;
+    return true;
+  }).sort((a, b) => {
+    let av = a[sortCol] || '';
+    let bv = b[sortCol] || '';
+    return av < bv ? -sortDir : av > bv ? sortDir : 0;
+  });
+}
+
+function renderApps() {
+  const filtered = getFiltered();
+  const tbody = document.getElementById('app-tbody');
+  document.getElementById('app-count').textContent = `Showing ${filtered.length} of ${apps.length} applications`;
+
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.remove('sorted');
+    const icon = th.querySelector('.sort-icon');
+    if (icon) icon.textContent = '⇅';
+  });
+  const activeTh = document.querySelector(`thead th[data-col="${sortCol}"]`);
+  if (activeTh) {
+    activeTh.classList.add('sorted');
+    activeTh.querySelector('.sort-icon').textContent = sortDir === 1 ? '↑' : '↓';
+  }
+
+  const allStatuses = ['Applied','Interviewed','Offer Received','Accepted','Denied','Withdrawn','Process Self Terminated'];
+  const counts = {};
+  allStatuses.forEach(s => counts[s] = 0);
+  apps.forEach(a => { if (counts[a.status] !== undefined) counts[a.status]++; });
+  document.getElementById('app-stats').innerHTML = `
+    <div class="stat"><div class="label">Total</div><div class="value" style="color:var(--accent)">${apps.length}</div></div>
+    <div class="stat"><div class="label">Applied</div><div class="value" style="color:#60a5fa">${counts['Applied']}</div></div>
+    <div class="stat"><div class="label">Interviewed</div><div class="value" style="color:#a78bfa">${counts['Interviewed']}</div></div>
+    <div class="stat"><div class="label">Offer Received</div><div class="value" style="color:#34d399">${counts['Offer Received']}</div></div>
+    <div class="stat"><div class="label">Accepted</div><div class="value" style="color:#4ade80">${counts['Accepted']}</div></div>
+    <div class="stat"><div class="label">Denied</div><div class="value" style="color:#f87171">${counts['Denied']}</div></div>
+  `;
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8" class="no-data">No applications match your filters.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(a => `
+    <tr>
+      <td>${escHtml(a.title)}</td>
+      <td>${escHtml(a.company)}</td>
+      <td><span class="badge ${getStatusBadgeClass(a.status)}">${escHtml(a.status)}</span></td>
+      <td>${fmtDate(a.date)}</td>
+      <td>${escHtml(a.salary)}</td>
+      <td>
+        ${a.linkHome ? `<a class="link" href="${escHtml(a.linkHome)}" target="_blank">Site</a>` : ''}
+        ${a.linkHome && a.linkPost ? ' · ' : ''}
+        ${a.linkPost ? `<a class="link" href="${escHtml(a.linkPost)}" target="_blank">Posting</a>` : ''}
+      </td>
+      <td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${escHtml(a.notes)}">${escHtml(a.notes)}</td>
+      <td>
+        <div class="actions">
+          <button class="icon-btn" onclick="editApp(${a.id})" title="Edit">&#9998;</button>
+          <button class="icon-btn del" onclick="deleteApp(${a.id})" title="Delete">&#128465;</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function openAppModal(id) {
+  editingAppId = id || null;
+  document.getElementById('app-modal-title').textContent = id ? 'Edit Application' : 'Add Application';
+  if (id) {
+    const a = apps.find(x => x.id === id);
+    document.getElementById('m-title').value = a.title;
+    document.getElementById('m-company').value = a.company;
+    document.getElementById('m-status').value = a.status;
+    document.getElementById('m-date').value = a.date;
+    document.getElementById('m-salary').value = a.salary;
+    document.getElementById('m-link-home').value = a.linkHome;
+    document.getElementById('m-link-post').value = a.linkPost;
+    document.getElementById('m-notes').value = a.notes;
+  } else {
+    ['m-title','m-company','m-date','m-salary','m-link-home','m-link-post','m-notes'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('m-status').value = 'Applied';
+  }
+  document.getElementById('app-modal').classList.remove('hidden');
+}
+
+function editApp(id) { openAppModal(id); }
+function closeAppModal() { document.getElementById('app-modal').classList.add('hidden'); }
+
+function saveApp() {
+  const title = document.getElementById('m-title').value.trim();
+  const company = document.getElementById('m-company').value.trim();
+  if (!title || !company) { alert('Title and Company are required.'); return; }
+  const data = {
+    title, company,
+    status: document.getElementById('m-status').value,
+    date: document.getElementById('m-date').value,
+    salary: document.getElementById('m-salary').value.trim(),
+    linkHome: document.getElementById('m-link-home').value.trim(),
+    linkPost: document.getElementById('m-link-post').value.trim(),
+    notes: document.getElementById('m-notes').value.trim(),
+  };
+  if (editingAppId) {
+    const idx = apps.findIndex(a => a.id === editingAppId);
+    apps[idx] = { ...apps[idx], ...data };
+  } else {
+    apps.push({ id: nextAppId++, ...data });
+  }
+  save(); closeAppModal(); renderApps();
+}
+
+function deleteApp(id) {
+  if (!confirm('Delete this application?')) return;
+  apps = apps.filter(a => a.id !== id);
+  save(); renderApps();
+}
+
+function renderEmps() {
+  const sorted = [...emps].sort((a, b) => (b.start || '') < (a.start || '') ? -1 : 1);
+  document.getElementById('emp-cards').innerHTML = sorted.map(e => `
+    <div class="emp-card">
+      <h3>${escHtml(e.employer)}</h3>
+      <div class="title">${escHtml(e.title)}</div>
+      ${row('Dates', [fmtDate(e.start), fmtDate(e.end)].filter(Boolean).join(' – '))}
+      ${row('Starting Pay', e.salStart)}
+      ${row('Ending Pay', e.salEnd)}
+      ${e.city ? row('Location', [e.street, e.city, e.zip].filter(Boolean).join(', ')) : ''}
+      ${e.phone ? row('Phone', e.phone) : ''}
+      <div class="emp-card-actions">
+        <button class="btn sm secondary" onclick="editEmp(${e.id})">Edit</button>
+        <button class="btn sm danger" onclick="deleteEmp(${e.id})">Delete</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function row(key, val) {
+  if (!val) return '';
+  return `<div class="detail"><span class="key">${key}</span><span>${escHtml(val)}</span></div>`;
+}
+
+function openEmpModal(id) {
+  editingEmpId = id || null;
+  document.getElementById('emp-modal-title').textContent = id ? 'Edit Employment Record' : 'Add Employment Record';
+  if (id) {
+    const e = emps.find(x => x.id === id);
+    document.getElementById('e-employer').value = e.employer;
+    document.getElementById('e-title').value = e.title;
+    document.getElementById('e-start').value = e.start;
+    document.getElementById('e-end').value = e.end;
+    document.getElementById('e-sal-start').value = e.salStart;
+    document.getElementById('e-sal-end').value = e.salEnd;
+    document.getElementById('e-street').value = e.street;
+    document.getElementById('e-city').value = e.city;
+    document.getElementById('e-zip').value = e.zip;
+    document.getElementById('e-phone').value = e.phone;
+  } else {
+    ['e-employer','e-title','e-start','e-end','e-sal-start','e-sal-end','e-street','e-city','e-zip','e-phone'].forEach(id => document.getElementById(id).value = '');
+  }
+  document.getElementById('emp-modal').classList.remove('hidden');
+}
+
+function editEmp(id) { openEmpModal(id); }
+function closeEmpModal() { document.getElementById('emp-modal').classList.add('hidden'); }
+
+function saveEmp() {
+  const employer = document.getElementById('e-employer').value.trim();
+  if (!employer) { alert('Employer is required.'); return; }
+  const data = {
+    employer,
+    title: document.getElementById('e-title').value.trim(),
+    start: document.getElementById('e-start').value,
+    end: document.getElementById('e-end').value,
+    salStart: document.getElementById('e-sal-start').value.trim(),
+    salEnd: document.getElementById('e-sal-end').value.trim(),
+    street: document.getElementById('e-street').value.trim(),
+    city: document.getElementById('e-city').value.trim(),
+    zip: document.getElementById('e-zip').value.trim(),
+    phone: document.getElementById('e-phone').value.trim(),
+  };
+  if (editingEmpId) {
+    const idx = emps.findIndex(e => e.id === editingEmpId);
+    emps[idx] = { ...emps[idx], ...data };
+  } else {
+    emps.push({ id: nextEmpId++, ...data });
+  }
+  save(); closeEmpModal(); renderEmps();
+}
+
+function deleteEmp(id) {
+  if (!confirm('Delete this employment record?')) return;
+  emps = emps.filter(e => e.id !== id);
+  save(); renderEmps();
+}
+
+function renderBoards() {
+  document.getElementById('boards-grid').innerHTML = boards.map(b => `
+    <div class="board-card">
+      <span class="name">${escHtml(b.name)}</span>
+      <div class="board-card-actions">
+        ${b.url ? `<a class="link-btn" href="${escHtml(b.url)}" target="_blank">Visit ↗</a>` : ''}
+        <button class="icon-btn" onclick="editBoard(${b.id})" title="Edit">&#9998;</button>
+        <button class="icon-btn del" onclick="deleteBoard(${b.id})" title="Delete">&#128465;</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openBoardModal(id) {
+  if (id) {
+    const b = boards.find(x => x.id === id);
+    document.getElementById('b-name').value = b.name;
+    document.getElementById('b-url').value = b.url;
+    document.getElementById('board-modal')._editId = id;
+  } else {
+    document.getElementById('b-name').value = '';
+    document.getElementById('b-url').value = '';
+    document.getElementById('board-modal')._editId = null;
+  }
+  document.getElementById('board-modal').classList.remove('hidden');
+}
+
+function editBoard(id) { openBoardModal(id); }
+function closeBoardModal() { document.getElementById('board-modal').classList.add('hidden'); }
+
+function saveBoard() {
+  const name = document.getElementById('b-name').value.trim();
+  if (!name) { alert('Name is required.'); return; }
+  const data = { name, url: document.getElementById('b-url').value.trim() };
+  const editId = document.getElementById('board-modal')._editId;
+  if (editId) {
+    const idx = boards.findIndex(b => b.id === editId);
+    boards[idx] = { ...boards[idx], ...data };
+  } else {
+    boards.push({ id: nextBoardId++, ...data });
+  }
+  save(); closeBoardModal(); renderBoards();
+}
+
+function deleteBoard(id) {
+  if (!confirm('Delete this board?')) return;
+  boards = boards.filter(b => b.id !== id);
+  save(); renderBoards();
+}
+
+function escHtml(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function fmtDate(d) {
+  if (!d) return '';
+  const [y, m, day] = d.split('-');
+  if (!y || !m || !day) return d;
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${months[parseInt(m)-1]} ${parseInt(day)}, ${y}`;
+}
+
+function exportData() {
+  const data = { apps, emps, boards, exportedAt: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'tracker-data.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data.apps || !data.emps || !data.boards) throw new Error('Invalid file');
+      if (!confirm(`Import ${data.apps.length} applications, ${data.emps.length} jobs, and ${data.boards.length} boards? This will replace your current data.`)) return;
+      apps = data.apps; emps = data.emps; boards = data.boards;
+      nextAppId = Math.max(0, ...apps.map(a => a.id)) + 1;
+      nextEmpId = Math.max(0, ...emps.map(e => e.id)) + 1;
+      nextBoardId = Math.max(0, ...boards.map(b => b.id)) + 1;
+      save(); renderApps(); renderEmps(); renderBoards();
+      document.getElementById('last-updated').textContent = 'Imported ' + new Date().toLocaleTimeString();
+    } catch {
+      alert('Could not read file. Make sure it\'s a tracker-data.json exported from this app.');
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+['app-modal','emp-modal','board-modal'].forEach(id => {
+  document.getElementById(id).addEventListener('click', function(e) {
+    if (e.target === this) {
+      if (id === 'app-modal') closeAppModal();
+      else if (id === 'emp-modal') closeEmpModal();
+      else closeBoardModal();
+    }
+  });
+});
+
+renderApps();
+renderEmps();
+renderBoards();
+document.getElementById('last-updated').textContent = 'Loaded ' + new Date().toLocaleTimeString();
+</script>
+</body>
+</html>
