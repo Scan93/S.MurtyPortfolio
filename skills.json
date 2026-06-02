@@ -269,6 +269,18 @@
       "tags": ["networking", "iot", "security", "systems"]
     },
     {
+      "name": "KNIME Analytics Platform",
+      "aliases": ["knime", "knime analytics", "knime platform", "workflow", "no-code analytics", "visual analytics"],
+      "category": "Data Analysis",
+      "layer": 2,
+      "competency": "Learning",
+      "description": "Introduced to KNIME through coursework at Mesa Community College with no prior knowledge of the platform. KNIME is a visual, node-based analytics tool that lets you build end-to-end data workflows without writing code. I now understand how to construct workflows tailored to each unique data analysis project — connecting nodes for data ingestion, transformation, analysis, and output into a fluid, readable pipeline.",
+      "usedIn": [
+        "Mesa Community College — introduced to KNIME Analytics Platform through coursework; built data workflows for analysis projects"
+      ],
+      "tags": ["data", "analytics", "workflow", "no-code", "etl"]
+    },
+    {
       "name": "Pygame",
       "aliases": ["pygame", "game development", "game dev", "2d game", "python game"],
       "category": "Computer Science",
