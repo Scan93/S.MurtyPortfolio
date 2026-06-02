@@ -232,14 +232,14 @@
     },
     {
       "name": "3D Printing",
-      "aliases": ["3d printing", "fdm", "resin", "filament", "bambu", "slicing", "additive manufacturing", "maker"],
+      "aliases": ["3d printing", "fdm", "filament", "bambu", "slicing", "additive manufacturing", "maker"],
       "category": "Mechanical Experience",
       "layer": 3,
       "competency": "Professional",
-      "description": "I work with both FDM (filament) and resin printing. I'm deep enough in the space that I built a commercial-grade inventory tracker specifically for makers and 3D print shops. I understand material properties, slicer workflows, and the real operational pain points of managing a material stock across projects.",
+      "description": "I work with FDM (filament) printing. I'm deep enough in the space that I built a commercial-grade inventory tracker specifically for makers and 3D print shops. I understand material properties, slicer workflows, and the real operational pain points of managing a material stock across projects.",
       "usedIn": [
         "StockBin — built a material inventory tracker for the maker and 3D printing market; product design informed by real first-hand workflow experience",
-        "Personal workshop — active FDM and resin printing for hobby projects and functional parts"
+        "Personal workshop — active FDM printing for hobby projects and functional parts"
       ],
       "tags": ["mechanical", "hardware", "maker", "manufacturing"]
     },
