@@ -24,14 +24,14 @@
       "aliases": ["javascript", "js", "node", "node.js", "nodejs", "vanilla js", "ecmascript"],
       "category": "Computer Science",
       "layer": 2,
-      "competency": "Learning",
-      "description": "I work with JavaScript through Claude AI — I define the logic, behavior, and requirements for each project, and Claude generates the code. I can read and follow JavaScript well enough to understand what's happening, catch issues, and make targeted edits, but I don't write it from scratch independently. Node.js projects like SIGNAL follow the same pattern: I architect the tool and Claude implements it.",
+      "competency": "Professional",
+      "description": "I understand how JavaScript works — functions, events, data flow, APIs, and the logic that makes an application behave. I use Claude AI to write the code rather than hand-typing it, which means I can move from idea to working product without getting stuck in syntax for days. I review the output, catch issues, and direct changes confidently. The same applies to Node.js. This is a deliberate workflow: I bring the understanding, Claude does the labor, and real things get shipped.",
       "usedIn": [
-        "StockBin — directed full app logic including CRUD, photo compression, localStorage, and PWA behavior",
-        "Portfolio website (sdmurty.com) — directed skills search, visitor counter, and interactive features",
-        "SIGNAL — architected Node.js market research agent calling the Anthropic API; Claude implemented the script",
-        "Job Tracker — directed application tracking logic, export/import, and employment history features",
-        "PoolCalc — directed chemical dosage logic and BarcodeDetector API integration"
+        "StockBin — full app logic: CRUD, photo compression, localStorage, reorder list, usage log, PWA",
+        "Portfolio website (sdmurty.com) — skills search engine, live JSON fetch, visitor counter, interactive overlays",
+        "SIGNAL — Node.js agent that calls the Anthropic API, streams output, and saves market research reports",
+        "Job Tracker — application tracking, sortable table, export/import, employment history",
+        "PoolCalc — chemical dosage calculations and BarcodeDetector API integration"
       ],
       "tags": ["programming", "web", "frontend", "node"]
     },
@@ -40,13 +40,13 @@
       "aliases": ["html", "css", "html5", "css3", "web design", "frontend", "front-end", "markup"],
       "category": "Computer Science",
       "layer": 2,
-      "competency": "Learning",
-      "description": "I work with HTML and CSS through Claude AI — I direct the structure, design decisions, and behavior of every project, and Claude generates the code. I can read and understand the output, review it for correctness, and make targeted edits, but I don't write markup from scratch by hand. Every web project I've shipped was built this way: I bring the vision and requirements, Claude brings the syntax.",
+      "competency": "Professional",
+      "description": "I have a solid working understanding of HTML and CSS — how structure, styling, layout, and responsiveness fit together. In practice, I use Claude AI to write the code directly rather than hand-typing syntax, which lets me ship real, production-quality results fast instead of spending days debugging a layout issue. I can read, review, and direct the output confidently. This is how I choose to work in 2026: strong conceptual understanding, AI handling the labor.",
       "usedIn": [
-        "Portfolio website (sdmurty.com) — directed full multi-page site design including skills search, retro analytics hub, and passions page",
-        "StockBin — directed mobile-first PWA layout, dark theme, and card grid; deployed via GitHub Pages",
-        "PoolCalc — directed PWA design and dark UI for iPhone field use",
-        "Job Tracker — directed dark-mode application manager with modal forms and filterable table"
+        "Portfolio website (sdmurty.com) — multi-page site with skills search, retro analytics hub, and passions page; live at sdmurty.com",
+        "StockBin — mobile-first PWA with dark theme, card grid, and photo capture; deployed via GitHub Pages",
+        "PoolCalc — dark-mode PWA with BarcodeDetector API; designed for iPhone field use",
+        "Job Tracker — dark-mode application manager with modal forms, filters, and export/import"
       ],
       "tags": ["web", "frontend", "design", "markup"]
     },
