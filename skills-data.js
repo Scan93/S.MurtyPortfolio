@@ -60,4 +60,24 @@ const SKILLS_DATA = [
       "Portfolio website -- scripting and automation supporting site development"
     ]
   }
+  ,
+  {
+    name: "Hot Plates",
+    aliases: ["hot plate", "hot plates", "preheater", "preheat", "reflow", "reflow soldering", "soldering", "pcb preheat", "rework"],
+    category: "Tools",
+    description: "Hands-on experience using hot plates for circuit board preheating and reflow soldering work. I'm familiar with their operation in an electronics manufacturing setting -- using controlled heat to seat and rework components on PCBs. I used them during my time at General Dynamics Mission Systems.",
+    usedIn: [
+      "General Dynamics Mission Systems -- hot plate use for board preheating and reflow soldering on the manufacturing floor"
+    ]
+  }
+  ,
+  {
+    name: "Hot Air Pencils",
+    aliases: ["hot air pencil", "hot air pencils", "hot air", "hot air rework", "smd rework", "desoldering", "smt rework", "rework station", "soldering"],
+    category: "Tools",
+    description: "Hands-on experience using hot air pencils for precision soldering and rework of surface-mount components. I'm familiar with applying directed hot air to install, remove, and rework parts on circuit boards without disturbing surrounding components. I used them during my time at General Dynamics Mission Systems.",
+    usedIn: [
+      "General Dynamics Mission Systems -- hot air pencil use for surface-mount soldering and component rework on the manufacturing floor"
+    ]
+  }
 ];
